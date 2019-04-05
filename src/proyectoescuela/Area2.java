@@ -5,15 +5,13 @@
  */
 package proyectoescuela;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author dulf2
  */
-public class Area1 extends Area {
+public class Area2 extends Area {
 
-    public Area1(Grupo a, Grupo b, String nombre){
+    public Area2(Grupo a, Grupo b, String nombre){
         super(nombre, a, b);
     }
     

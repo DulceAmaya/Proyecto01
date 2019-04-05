@@ -13,16 +13,24 @@ import java.util.ArrayList;
  */
 public class Grupo {
 
+	String nombre;
 	ArrayList<Alumno> alumnos;
 	ArrayList<Profesor> profesores;
 	ArrayList<Materia> materias;
 	Area area;
 
-	public Grupo(ArrayList<Alumno> alumnos, ArrayList<Profesor> profesores, Area area){
+	public Grupo(String nombre, ArrayList<Alumno> alumnos, Area area){
+		this.nombre = nombre;
 		this.alumnos = alumnos;
-		this.profesores = profesores;
 		this.area = area;
 		this.materias = area.getMaterias();
+		for (m : materias){
+			profesores.add(materias.getProfesor());
+		}
+	}
+
+	public String getNombre(){
+		return nombre;
 	}
 
 	public ArrayList<Alumno> getAlumnos(){
@@ -40,5 +48,6 @@ public class Grupo {
 	public ArrayList<Profesor> getProfesores(){
 		return profesores;
 	}
+
     
 }
