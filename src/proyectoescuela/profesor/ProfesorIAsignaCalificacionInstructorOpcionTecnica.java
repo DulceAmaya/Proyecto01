@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoescuela;
+package proyectoescuela.profesor;
 
 /**
  *
  * @author Lechuga
  */
-public class OpcionTecniaAgenteViajes extends OpcionTecnica {
-    
-    public OpcionTecniaAgenteViajes(ProfesorInstructorOpcionTencnica instructor){
-        super(instructor);
-    }
+public class ProfesorIAsignaCalificacionInstructorOpcionTecnica implements ProfesorIAsignaCalificacion {
     
 }

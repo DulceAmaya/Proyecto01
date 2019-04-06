@@ -5,6 +5,7 @@
  */
 package proyectoescuela;
 
+import proyectoescuela.profesor.Profesor;
 import java.util.ArrayList;
 
 /**

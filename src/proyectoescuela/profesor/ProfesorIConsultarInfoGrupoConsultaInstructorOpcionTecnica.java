@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoescuela;
+package proyectoescuela.profesor;
 
 /**
  *
  * @author Lechuga
  */
-public interface ProfesorIAsignaCalificacion {
-    
+public class ProfesorIConsultarInfoGrupoConsultaInstructorOpcionTecnica implements ProfesorIConsultarInfoGrupo {
     
 }

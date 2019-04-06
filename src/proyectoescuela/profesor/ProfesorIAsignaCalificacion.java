@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoescuela;
+package proyectoescuela.profesor;
 
 /**
  *
  * @author Lechuga
  */
-public class OpcionTecnicaNutriologo extends OpcionTecnica {
+public interface ProfesorIAsignaCalificacion {
     
-    public OpcionTecnicaNutriologo(ProfesorInstructorOpcionTencnica instructor){
-        super(instructor);
-    }
     
 }

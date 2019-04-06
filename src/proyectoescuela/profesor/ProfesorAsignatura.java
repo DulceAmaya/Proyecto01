@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoescuela;
+package proyectoescuela.profesor;
+
+import proyectoescuela.Grupo;
+import proyectoescuela.Materia;
 
 /**
  *
