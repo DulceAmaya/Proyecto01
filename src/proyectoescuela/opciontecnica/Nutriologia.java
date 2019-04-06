@@ -5,7 +5,7 @@ package proyectoescuela.opciontecnica;
 
 import java.util.ArrayList;
 import proyectoescuela.Alumno;
-import proyectoescuela.profesor.InstructorOpcionTecnica;
+import proyectoescuela.profesor.ProfesorOpcionTecnica;
 
 /**
  * Clase de la opcion tecnica Nutriologia
@@ -28,7 +28,7 @@ public class Nutriologia extends OpcionTecnica {
     }
     
     @Override
-    public void setInstructor(InstructorOpcionTecnica instructor){
+    public void setInstructor(ProfesorOpcionTecnica instructor){
         super.setInstructor(instructor);
     }
     

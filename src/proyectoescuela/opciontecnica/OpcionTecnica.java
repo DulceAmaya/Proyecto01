@@ -5,7 +5,7 @@ package proyectoescuela.opciontecnica;
 
 import java.util.ArrayList;
 import proyectoescuela.Alumno;
-import proyectoescuela.profesor.InstructorOpcionTecnica;
+import proyectoescuela.profesor.ProfesorOpcionTecnica;
 
 /**
  * Clase que se encarga de manejar las opciones tecnicas (Patron Factory)
@@ -15,7 +15,7 @@ import proyectoescuela.profesor.InstructorOpcionTecnica;
 
 public abstract class OpcionTecnica {
 
-    public InstructorOpcionTecnica instructor;
+    public ProfesorOpcionTecnica instructor;
     private ArrayList<Alumno> alumnos;
     
     /**
@@ -41,7 +41,7 @@ public abstract class OpcionTecnica {
      * Metodo que genera un instrucor para la opcion tecnica
      * @param instructor 
      */
-    public void setInstructor(InstructorOpcionTecnica instructor){
+    public void setInstructor(ProfesorOpcionTecnica instructor){
         this.instructor = instructor;
     }
     

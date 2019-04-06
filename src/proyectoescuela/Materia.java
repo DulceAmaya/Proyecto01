@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoescuela.profesor;
+package proyectoescuela;
 
 /**
  *
- * @author Lechuga
+ * @author josel
  */
-public class ProfesorIAsignaCalificacionProfesorAsignatura implements ProfesorIAsignaCalificacion {
-    
+public class Materia {
+    public String getNombre(){
+        return "";
+    }
 }

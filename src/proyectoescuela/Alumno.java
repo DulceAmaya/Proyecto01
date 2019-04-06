@@ -20,6 +20,11 @@ import proyectoescuela.opciontecnica.OpcionTecnica;
  */
 public class Alumno{
     
+    //////////////////Variable del metodo guarro
+    String calificacionOPTEC;
+    int calificacionOpcionTecnica;
+    boolean aproboOpcionTecnica = false;
+    
     final String nombre;
     final String fechaDeNacimiento;
     final int numeroDeCuenta;
@@ -81,7 +86,20 @@ public class Alumno{
     	materias.remove(materia);
     	materias.put(materia, calificacion);
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    //Metodos guarrisimos que espero cambiar xD
+    public void setCalificacionOpcionTecnica(OpcionTecnica opciontecnica, int calificacion){
+        calificacionOpcionTecnica = calificacion;
+        aproboOpcionTecnica = (calificacionOpcionTecnica>5);
+    }
+    
+    public int getCalificacionOpcionTecnica(){
+        return calificacionOpcionTecnica;
+    }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    
     public double getPromedio(){
     	int promedio = materias.get(materiasArray[0]) + (materias.get(materiasArray[1]));
     	return promedio/2;
@@ -118,9 +136,11 @@ public class Alumno{
                 case 5:
                     System.out.println("...");
                 default:
-                    System.out.println("Escoge una opción válida");
+                    System.out.println("Escoge una opción válida"); 
+                    throw new ExcepcionOpcionTecnicaInvalida();
                 }
-            }  
+            }
+        
     }
 
     public String getOpcionTecnica(){
