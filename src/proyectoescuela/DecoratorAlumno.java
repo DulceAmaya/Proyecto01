@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoescuela.grupo;
+package proyectoescuela;
 
 /**
  *
- * @author josel
+ * @author dulf2
  */
-public class Grupo {
+public abstract class DecoratorAlumno {
     
 }

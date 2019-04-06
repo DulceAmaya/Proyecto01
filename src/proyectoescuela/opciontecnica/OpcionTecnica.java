@@ -3,7 +3,9 @@
  */
 package proyectoescuela.opciontecnica;
 
-import proyectoescuela.profesor.ProfesorInstructorOpcionTencnica;
+import java.util.ArrayList;
+import proyectoescuela.Alumno;
+import proyectoescuela.profesor.InstructorOpcionTencnica;
 
 /**
  * Clase que se encarga de manejar las opciones tecnicas (Patron Factory)
@@ -13,19 +15,48 @@ import proyectoescuela.profesor.ProfesorInstructorOpcionTencnica;
 
 public abstract class OpcionTecnica {
 
-    public ProfesorInstructorOpcionTencnica instructor;
+    public InstructorOpcionTencnica instructor;
+    private ArrayList<Alumno> alumnos;
     
     /**
-     * Constructor que recibe un instructor
-     * @param instructor 
+     * Constructor vacio
      */
-    public OpcionTecnica(ProfesorInstructorOpcionTencnica instructor){
-        this.instructor = instructor;
-    }
+    public OpcionTecnica(){}
     
     /**
      * Metodo que regresa el nombre de la opcion tecnica
      * @return nombre
      */
     public abstract String getNombre();
+    
+    /**
+     * Metodo que regresa al instructor de la opcion tecnica
+     * @return instructor
+     */
+    public String getInstructor(){
+        return instructor.toString();
+    }
+    
+    /**
+     * Metodo que genera un instrucor para la opcion tecnica
+     * @param instructor 
+     */
+    public void setInstructor(InstructorOpcionTencnica instructor){
+        this.instructor = instructor;
+    }
+    
+    /**
+     * Metodo que agrega a los alumnos al ArrayList de alumnos
+     * @param alumno 
+     */
+    public void inscribirAlumno(Alumno alumno){
+        alumnos.add(alumno);
+    }
+    
+    /**
+     * Metodo que regresa la lista de alumnos inscritos en la opcion tecnica
+     * @return alumnos Inscritos
+     */
+    public abstract ArrayList<Alumno> alumnosInscritos();
+    
 }

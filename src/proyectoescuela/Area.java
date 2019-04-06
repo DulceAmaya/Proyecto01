@@ -11,4 +11,14 @@ package proyectoescuela;
  */
 public abstract class Area {
     
+    String nombre;
+    Grupo a;
+    Grupo b;
+    
+    public Area(String nombre, Grupo a, Grupo b){
+        this.nombre = nombre;
+        this.a = a;
+        this.b = b;
+    }
+    
 }

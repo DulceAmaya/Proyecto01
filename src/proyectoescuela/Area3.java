@@ -7,8 +7,10 @@ package proyectoescuela;
 
 /**
  *
- * @author Lechuga
+ * @author dulf2
  */
-public class Materia {
-    
+public class Area3 extends Area{
+    public Area3(String nombre, Grupo a, Grupo b){
+        super(nombre, a, b);
+    }
 }
