@@ -1,18 +1,20 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Modelado y Programacion | Proyecto 1 | 2019-2
  */
 package proyectoescuela;
 
-import java.util.ArrayList;
-
 /**
- *
+ * Clase especifica para area 1
  * @author dulf2
  */
 public class Area1 extends Area {
 
+    /**
+     * Constructor de Area 1 que recibe su nombre y dos grupos
+     * @param nombre
+     * @param a
+     * @param b 
+     */
     public Area1(Grupo a, Grupo b, String nombre){
         super(nombre, a, b);
     }
