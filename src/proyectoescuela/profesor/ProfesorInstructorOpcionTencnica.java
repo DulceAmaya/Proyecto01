@@ -28,8 +28,7 @@ public class ProfesorInstructorOpcionTencnica extends Profesor{
     public String getOpcionTecnica(){
         return opcionTecnica.getNombre();
     }
-    
-    public 
-    
-    
+        
 }
+
+//AGREGAR UN ID 

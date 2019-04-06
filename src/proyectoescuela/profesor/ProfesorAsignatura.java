@@ -5,8 +5,10 @@
  */
 package proyectoescuela.profesor;
 
-import proyectoescuela.Grupo;
 import proyectoescuela.Materia;
+import proyectoescuela.alumno.Alumno;
+import proyectoescuela.grupo.Grupo;
+
 
 /**
  *
@@ -28,7 +30,8 @@ public class ProfesorAsignatura extends Profesor {
     }
     
     public String consultaInformacionGrupo(){
-        return "" + grupo.getAlumnos().toString() + grupo.getNombre() + materia.getNombre();
+        return null;
+        //return "" + grupo.getAlumnos().toString() + grupo.getNombre() + materia.getNombre();
     }
     
     public void asignaCalificacion(Alumno alumno, int calificacion){

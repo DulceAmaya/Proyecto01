@@ -5,8 +5,10 @@
  */
 package proyectoescuela.profesor;
 
-import proyectoescuela.Grupo;
+
 import proyectoescuela.Materia;
+import proyectoescuela.alumno.Alumno;
+import proyectoescuela.grupo.Grupo;
 
 /**
  *
@@ -20,7 +22,7 @@ public class ProfesorIConsultarInfoGrupoConsultaProfesorAsignatura implements Pr
     public Alumno alumno;
     
     public void asignaCalificacion(Alumno alumno, int calificacion){
-        alumno.setCalificacion(materia, calificacion);
+        //alumno.setCalificacion(materia, calificacion);
         System.out.println("La calificacion fue asignada");
     }
 }
