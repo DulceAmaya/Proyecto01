@@ -5,7 +5,7 @@ package proyectoescuela.opciontecnica;
 
 import java.util.ArrayList;
 import proyectoescuela.Alumno;
-import proyectoescuela.profesor.InstructorOpcionTencnica;
+import proyectoescuela.profesor.InstructorOpcionTecnica;
 
 
 /**
@@ -29,7 +29,7 @@ public class Laboratorista extends OpcionTecnica {
     }
     
     @Override
-    public void setInstructor(InstructorOpcionTencnica instructor){
+    public void setInstructor(InstructorOpcionTecnica instructor){
         super.setInstructor(instructor);
     }
     

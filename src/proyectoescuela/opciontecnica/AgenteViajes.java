@@ -5,7 +5,7 @@ package proyectoescuela.opciontecnica;
 
 import java.util.ArrayList;
 import proyectoescuela.Alumno;
-import proyectoescuela.profesor.InstructorOpcionTencnica;
+import proyectoescuela.profesor.InstructorOpcionTecnica;
 
 /**
  * Clase de la opcion tecnica Agente de viajes
@@ -28,7 +28,7 @@ public class AgenteViajes extends OpcionTecnica {
     }
     
     @Override
-    public void setInstructor(InstructorOpcionTencnica instructor){
+    public void setInstructor(InstructorOpcionTecnica instructor){
         super.setInstructor(instructor);
     }
     

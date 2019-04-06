@@ -11,12 +11,12 @@ import proyectoescuela.opciontecnica.OpcionTecnica;
  *
  * @author Lechuga
  */
-public class InstructorOpcionTencnica extends Profesor{
+public class InstructorOpcionTecnica extends Profesor{
     
     public String nombre;
     public OpcionTecnica opcionTecnica;
 
-    public InstructorOpcionTencnica(String nombre, OpcionTecnica opcionTecnica) {
+    public InstructorOpcionTecnica(String nombre, OpcionTecnica opcionTecnica) {
         this.nombre = nombre;
         this.opcionTecnica = opcionTecnica;
     }
