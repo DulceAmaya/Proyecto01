@@ -19,9 +19,8 @@ public class ProfesorAsignatura extends Profesor {
     public int id = 0;
     public Materia materia;
     public Grupo grupo;
-    
     public Alumno alumno;
-    public AsignaCalificacionProfesorAsignatura pCalificacion;
+    public AsignarCalificacionProfesorAsignatura pCalificacion;
     public ConsultarInfoGrupoProfesorAsignatura pInformacion;
 
     /**

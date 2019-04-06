@@ -18,8 +18,7 @@ public class ProfesorOpcionTecnica extends Profesor{
     public OpcionTecnica opcionTecnica;
     public Grupo grupo;
     public int id = 0;
-    
-    public AsignaCalificacionProfesorOpcionTecnica pCalificacion;
+    public AsignarCalificacionProfesorOpcionTecnica pCalificacion;
     public ConsultarInfoGrupoProfesorOpcionTecnica pInformacion;
 
     /**

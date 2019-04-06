@@ -11,7 +11,7 @@ import proyectoescuela.Alumno;
  *
  * @author Lechuga
  */
-public class AsignaCalificacionProfesorOpcionTecnica implements IAsignaCalificacion {
+public class AsignarCalificacionProfesorOpcionTecnica implements IAsignaCalificacion {
 
     Alumno alumno;
     ProfesorOpcionTecnica profesor;
