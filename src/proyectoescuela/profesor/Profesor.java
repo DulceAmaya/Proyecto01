@@ -4,7 +4,7 @@
 package proyectoescuela.profesor;
 
 import proyectoescuela.Alumno;
-import proyectoescuela.IObservador;
+import proyectoescuela.administrador.IObservador;
 
 /**
  * Define los tipos de profesores en la escuela (patron Strategy)

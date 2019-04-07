@@ -5,13 +5,11 @@
  */
 package proyectoescuela;
 
+import proyectoescuela.materia.ExcepcionMateriaNoInscrita;
+import proyectoescuela.administrador.IObservador;
 import java.util.Hashtable;
-import proyectoescuela.opciontecnica.AgenteViajes;
 import proyectoescuela.opciontecnica.ExcepcionOpcionTecnicaInvalida;
 import proyectoescuela.opciontecnica.FabricaOpcionTecnica;
-import proyectoescuela.opciontecnica.Fotografia;
-import proyectoescuela.opciontecnica.Laboratorista;
-import proyectoescuela.opciontecnica.Nutriologia;
 import proyectoescuela.opciontecnica.OpcionTecnica;
 import proyectoescuela.materia.Materia;
 
@@ -21,17 +19,16 @@ import proyectoescuela.materia.Materia;
  */
 public class Alumno implements IObservador{
     
-    //////////////////Variable del metodo guarro
     int calificacionOpcionTecnica;
-    
     final String nombre;
     final String fechaDeNacimiento;
-    final int numeroDeCuenta;
+    public final int numeroDeCuenta;
     String correo;
     final Grupo grupo;
     Hashtable<Materia, Integer> materias;
     OpcionTecnica opcionTecnica = null;
     private Materia[] materiasArray;
+    private boolean estaGraduado;
 
     public Alumno(String nombre, String fechaDeNacimiento, int numeroDeCuenta, String correo, Grupo grupo, Materia[] materias){
     	this.nombre = nombre;
@@ -65,8 +62,12 @@ public class Alumno implements IObservador{
     	return correo;
     }
 
-    public String getGrupo(){
+    public String getToStringGrupo(){
     	return grupo.getNombre();
+    }
+    
+    public Grupo getGrupo(){
+        return this.grupo;
     }
 
     public Materia[] getMaterias(){
@@ -146,7 +147,7 @@ public class Alumno implements IObservador{
         
     }
 
-    public String getOpcionTecnica(){
+    public String getOpcionTecnicaAsString(){
     	return (opcionTecnica == null) ? "Aún no te haz inscrito a una opcion técnica" : opcionTecnica.getNombre();
     	/*if(opcionTecnica == null)
     		return "Aún no te haz inscrito a una opcion técnica";
@@ -155,8 +156,65 @@ public class Alumno implements IObservador{
 
     }
     
-    public void actualiza(){
-        
+    public OpcionTecnica getOpcionTecnica(){
+        return this.opcionTecnica;
     }
+    
+    public void darDeBajaOpcionTecnica(){
+        opcionTecnica.darDeBajaAlumno(this);
+    }
+    
+    public boolean hasOpcionTecnica(){
+        return (opcionTecnica != null);
+    }
+    
+    /**
+     * Metodo que cambia el estado graduado de un alumno
+     * @param estaGraduado 
+     */
+    public void estaGraduado(boolean estaGraduado){
+        this.estaGraduado = estaGraduado;
+    }
+    
+    public String certificadoAlumno(){
+        String certificado = "Vas atrasado por N semestre amigo";
+        
+        if(estaGraduado){
+            //Aqui va lo que se va a imprimir de certificado
+            //Agregar en el menu para que el alumno pueda ver su certificado cuantas veces quiera
+            return certificado;
+        }
+        
+        return certificado;
+    }
+    
+    //////////////////Desmadre de Observer//////////////////////////
+
+    @Override
+    public void actualizaNuevoAlumno(){
+        System.out.println("Bienvenido a Prepa 5!");
+    }
+
+    @Override
+    public void actualizaBajaAlumno(){
+        System.out.println("Te extrañaremos!");
+    }
+    
+    @Override
+    public void actualizaGraduacion(){
+        System.out.println("Felicidades por graduarte!");
+    }
+
+    @Override
+    public void actualizaNuevoProfesor() {
+        System.out.println("Bienvenido profesor!");
+    }
+
+    @Override
+    public void actualizaBajaProfesor() {
+        System.out.println("F");
+    }
+    
+    ////////////////////////////////////////////////////////////////
     
 }

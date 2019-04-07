@@ -6,7 +6,7 @@
 package proyectoescuela.profesor;
 
 import proyectoescuela.Alumno;
-import proyectoescuela.ExcepcionMateriaNoInscrita;
+import proyectoescuela.materia.ExcepcionMateriaNoInscrita;
 import proyectoescuela.materia.Materia;
 
 /**

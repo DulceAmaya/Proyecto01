@@ -3,7 +3,6 @@
  */
 package proyectoescuela.profesor;
 
-import java.util.ArrayList;
 import proyectoescuela.Alumno;
 import proyectoescuela.Grupo;
 import proyectoescuela.materia.Materia;
@@ -110,12 +109,33 @@ public class ProfesorAsignatura extends Profesor {
         pCalificacion.asignarCalificacion(alumno, calificacion);
     }
 
-    /////Parte de observer/////
-    
+    //////////////////Desmadre de Observer//////////////////////////
+
     @Override
-    public void actualiza() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void actualizaNuevoAlumno() {
+        System.out.println("Bienvenido nuevo alumno!");
+    }
+
+    @Override
+    public void actualizaBajaAlumno() {
+        System.out.println("Adios alumno");
+    }
+
+    @Override
+    public void actualizaGraduacion() {
+        System.out.println("Se graduo copiando...");
+    }
+
+    @Override
+    public void actualizaNuevoProfesor() {
+        System.out.println("OwO whos dis?");
+    }
+
+    @Override
+    public void actualizaBajaProfesor() {
+        System.out.println("Adios Vaquero");
     }
     
+    /////////////////////////////////////////////////////////////
     
 }

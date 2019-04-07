@@ -58,13 +58,17 @@ public class Grupo {
         materias.remove(m);
     }
     
-    public int getArea(){
+    public int getAreaAsInt(){
         return area.getArea();
     }
+    
+    public Area getArea(){
+        return this.area;
+    }
 
-	public ArrayList<Profesor> getProfesores(){
-		return profesores;
-	}
+    public ArrayList<Profesor> getProfesores(){
+	return profesores;
+    }
         
     public void agregarProfesor(Profesor profesor){
         profesores.add(profesor);

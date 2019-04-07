@@ -54,6 +54,14 @@ public abstract class OpcionTecnica {
     }
     
     /**
+     * Metodo que elimina a los alumnos del arrayList de alumnos
+     * @param alumno 
+     */
+    public void darDeBajaAlumno(Alumno alumno){
+        alumnos.remove(alumno);
+    }
+    
+    /**
      * Metodo que regresa la lista de alumnos inscritos en la opcion tecnica
      * @return alumnos Inscritos
      */
