@@ -5,7 +5,11 @@
  */
 package proyectoescuela;
 
+import java.io.*;
 import java.util.ArrayList;
+import proyectoescuela.area.Area;
+import proyectoescuela.materia.Materia;
+import proyectoescuela.profesor.Profesor;
 
 /**
  *
@@ -14,19 +18,13 @@ import java.util.ArrayList;
 public class Grupo {
 
 	String nombre;
-	ArrayList<Alumno> alumnos;
-	ArrayList<Profesor> profesores;
-	ArrayList<Materia> materias;
-	Area area;
+	ArrayList<Alumno> alumnos = new ArrayList();
+	ArrayList<Profesor> profesores = new ArrayList();
+	ArrayList<Materia> materias = new ArrayList();
 
-	public Grupo(String nombre, ArrayList<Alumno> alumnos, Area area){
+	public Grupo(String nombre){
 		this.nombre = nombre;
-		this.alumnos = alumnos;
-		this.area = area;
-		this.materias = area.getMaterias();
-		for (m : materias){
-			profesores.add(materias.getProfesor());
-		}
+		
 	}
 
 	public String getNombre(){
@@ -40,14 +38,37 @@ public class Grupo {
 	public void inscribirAlumno(Alumno alumno){
 		alumnos.add(alumno);
 	}
+        
+        public void darDeBajaAlumno(Alumno alumno){
+                alumnos.remove(alumno);
+        }
 
 	public ArrayList<Materia> getMaterias(){
 		return materias;
 	}
+        
+        public void agregarMateria(Materia m) throws UnsupportedOperationException{
+            if (materias.size() < 2)
+                materias.add(m);
+            else
+                throw new UnsupportedOperationException ("Este grupo ya tiene 2 materias asignadas");       
+        }
+        
+        public void eliminaMateria(Materia m){
+            materias.remove(m);
+        }
 
 	public ArrayList<Profesor> getProfesores(){
 		return profesores;
 	}
+        
+        public void agregarProfesor(Profesor profesor){
+            profesores.add(profesor);
+        }
+        
+        public void eliminarProfesor(Profesor profesor){
+            profesores.remove(profesor);
+        }
 
     
 }

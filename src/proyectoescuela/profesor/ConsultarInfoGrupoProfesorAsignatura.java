@@ -6,7 +6,7 @@ package proyectoescuela.profesor;
 import java.util.ArrayList;
 import proyectoescuela.Alumno;
 import proyectoescuela.Grupo;
-import proyectoescuela.Materia;
+import proyectoescuela.materia.Materia;
 
 
 /**
@@ -19,10 +19,9 @@ public class ConsultarInfoGrupoProfesorAsignatura implements IConsultarInfoGrupo
 
     String info;
     
-    @Override
     public String consultaInformacionGrupo(ArrayList<Alumno> alumnos, Grupo grupo, Object materia) {
         Materia temp = (Materia)materia;
-        info = "Informacion del grupo: " + alumnos.toString() + " " + grupo.getNombre() + " " + temp.getNombre();
+        info = "Informacion del grupo: " + grupo.getNombre() + " " + temp.getNombre() + " " + alumnos.toString();
         return info;
     }
 

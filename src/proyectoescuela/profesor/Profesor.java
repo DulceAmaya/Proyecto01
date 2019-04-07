@@ -9,24 +9,20 @@ import proyectoescuela.Alumno;
  * Define los tipos de profesores en la escuela (patron Strategy)
  * @author Lechuga
  */
-public class Profesor {
+public abstract class Profesor {
     
     /**
      * Metodo que consulta la informacion de un grupo
      * @return 
      */
-    public String consultaInformacionGrupo(){
-        return null;
-    }
+    public abstract String consultaInformacionGrupo();
     
     /**
      * Metodo que asigna la calificacion a un alumno de una materia
      * @param alumno
      * @param calificacion 
      */
-    public void asignarCalificacion(Alumno alumno, int calificacion){
-        
-    }
+    public abstract void asignarCalificacion(Alumno alumno, int calificacion);
     
     
 }

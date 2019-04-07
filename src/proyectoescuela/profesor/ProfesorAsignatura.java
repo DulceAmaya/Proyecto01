@@ -3,11 +3,10 @@
  */
 package proyectoescuela.profesor;
 
+import java.util.ArrayList;
 import proyectoescuela.Alumno;
 import proyectoescuela.Grupo;
-import proyectoescuela.Materia;
-
-
+import proyectoescuela.materia.Materia;
 
 /**
  * Clase que se encarga de definir a los profesores de asignatura

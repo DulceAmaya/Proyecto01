@@ -13,6 +13,7 @@ import proyectoescuela.opciontecnica.Fotografia;
 import proyectoescuela.opciontecnica.Laboratorista;
 import proyectoescuela.opciontecnica.Nutriologia;
 import proyectoescuela.opciontecnica.OpcionTecnica;
+import proyectoescuela.materia.Materia;
 
 /**
  *
@@ -21,18 +22,16 @@ import proyectoescuela.opciontecnica.OpcionTecnica;
 public class Alumno{
     
     //////////////////Variable del metodo guarro
-    String calificacionOPTEC;
     int calificacionOpcionTecnica;
-    boolean aproboOpcionTecnica = false;
     
     final String nombre;
     final String fechaDeNacimiento;
     final int numeroDeCuenta;
     String correo;
     final Grupo grupo;
-    Hashtable<Materia> materias;
+    Hashtable<Materia, Integer> materias;
     OpcionTecnica opcionTecnica = null;
-    private Materia materiasArray;
+    private Materia[] materiasArray;
 
     public Alumno(String nombre, String fechaDeNacimiento, int numeroDeCuenta, String correo, Grupo grupo, Materia[] materias){
     	this.nombre = nombre;
@@ -41,8 +40,9 @@ public class Alumno{
     	this.correo = correo;
     	this.grupo = grupo;
     	this.materiasArray = materias;
-    	this.materias = materias.put(materias[0], 0);
-    	this.materias = materias.put(materias[1], 0);
+    	this.materias.put(materias[0], 0);
+    	this.materias.put(materias[1], 0);
+        this.materiasArray = materias;
     }
 
     public String getNombre(){
@@ -69,21 +69,21 @@ public class Alumno{
     	return grupo.getNombre();
     }
 
-    public String[] getMaterias(){
+    public Materia[] getMaterias(){
     	return materiasArray;
     }
 
     public String getCalificaciones(){
     	int c1 = materias.get(materiasArray[0]);
     	int c2 = materias.get(materiasArray[1]);
-    	return materiasArray[0] + c1 + "\n" + materiasArray[1] + c2;
+    	return materiasArray[0].getNombre() + c1 + "\n" + materiasArray[1].getNombre() + c2;
     }
 
     // Hay que cachar la excepcion en algun lado
     public void setCalificaciones(Materia materia, int calificacion) throws ExcepcionMateriaNoInscrita{
-    	if(!materiasArray.contains(materia))
-    		throw new ExcepcionMateriaNoInscrita("El alumno no esta inscrito");
-    	materias.remove(materia);
+    	if(!materias.containsKey(materia))
+            throw new ExcepcionMateriaNoInscrita("El alumno no esta inscrito");
+        materias.remove(materia);
     	materias.put(materia, calificacion);
     }
     
@@ -91,13 +91,16 @@ public class Alumno{
     //Metodos guarrisimos que espero cambiar xD
     public void setCalificacionOpcionTecnica(OpcionTecnica opciontecnica, int calificacion){
         calificacionOpcionTecnica = calificacion;
-        aproboOpcionTecnica = (calificacionOpcionTecnica>5);
     }
-    
+
     public int getCalificacionOpcionTecnica(){
         return calificacionOpcionTecnica;
     }
 
+    public boolean aproboOpcionTecnica(){
+        return (calificacionOpcionTecnica > 5) ? true : false;
+    }
+    
     /////////////////////////////////////////////////////////////////////////////////////////////
     
     public double getPromedio(){

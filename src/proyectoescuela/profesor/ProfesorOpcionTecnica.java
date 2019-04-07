@@ -15,9 +15,8 @@ public class ProfesorOpcionTecnica extends Profesor{
     
     
     public String nombre;
-    public OpcionTecnica opcionTecnica;
-    public Grupo grupo;
     public int id = 0;
+    public OpcionTecnica opcionTecnica;
     public AsignarCalificacionProfesorOpcionTecnica pCalificacion;
     public ConsultarInfoGrupoProfesorOpcionTecnica pInformacion;
 
@@ -27,10 +26,9 @@ public class ProfesorOpcionTecnica extends Profesor{
      * @param nombre
      * @param opcionTecnica 
      */
-    public ProfesorOpcionTecnica(String nombre, OpcionTecnica opcionTecnica, Grupo grupo) {
+    public ProfesorOpcionTecnica(String nombre, OpcionTecnica opcionTecnica) {
         this.nombre = nombre;
         this.opcionTecnica = opcionTecnica;
-        this.grupo = grupo;
         id++;
         this.setId(id);
     }
@@ -72,22 +70,6 @@ public class ProfesorOpcionTecnica extends Profesor{
     }
 
     /**
-     * Metodo que regresa el grupo
-     * @return 
-     */
-    public Grupo getGrupo() {
-        return grupo;
-    }
-
-    /**
-     * Metodo que asigna un grupo a un profesor de opcion tecnica
-     * @param grupo 
-     */
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
-    }
-
-    /**
      * Metodo que obtiene el id del profesor
      * @return id
      */
@@ -105,7 +87,7 @@ public class ProfesorOpcionTecnica extends Profesor{
     
     @Override
     public String consultaInformacionGrupo(){
-        return pInformacion.consultaInformacionGrupo(opcionTecnica.alumnosInscritos(), grupo, opcionTecnica);
+        return pInformacion.consultaInformacionGrupo(opcionTecnica.alumnosInscritos(), opcionTecnica);
     }
     
     @Override
