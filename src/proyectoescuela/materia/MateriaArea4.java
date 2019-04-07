@@ -1,12 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Modelado y Programacion | Proyecto 1 | 2019-2
  */
 package proyectoescuela.materia;
-
-import java.util.ArrayList;
-import proyectoescuela.profesor.Profesor;
 
 /**
  *
@@ -14,8 +9,9 @@ import proyectoescuela.profesor.Profesor;
  */
 public abstract class MateriaArea4 extends Materia {
     
-    ArrayList<Profesor> profesores;
-    
+    /**
+     * Constructor vacio
+     */
     public MateriaArea4(){
         super();
     }

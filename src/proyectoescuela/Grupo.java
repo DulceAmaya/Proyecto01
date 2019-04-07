@@ -21,10 +21,11 @@ public class Grupo {
 	ArrayList<Alumno> alumnos = new ArrayList();
 	ArrayList<Profesor> profesores = new ArrayList();
 	ArrayList<Materia> materias = new ArrayList();
+	Area area;
 
-	public Grupo(String nombre){
+	public Grupo(String nombre, Area area){
 		this.nombre = nombre;
-		
+		this.area = area;
 	}
 
 	public String getNombre(){
@@ -38,37 +39,40 @@ public class Grupo {
 	public void inscribirAlumno(Alumno alumno){
 		alumnos.add(alumno);
 	}
-        
-        public void darDeBajaAlumno(Alumno alumno){
-                alumnos.remove(alumno);
-        }
+	public void darDeBajaAlumno(Alumno alumno){
+        alumnos.remove(alumno);
+    }
 
 	public ArrayList<Materia> getMaterias(){
 		return materias;
 	}
         
-        public void agregarMateria(Materia m) throws UnsupportedOperationException{
-            if (materias.size() < 2)
-                materias.add(m);
-            else
-                throw new UnsupportedOperationException ("Este grupo ya tiene 2 materias asignadas");       
-        }
+    public void agregarMateria(Materia m) throws UnsupportedOperationException{
+        if (materias.size() < 2)
+            materias.add(m);
+        else
+            throw new UnsupportedOperationException ("Este grupo ya tiene 2 materias asignadas");       
+    }
         
-        public void eliminaMateria(Materia m){
-            materias.remove(m);
-        }
+    public void eliminaMateria(Materia m){
+        materias.remove(m);
+    }
+    
+    public int getArea(){
+        return area.getArea();
+    }
 
 	public ArrayList<Profesor> getProfesores(){
 		return profesores;
 	}
         
-        public void agregarProfesor(Profesor profesor){
-            profesores.add(profesor);
-        }
+    public void agregarProfesor(Profesor profesor){
+        profesores.add(profesor);
+    }
         
-        public void eliminarProfesor(Profesor profesor){
-            profesores.remove(profesor);
-        }
+    public void eliminarProfesor(Profesor profesor){
+        profesores.remove(profesor);
+    }
 
     
 }

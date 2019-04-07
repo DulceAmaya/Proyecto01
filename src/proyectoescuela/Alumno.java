@@ -19,7 +19,7 @@ import proyectoescuela.materia.Materia;
  *
  * @author dulf2
  */
-public class Alumno{
+public class Alumno implements IObservador{
     
     //////////////////Variable del metodo guarro
     int calificacionOpcionTecnica;

@@ -4,12 +4,13 @@
 package proyectoescuela.profesor;
 
 import proyectoescuela.Alumno;
+import proyectoescuela.IObservador;
 
 /**
  * Define los tipos de profesores en la escuela (patron Strategy)
  * @author Lechuga
  */
-public abstract class Profesor {
+public abstract class Profesor implements IObservador{
     
     /**
      * Metodo que consulta la informacion de un grupo
