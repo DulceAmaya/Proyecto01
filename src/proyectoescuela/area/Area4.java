@@ -14,15 +14,14 @@ import proyectoescuela.materia.Materia;
 public class Area4 extends Area{
     
     /**
-     * Constructor de Area 1 que recibe su nombre y dos grupos
-     * @param nombre
+     * Constructor de Area 4 que recibe su nombre y dos grupos
      * @param a
      * @param b 
      * @param m1
      * @param m2
      */
-    public Area4(String nombre, Grupo a, Grupo b, Materia m1, Materia m2){
-        super(nombre, a, b, m1, m2);
+    public Area4(Grupo a, Grupo b, Materia m1, Materia m2){
+        super(a, b, m1, m2);
     }
     
     @Override

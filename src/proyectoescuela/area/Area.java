@@ -16,18 +16,16 @@ public abstract class Area {
     String nombre;
     Grupo a;
     Grupo b;
-    ArrayList<Materia> materias;
+    ArrayList<Materia> materias = new ArrayList();
     
     /**
      * Constructor de Area que recibe su nombre y dos grupos
-     * @param nombre
      * @param a
      * @param b 
      * @param m1
      * @param m2
      */
-    public Area(String nombre, Grupo a, Grupo b, Materia m1, Materia m2){
-        this.nombre = nombre;
+    public Area(Grupo a, Grupo b, Materia m1, Materia m2){
         this.a = a;
         this.b = b;
         materias.add(m1);

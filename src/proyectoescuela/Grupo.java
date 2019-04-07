@@ -5,8 +5,9 @@
  */
 package proyectoescuela;
 
-import proyectoescuela.area.Area;
+import java.io.*;
 import java.util.ArrayList;
+import proyectoescuela.area.Area;
 import proyectoescuela.materia.Materia;
 import proyectoescuela.profesor.Profesor;
 
@@ -19,13 +20,10 @@ public class Grupo {
 	String nombre;
 	ArrayList<Alumno> alumnos = new ArrayList();
 	ArrayList<Profesor> profesores = new ArrayList();
-	ArrayList<Materia> materias;
-	Area area;
+	ArrayList<Materia> materias = new ArrayList();
 
-	public Grupo(String nombre, Area area){
+	public Grupo(String nombre){
 		this.nombre = nombre;
-		this.area = area;
-		this.materias = area.getMaterias();
 		
 	}
 
@@ -48,6 +46,17 @@ public class Grupo {
 	public ArrayList<Materia> getMaterias(){
 		return materias;
 	}
+        
+        public void agregarMateria(Materia m) throws UnsupportedOperationException{
+            if (materias.size() < 2)
+                materias.add(m);
+            else
+                throw new UnsupportedOperationException ("Este grupo ya tiene 2 materias asignadas");       
+        }
+        
+        public void eliminaMateria(Materia m){
+            materias.remove(m);
+        }
 
 	public ArrayList<Profesor> getProfesores(){
 		return profesores;
