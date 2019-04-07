@@ -4,7 +4,7 @@
 package proyectoescuela.materia;
 
 /**
- *
+ * Clase abstracta para las materias de Area 2
  * @author dulf2
  */
 public abstract class MateriaArea2 extends Materia {

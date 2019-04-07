@@ -16,17 +16,17 @@ public class FabricaOpcionTecnica {
      * @throws ExcepcionOpcionTecnicaInvalida 
      */
     public static OpcionTecnica generaOpcionTecnica(String tipo) throws ExcepcionOpcionTecnicaInvalida{
-            switch(tipo){
-                case "AgenteViajes":
-                    return new AgenteViajes();
-                case "Nutriologia":
-                    return new Nutriologia();
-                case "Laboratorista":
-                    return new Laboratorista();
-                case "Fotografia":
-                    return new Laboratorista();
-                default:
-                    throw new ExcepcionOpcionTecnicaInvalida("Se ha producido un error"); 
-            }
+        switch(tipo){
+            case "AgenteViajes":
+                return new AgenteViajes();
+            case "Nutriologia":
+                return new Nutriologia();
+            case "Laboratorista":
+                return new Laboratorista();
+            case "Fotografia":
+                return new Laboratorista();
+            default:
+                throw new ExcepcionOpcionTecnicaInvalida("Se ha producido un error"); 
+        }
     }
 }

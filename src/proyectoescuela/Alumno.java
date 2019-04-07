@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Modelado y Programacion | Proyecto 1 | 2019-2
  */
 package proyectoescuela;
 
@@ -14,7 +12,7 @@ import proyectoescuela.opciontecnica.OpcionTecnica;
 import proyectoescuela.materia.Materia;
 
 /**
- *
+ * Clase que maneja al tipo Alumno
  * @author dulf2
  */
 public class Alumno implements IObservador{
@@ -30,6 +28,15 @@ public class Alumno implements IObservador{
     private Materia[] materiasArray;
     private boolean estaGraduado;
 
+    /**
+     * Constructor de alumno
+     * @param nombre
+     * @param fechaDeNacimiento
+     * @param numeroDeCuenta
+     * @param correo
+     * @param grupo
+     * @param materias 
+     */
     public Alumno(String nombre, String fechaDeNacimiento, int numeroDeCuenta, String correo, Grupo grupo, Materia[] materias){
     	this.nombre = nombre;
     	this.fechaDeNacimiento = fechaDeNacimiento;
@@ -42,45 +49,86 @@ public class Alumno implements IObservador{
         this.materiasArray = materias;
     }
 
+    /**
+     * regresa el nombre del alumno
+     * @return nombre 
+     */
     public String getNombre(){
     	return nombre;
     }
 
+    /**
+     * regresa la fecha de nacimiento del alumno
+     * @return fecha de nacimiento
+     */
     public String getFechaDeNacimiento(){
     	return fechaDeNacimiento;
     }
 
+    /**
+     * regresa el numero de cuenta
+     * @return numero de cuenta
+     */
     public int getNumeroDeCuenta(){
     	return numeroDeCuenta;
     }
 
+    /**
+     * Define el correo
+     * @param correo 
+     */
     public void setCorreo(String correo){
     	this.correo = correo;
     }
 
+    /**
+     * regresa el correo de un alumno
+     * @return correo
+     */
     public String getCorreo(){
     	return correo;
     }
 
+    /**
+     * Regresa la version String de grupo
+     * @return grupo as String
+     */
     public String getToStringGrupo(){
     	return grupo.getNombre();
     }
     
+    /**
+     * Regresa el grupo del alumno
+     * @return grupo
+     */
     public Grupo getGrupo(){
         return this.grupo;
     }
 
+    /**
+     * regresa las materias del alumno
+     * @return 
+     */
     public Materia[] getMaterias(){
     	return materiasArray;
     }
 
+    /**
+     * Regresa las calificaciones del alumno
+     * @return 
+     */
     public String getCalificaciones(){
     	int c1 = materias.get(materiasArray[0]);
     	int c2 = materias.get(materiasArray[1]);
     	return materiasArray[0].getNombre() + c1 + "\n" + materiasArray[1].getNombre() + c2;
     }
 
-    // Hay que cachar la excepcion en algun lado
+    /**
+     * Metodo que define la calificacion para alumno
+     * @param materia
+     * @param calificacion
+     * @throws ExcepcionMateriaNoInscrita 
+     */
     public void setCalificaciones(Materia materia, int calificacion) throws ExcepcionMateriaNoInscrita{
     	if(!materias.containsKey(materia))
             throw new ExcepcionMateriaNoInscrita("El alumno no esta inscrito");
@@ -88,28 +136,46 @@ public class Alumno implements IObservador{
     	materias.put(materia, calificacion);
     }
     
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    //Metodos guarrisimos que espero cambiar xD
+    /**
+     * Metodo que define la calificacion de una opcion tecnica
+     * @param opciontecnica
+     * @param calificacion 
+     */
     public void setCalificacionOpcionTecnica(OpcionTecnica opciontecnica, int calificacion){
         calificacionOpcionTecnica = calificacion;
     }
 
+    /**
+     * Metodo que regresa la calificaion de la opcion tecnica
+     * @return calificacion opcion tecnica
+     */
     public int getCalificacionOpcionTecnica(){
         return calificacionOpcionTecnica;
     }
 
+    /**
+     * Metodo que regresa si el alumno aprobo la opcion tecnica
+     * @return 
+     */
     public boolean aproboOpcionTecnica(){
         return (calificacionOpcionTecnica > 5) ? true : false;
     }
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    
+
+    /**
+     * Metodo que regresa el promedio del alumno
+     * @return promedio
+     */
     public double getPromedio(){
     	int promedio = materias.get(materiasArray[0]) + (materias.get(materiasArray[1]));
     	return promedio/2;
     }
 
 
+    /**
+     * Metodo para que un alumno se inscriba en una opcion tecnica
+     * @param opcion
+     * @throws ExcepcionOpcionTecnicaInvalida 
+     */
     public void inscribirOpcionTecnica(int opcion)throws ExcepcionOpcionTecnicaInvalida{
         System.out.println("Selecciona la opcion deseada"
                 + "\n 1: Agente de viajes y hoteleria"
@@ -144,26 +210,35 @@ public class Alumno implements IObservador{
                     throw new ExcepcionOpcionTecnicaInvalida();
                 }
             }
-        
     }
 
+    /**
+     * Metodo que nos regresa la opcion tecnica del alumno como String
+     * @return opcion tecnica
+     */
     public String getOpcionTecnicaAsString(){
     	return (opcionTecnica == null) ? "Aún no te haz inscrito a una opcion técnica" : opcionTecnica.getNombre();
-    	/*if(opcionTecnica == null)
-    		return "Aún no te haz inscrito a una opcion técnica";
-    	else
-    		return opcionTecnica.getNombre();*/
-
     }
     
+    /**
+     * Metodo que regresa la opcion tecnica del alumno
+     * @return opcion tecnica
+     */
     public OpcionTecnica getOpcionTecnica(){
         return this.opcionTecnica;
     }
     
+    /**
+     * Metodo que elimina a un alumno de la opcion tecnica
+     */
     public void darDeBajaOpcionTecnica(){
         opcionTecnica.darDeBajaAlumno(this);
     }
     
+    /**
+     * Metodo que regresa si un alumno tiene opcion tecnica
+     * @return hasOpciontecnica
+     */
     public boolean hasOpcionTecnica(){
         return (opcionTecnica != null);
     }
@@ -176,6 +251,10 @@ public class Alumno implements IObservador{
         this.estaGraduado = estaGraduado;
     }
     
+    /**
+     * Metodo que genera el certificado de un alumno
+     * @return certificado
+     */
     public String certificadoAlumno(){
         String certificado = "Vas atrasado por N semestre amigo";
         
@@ -188,8 +267,6 @@ public class Alumno implements IObservador{
         return certificado;
     }
     
-    //////////////////Desmadre de Observer//////////////////////////
-
     @Override
     public void actualizaNuevoAlumno(){
         System.out.println("Bienvenido a Prepa 5!");
@@ -214,7 +291,5 @@ public class Alumno implements IObservador{
     public void actualizaBajaProfesor() {
         System.out.println("F");
     }
-    
-    ////////////////////////////////////////////////////////////////
-    
+       
 }

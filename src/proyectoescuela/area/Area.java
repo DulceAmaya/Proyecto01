@@ -30,16 +30,29 @@ public abstract class Area {
         materias.add(m2);
     }
     
+    /**
+     * Metodo que regresa un ArrayList de las materias 
+     * @return 
+     */
     public ArrayList<Materia> getMaterias(){
         return materias;
     }
 
+    /**
+     * Metodo que agrega un grupo
+     * @param grupo
+     * @throws UnsupportedOperationException 
+     */
     public void agregarGrupo(Grupo grupo) throws UnsupportedOperationException{
         if(grupos.size() > 2)
             throw new UnsupportedOperationException("Esta área ya tiene 2 grupos");
         grupos.add(grupo);
     }
 
+    /**
+     * Metodo que regresa la lista de grupos
+     * @return 
+     */
     public ArrayList<Grupo> getGrupos(){
         ArrayList<Grupo> tmp = new ArrayList();
         tmp.add(a);
@@ -47,7 +60,17 @@ public abstract class Area {
         return tmp;
     }
     
+    /**
+     * Metodo que regresa el area como entero
+     * @return 
+     */
     public abstract int getArea();
+    
+    /**
+     * Metodo que regresa el toString
+     * @return 
+     */
+    @Override
     public abstract String toString();
     
 }

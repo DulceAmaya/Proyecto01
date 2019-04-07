@@ -69,7 +69,13 @@ public class Administrador implements IObservado{
         return profesores;
     }
     
-    //Metodo auxiliar para unir dos Arrays
+    /**
+     * Metodo que concatena dos Array de tipo Object
+     * @param <T>
+     * @param a
+     * @param b
+     * @return 
+     */
     public <T> T[] concatenate(T[] a, T[] b) {
         int aLen = a.length;
         int bLen = b.length;

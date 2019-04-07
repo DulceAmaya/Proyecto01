@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Modelado y Programacion | Proyecto 1 | 2019-2
  */
 package proyectoescuela.administrador;
 
@@ -16,7 +14,7 @@ import proyectoescuela.profesor.ProfesorAsignatura;
 import proyectoescuela.profesor.ProfesorOpcionTecnica;
 
 /**
- *
+ * Interface de el patron observer para manejar administrador
  * @author Lechuga
  */
 public interface IObservado {
