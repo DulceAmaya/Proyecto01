@@ -1,8 +1,10 @@
 /*
  *Modelado y Programacion | Proyecto 1 | 2019-2
  */
-package proyectoescuela;
+package proyectoescuela.area;
 
+import proyectoescuela.Grupo;
+import proyectoescuela.area.Area;
 import proyectoescuela.materia.Materia;
 
 /**

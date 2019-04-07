@@ -1,15 +1,17 @@
 /*
  *Modelado y Programacion | Proyecto 1 | 2019-2
  */
-package proyectoescuela;
+package proyectoescuela.area;
 
+import proyectoescuela.area.Area;
+import proyectoescuela.Grupo;
 import proyectoescuela.materia.Materia;
 
 /**
- * Clase especifica para area 3
+ * Clase especifica para area 2
  * @author dulf2
  */
-public class Area3 extends Area{
+public class Area2 extends Area {
     
     /**
      * Constructor de Area 1 que recibe su nombre y dos grupos
@@ -19,12 +21,13 @@ public class Area3 extends Area{
      * @param m1
      * @param m2
      */
-    public Area3(String nombre, Grupo a, Grupo b, Materia m1, Materia m2){
+    public Area2(String nombre, Grupo a, Grupo b, Materia m1, Materia m2){
         super(nombre, a, b, m1, m2);
     }
     
     @Override
     public String toString(){
-        return "Ciencias sociales";
+        return "Ciencias biologicas y de la salud";
     }
+    
 }

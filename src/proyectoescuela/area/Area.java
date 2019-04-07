@@ -1,9 +1,10 @@
 /*
  *Modelado y Programacion | Proyecto 1 | 2019-2
  */
-package proyectoescuela;
+package proyectoescuela.area;
 
 import java.util.ArrayList;
+import proyectoescuela.Grupo;
 import proyectoescuela.materia.Materia;
 
 /**

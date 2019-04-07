@@ -5,6 +5,7 @@
  */
 package proyectoescuela;
 
+import proyectoescuela.area.Area;
 import java.util.ArrayList;
 import proyectoescuela.materia.Materia;
 import proyectoescuela.profesor.Profesor;
@@ -16,14 +17,13 @@ import proyectoescuela.profesor.Profesor;
 public class Grupo {
 
 	String nombre;
-	ArrayList<Alumno> alumnos;
+	ArrayList<Alumno> alumnos = new ArrayList();
 	ArrayList<Profesor> profesores = new ArrayList();
 	ArrayList<Materia> materias;
 	Area area;
 
-	public Grupo(String nombre, Alumno alumno, Area area){
+	public Grupo(String nombre, Area area){
 		this.nombre = nombre;
-		this.alumnos.add(alumno);
 		this.area = area;
 		this.materias = area.getMaterias();
 		
