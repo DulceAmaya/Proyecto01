@@ -5,20 +5,33 @@
  */
 package proyectoescuela;
 
+import java.util.Hashtable;
+import proyectoescuela.opciontecnica.AgenteViajes;
+import proyectoescuela.opciontecnica.ExcepcionOpcionTecnicaInvalida;
+import proyectoescuela.opciontecnica.FabricaOpcionTecnica;
+import proyectoescuela.opciontecnica.Fotografia;
+import proyectoescuela.opciontecnica.Laboratorista;
+import proyectoescuela.opciontecnica.Nutriologia;
+import proyectoescuela.opciontecnica.OpcionTecnica;
+import proyectoescuela.materia.Materia;
+
 /**
  *
  * @author dulf2
  */
 public class Alumno{
     
+    //////////////////Variable del metodo guarro
+    int calificacionOpcionTecnica;
+    
     final String nombre;
     final String fechaDeNacimiento;
     final int numeroDeCuenta;
     String correo;
     final Grupo grupo;
-    Hashtable<Materia> materias;
+    Hashtable<Materia, Integer> materias;
     OpcionTecnica opcionTecnica = null;
-    private Materia materiasArray;
+    private Materia[] materiasArray;
 
     public Alumno(String nombre, String fechaDeNacimiento, int numeroDeCuenta, String correo, Grupo grupo, Materia[] materias){
     	this.nombre = nombre;
@@ -27,8 +40,9 @@ public class Alumno{
     	this.correo = correo;
     	this.grupo = grupo;
     	this.materiasArray = materias;
-    	this.materias = materias.put(materias[0], 0);
-    	this.materias = materias.put(materias[1], 0);
+    	this.materias.put(materias[0], 0);
+    	this.materias.put(materias[1], 0);
+        this.materiasArray = materias;
     }
 
     public String getNombre(){
@@ -55,53 +69,81 @@ public class Alumno{
     	return grupo.getNombre();
     }
 
-    public String[] getMaterias(){
+    public Materia[] getMaterias(){
     	return materiasArray;
     }
 
     public String getCalificaciones(){
     	int c1 = materias.get(materiasArray[0]);
     	int c2 = materias.get(materiasArray[1]);
-    	return materiasArray[0] + c1 + "\n" + materiasArray[1] + c2;
+    	return materiasArray[0].getNombre() + c1 + "\n" + materiasArray[1].getNombre() + c2;
     }
 
     // Hay que cachar la excepcion en algun lado
     public void setCalificaciones(Materia materia, int calificacion) throws ExcepcionMateriaNoInscrita{
-    	if(!materiasArray.contains(materia))
-    		throw new ExcepcionMateriaNoInscrita("El alumno no esta inscrito");
-    	materias.remove(materia);
+    	if(!materias.containsKey(materia))
+            throw new ExcepcionMateriaNoInscrita("El alumno no esta inscrito");
+        materias.remove(materia);
     	materias.put(materia, calificacion);
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    //Metodos guarrisimos que espero cambiar xD
+    public void setCalificacionOpcionTecnica(OpcionTecnica opciontecnica, int calificacion){
+        calificacionOpcionTecnica = calificacion;
+    }
 
+    public int getCalificacionOpcionTecnica(){
+        return calificacionOpcionTecnica;
+    }
+
+    public boolean aproboOpcionTecnica(){
+        return (calificacionOpcionTecnica > 5) ? true : false;
+    }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    
     public double getPromedio(){
     	int promedio = materias.get(materiasArray[0]) + (materias.get(materiasArray[1]));
     	return promedio/2;
     }
 
 
-    public void inscribirOpcionTecnica(int opcion){
-    	if(opcionTecnica != null)
-    		System.out.println("Ya estas inscrito en la opción técnica: " + opcionTecnica.getNombre());
-    	else{
-    		switch (opcion){
-    			case 1: 
-    				opcionTecnica = new AgenteViajes();
-    				break;
-    			case 2:
-    				opcionTecnica = new Fotografo();
-    				break;
-    			case 3:
-    				opcionTecnica = new Laboratorista();
-    				break;
-    			case 4:
-    				opcionTecnica = new Nutriologo();
-    				break;
-    			case default:
-    				System.out.println("Escoge una opción válida");
-    		}
-    	}
-
-    	opcionTecnica.inscribirAlumno(this.nombre, this.numeroDeCuenta);
+    public void inscribirOpcionTecnica(int opcion)throws ExcepcionOpcionTecnicaInvalida{
+        System.out.println("Selecciona la opcion deseada"
+                + "\n 1: Agente de viajes y hoteleria"
+                + "\n 2: Fotografo, laboratorista y prensa"
+                + "\n 3: Nutriologia"
+                + "\n 4: Laboratorista Quimico"
+                + "\n 5: salir");
+        
+        if(opcionTecnica != null)
+            System.out.println("Ya estas inscrito en la opción técnica: " + opcionTecnica.getNombre());
+        else{
+            switch (opcion){
+                case 1: 
+                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("AgenteViajes");
+                    opcionTecnica.inscribirAlumno(this);
+                    break;
+                case 2:
+                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("Fotografia");
+                    opcionTecnica.inscribirAlumno(this);
+                    break;
+                case 3:
+                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("Nutriologia");
+                    opcionTecnica.inscribirAlumno(this);
+                    break;
+                case 4: 
+                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("Laboratorista");
+                    opcionTecnica.inscribirAlumno(this);
+                case 5:
+                    System.out.println("...");
+                default:
+                    System.out.println("Escoge una opción válida"); 
+                    throw new ExcepcionOpcionTecnicaInvalida();
+                }
+            }
+        
     }
 
     public String getOpcionTecnica(){

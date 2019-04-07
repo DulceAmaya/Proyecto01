@@ -6,6 +6,8 @@
 package proyectoescuela;
 
 import java.util.ArrayList;
+import proyectoescuela.materia.Materia;
+import proyectoescuela.profesor.Profesor;
 
 /**
  *
@@ -15,18 +17,16 @@ public class Grupo {
 
 	String nombre;
 	ArrayList<Alumno> alumnos;
-	ArrayList<Profesor> profesores;
+	ArrayList<Profesor> profesores = new ArrayList();
 	ArrayList<Materia> materias;
 	Area area;
 
-	public Grupo(String nombre, ArrayList<Alumno> alumnos, Area area){
+	public Grupo(String nombre, Alumno alumno, Area area){
 		this.nombre = nombre;
-		this.alumnos = alumnos;
+		this.alumnos.add(alumno);
 		this.area = area;
 		this.materias = area.getMaterias();
-		for (m : materias){
-			profesores.add(materias.getProfesor());
-		}
+		
 	}
 
 	public String getNombre(){
@@ -40,6 +40,10 @@ public class Grupo {
 	public void inscribirAlumno(Alumno alumno){
 		alumnos.add(alumno);
 	}
+        
+        public void darDeBajaAlumno(Alumno alumno){
+                alumnos.remove(alumno);
+        }
 
 	public ArrayList<Materia> getMaterias(){
 		return materias;
@@ -48,6 +52,14 @@ public class Grupo {
 	public ArrayList<Profesor> getProfesores(){
 		return profesores;
 	}
+        
+        public void agregarProfesor(Profesor profesor){
+            profesores.add(profesor);
+        }
+        
+        public void eliminarProfesor(Profesor profesor){
+            profesores.remove(profesor);
+        }
 
     
 }
