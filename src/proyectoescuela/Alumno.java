@@ -155,4 +155,8 @@ public class Alumno implements IObservador{
 
     }
     
+    public void actualiza(){
+        
+    }
+    
 }

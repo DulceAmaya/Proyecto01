@@ -11,6 +11,9 @@ package proyectoescuela;
  */
 public interface IObservador {
     
-    public void update();
+    /**
+     * Metodod que se encargara de actualizar los datos de los observadores
+     */
+    public void actualiza();
     
 }

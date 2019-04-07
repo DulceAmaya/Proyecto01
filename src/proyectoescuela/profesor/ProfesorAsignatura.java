@@ -109,6 +109,13 @@ public class ProfesorAsignatura extends Profesor {
     public void asignarCalificacion(Alumno alumno, int calificacion){
         pCalificacion.asignarCalificacion(alumno, calificacion);
     }
+
+    /////Parte de observer/////
+    
+    @Override
+    public void actualiza() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
