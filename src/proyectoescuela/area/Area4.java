@@ -20,7 +20,12 @@ public class Area4 extends Area{
      * @param m2
      */
     public Area4(Grupo a, Grupo b, Materia m1, Materia m2){
-        super(a, b, m1, m2);
+        super(m1, m2);
+    }
+    
+    @Override
+    public int getArea(){
+        return 4;
     }
     
     @Override

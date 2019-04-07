@@ -14,13 +14,16 @@ public class Area1 extends Area {
 
     /**
      * Constructor de Area 1 que recibe su nombre y dos grupos
-     * @param a
-     * @param b 
      * @param m1
      * @param m2
      */
-    public Area1(Grupo a, Grupo b, Materia m1, Materia m2){
-        super(a, b, m1, m2);
+    public Area1(Materia m1, Materia m2){
+        super(m1, m2);
+    }
+    
+    @Override
+    public int getArea(){
+        return 1;
     }
     
     @Override
