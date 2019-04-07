@@ -105,7 +105,7 @@ public class ProfesorOpcionTecnica extends Profesor{
     
     @Override
     public String consultaInformacionGrupo(){
-        return pInformacion.consultaInformacionGrupo(grupo.getAlumnos(), grupo, opcionTecnica);
+        return pInformacion.consultaInformacionGrupo(opcionTecnica.alumnosInscritos(), grupo, opcionTecnica);
     }
     
     @Override
