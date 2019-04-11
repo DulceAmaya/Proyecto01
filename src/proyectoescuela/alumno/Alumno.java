@@ -1,11 +1,12 @@
 /*
  *Modelado y Programacion | Proyecto 1 | 2019-2
  */
-package proyectoescuela;
+package proyectoescuela.alumno;
 
 import proyectoescuela.materia.ExcepcionMateriaNoInscrita;
 import proyectoescuela.administrador.IObservador;
 import java.util.Hashtable;
+import proyectoescuela.Grupo;
 import proyectoescuela.opciontecnica.ExcepcionOpcionTecnicaInvalida;
 import proyectoescuela.opciontecnica.FabricaOpcionTecnica;
 import proyectoescuela.opciontecnica.OpcionTecnica;
@@ -26,7 +27,7 @@ public class Alumno implements IObservador{
     Hashtable<Materia, Integer> materias;
     OpcionTecnica opcionTecnica = null;
     private Materia[] materiasArray;
-    private boolean estaGraduado;
+    public EstadoAlumno estado;
 
     /**
      * Constructor de alumno
@@ -47,6 +48,7 @@ public class Alumno implements IObservador{
     	this.materias.put(materias[0], 0);
     	this.materias.put(materias[1], 0);
         this.materiasArray = materias;
+        this.estado = (EstadoAlumno) new EstadoAlumnoNoGraduado();
     }
 
     /**
@@ -243,29 +245,13 @@ public class Alumno implements IObservador{
         return (opcionTecnica != null);
     }
     
-    /**
-     * Metodo que cambia el estado graduado de un alumno
-     * @param estaGraduado 
-     */
-    public void estaGraduado(boolean estaGraduado){
-        this.estaGraduado = estaGraduado;
-    }
-    
-    /**
-     * Metodo que genera el certificado de un alumno
-     * @return certificado
-     */
-    public String certificadoAlumno(){
-        String certificado = "Vas atrasado por N semestre amigo";
-        
-        if(estaGraduado){
-            //Aqui va lo que se va a imprimir de certificado
-            //Agregar en el menu para que el alumno pueda ver su certificado cuantas veces quiera
-            return certificado;
-        }
-        
-        return certificado;
-    }
+//    /**
+//     * Metodo que cambia el estado graduado de un alumno
+//     * @param estaGraduado 
+//     */
+//    public void estaGraduado(boolean estaGraduado){
+//        this.estaGraduado = estaGraduado;
+//    }
     
     @Override
     public void actualizaNuevoAlumno(){
@@ -290,6 +276,41 @@ public class Alumno implements IObservador{
     @Override
     public void actualizaBajaProfesor() {
         System.out.println("F");
+    }
+    
+    ///////////////////////////////PATRON STATE///////////////////////////
+    
+    /**
+     * Hace el set de un nuevo estado a un alumno
+     * @param estado 
+     */
+    public void setEstadoGraduacion(EstadoAlumno estado){
+        this.estado = estado;
+    }
+    
+    /**
+     * Regresa el estado de un alumno
+     * @return 
+     */
+    public EstadoAlumno getEstadoGraduacion(){
+        return estado;
+    }
+    
+    /**
+     * Metodo que genera el certificado de un alumno
+     * @return certificado
+     */
+    public String certificadoAlumno(){
+        
+        String certificado = "Vas atrasado por N semestre amigo";
+        
+        if(this.getEstadoGraduacion().estaGradudado()){
+            //Aqui va lo que se va a imprimir de certificado
+            //Agregar en el menu para que el alumno pueda ver su certificado cuantas veces quiera
+            return certificado;
+        }
+        
+        return certificado;
     }
        
 }

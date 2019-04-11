@@ -3,7 +3,7 @@
  */
 package proyectoescuela.profesor;
 
-import proyectoescuela.Alumno;
+import proyectoescuela.alumno.Alumno;
 import proyectoescuela.Grupo;
 import proyectoescuela.materia.Materia;
 
@@ -109,8 +109,6 @@ public class ProfesorAsignatura extends Profesor {
         pCalificacion.asignarCalificacion(alumno, calificacion);
     }
 
-    //////////////////Desmadre de Observer//////////////////////////
-
     @Override
     public void actualizaNuevoAlumno() {
         System.out.println("Bienvenido nuevo alumno!");
@@ -135,7 +133,5 @@ public class ProfesorAsignatura extends Profesor {
     public void actualizaBajaProfesor() {
         System.out.println("Adios Vaquero");
     }
-    
-    /////////////////////////////////////////////////////////////
-    
+        
 }

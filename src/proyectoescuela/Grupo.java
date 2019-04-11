@@ -3,6 +3,7 @@
  */
 package proyectoescuela;
 
+import proyectoescuela.alumno.Alumno;
 import java.util.ArrayList;
 import proyectoescuela.area.Area;
 import proyectoescuela.materia.Materia;

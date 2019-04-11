@@ -3,7 +3,7 @@
  */
 package proyectoescuela.profesor;
 
-import proyectoescuela.Alumno;
+import proyectoescuela.alumno.Alumno;
 
 /**
  * Interface para que el profesor asigne una calificacion

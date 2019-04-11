@@ -7,8 +7,11 @@ import java.lang.reflect.Array;
 import java.util.Hashtable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import proyectoescuela.Alumno;
+import proyectoescuela.alumno.Alumno;
 import proyectoescuela.Grupo;
+import proyectoescuela.alumno.EstadoAlumno;
+import proyectoescuela.alumno.EstadoAlumnoGradudado;
+import proyectoescuela.alumno.EstadoAlumnoNoGraduado;
 import proyectoescuela.area.Area;
 import proyectoescuela.materia.Materia;
 import proyectoescuela.opciontecnica.OpcionTecnica;
@@ -31,6 +34,7 @@ public class Administrador implements IObservado{
     ProfesorOpcionTecnica[] profesoresOpcionTecnica = new ProfesorOpcionTecnica [100];
     ArrayList<IObservador> observadores;
     boolean hayEspacio;
+    EstadoAlumno estado;
 
     @Override
     public ArrayList<Alumno> AlumnosInscritos() {
@@ -118,16 +122,20 @@ public class Administrador implements IObservado{
 
     @Override
     public void graduarAlumno(Alumno alumno) {
-        //Cambiamos el estado de graduado a true
-        alumno.estaGraduado(true);
+        //Asignamos estado a graduado
+        this.estado = new EstadoAlumnoGradudado();
+        //Llamamos a set
+        alumno.setEstadoGraduacion(estado);
         //Llamamos a notificaGraduacionAlumno del patron observer para que notifique a todos 
         this.notificaGraduacionAlumno();
     }
 
     @Override
     public void cancelarGraduacionAlumno(Alumno alumno) {
+        //Asugnamos estado a no graduado
+        this.estado = new EstadoAlumnoNoGraduado();
         //Cambiamos el estado de graduado a false
-        alumno.estaGraduado(false);
+        alumno.setEstadoGraduacion(estado);
     }
 
     @Override

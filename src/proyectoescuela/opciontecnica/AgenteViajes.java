@@ -4,7 +4,7 @@
 package proyectoescuela.opciontecnica;
 
 import java.util.ArrayList;
-import proyectoescuela.Alumno;
+import proyectoescuela.alumno.Alumno;
 import proyectoescuela.profesor.ProfesorOpcionTecnica;
 
 /**
