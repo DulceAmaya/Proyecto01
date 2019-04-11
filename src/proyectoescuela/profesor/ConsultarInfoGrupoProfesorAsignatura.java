@@ -4,7 +4,7 @@
 package proyectoescuela.profesor;
 
 import java.util.ArrayList;
-import proyectoescuela.Alumno;
+import proyectoescuela.alumno.Alumno;
 import proyectoescuela.Grupo;
 import proyectoescuela.materia.Materia;
 

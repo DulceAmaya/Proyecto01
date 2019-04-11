@@ -3,8 +3,7 @@
  */
 package proyectoescuela.profesor;
 
-import proyectoescuela.Alumno;
-import proyectoescuela.Grupo;
+import proyectoescuela.alumno.Alumno;
 import proyectoescuela.opciontecnica.OpcionTecnica;
 
 /**
@@ -93,5 +92,30 @@ public class ProfesorOpcionTecnica extends Profesor{
     @Override
     public void asignarCalificacion(Alumno alumno, int calificacion){
         pCalificacion.asignarCalificacion(alumno, calificacion);
+    }
+    
+    @Override
+    public void actualizaNuevoAlumno() {
+        System.out.println("Bienvenido nuevo alumno!");
+    }
+
+    @Override
+    public void actualizaBajaAlumno() {
+        System.out.println("Adios alumno");
+    }
+
+    @Override
+    public void actualizaGraduacion() {
+        System.out.println("Se graduo copiando...");
+    }
+
+    @Override
+    public void actualizaNuevoProfesor() {
+        System.out.println("OwO whos dis?");
+    }
+
+    @Override
+    public void actualizaBajaProfesor() {
+        System.out.println("Adios Vaquero");
     }
 }

@@ -4,7 +4,7 @@
 package proyectoescuela.opciontecnica;
 
 import java.util.ArrayList;
-import proyectoescuela.Alumno;
+import proyectoescuela.alumno.Alumno;
 import proyectoescuela.profesor.ProfesorOpcionTecnica;
 
 /**
@@ -51,6 +51,14 @@ public abstract class OpcionTecnica {
      */
     public void inscribirAlumno(Alumno alumno){
         alumnos.add(alumno);
+    }
+    
+    /**
+     * Metodo que elimina a los alumnos del arrayList de alumnos
+     * @param alumno 
+     */
+    public void darDeBajaAlumno(Alumno alumno){
+        alumnos.remove(alumno);
     }
     
     /**
