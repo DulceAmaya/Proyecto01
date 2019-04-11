@@ -29,7 +29,7 @@ public class Alumno implements IObservador{
     Hashtable<Materia, Integer> materias;
     OpcionTecnica opcionTecnica = null;
     private Materia[] materiasArray;
-    private String certificado;
+    private String certificado = null;
     public EstadoAlumno estado;
 
     /**
