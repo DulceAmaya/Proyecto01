@@ -305,10 +305,12 @@ public class main {
             			System.out.println("Ingresa el nombre: ");
             			String nombreAlumnoNuevo = sc.next();
             			System.out.println("Ingresa la fecha de Nacimiento: ");
+                                sc.nextLine();
             			String fDN = sc.next();
             			System.out.println("Ingresa el nuevo Numero de Cuenta: ");
             			int nDC = sc.nextInt();
             			System.out.println("Ingresa un correo: ");
+                                sc.nextLine();
             			String correo2 = sc.nextLine();
             			System.out.println("Ingresa el area a la que pertenecerá: ");
             			int ar = sc.nextInt();
