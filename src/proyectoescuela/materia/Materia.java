@@ -54,5 +54,11 @@ public abstract class Materia {
         profesores.remove(profesor);
     }
     
+    /**
+     * Método que regresa una representación en cadena de una materia
+     * @return materia
+     */
+    public abstract String toString();
+    
     
 }

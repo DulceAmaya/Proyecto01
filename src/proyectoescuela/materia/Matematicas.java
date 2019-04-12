@@ -30,5 +30,10 @@ public class Matematicas extends MateriaArea1 {
     public ArrayList<ProfesorAsignatura> getProfesores(){
         return profesores;
     }
+
+    @Override
+    public String toString() {
+        return this.getNombre();
+    }
     
 }

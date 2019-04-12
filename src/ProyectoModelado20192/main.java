@@ -112,7 +112,7 @@ public class main {
         Alumno a3 = new Alumno("RoadHog", "24-08-1998", 31547894, "RoadHog@Gmail.com", g1, amA1);
         Alumno a4 = new Alumno("Junkrat", "27-08-1998", 3256498, "Junkrat@Gmail.com", g1, amA1);
         
-        Alumno a5 = new Alumno("Mei", "29-08-1998", 325647890, "Mei@Gmail.com", g2, amA1);
+        Alumno a5 = new Alumno("Mei", "29-08-1998", 325647891, "Mei@Gmail.com", g2, amA1);
         Alumno a6 = new Alumno("Phara", "11-08-1998", 325647890, "Phara@Gmail.com", g2, amA1);
         Alumno a7 = new Alumno("Tracer", "01-08-1998", 254780648, "Tracer@Gmail.com", g2, amA1);
         Alumno a8 = new Alumno("Torb", "15-08-1998", 365987405, "Torb@Gmail.com", g2, amA1);
@@ -331,7 +331,7 @@ public class main {
             			for(Alumno a : alumnosTemp2){
             				if(a.getNumeroDeCuenta() == tmpGraduado){
             					admin.graduarAlumno(a);
-            					a.certificadoAlumno();
+            					System.out.println(a.certificadoAlumno());
             				}
             			}
             			break;
@@ -418,10 +418,12 @@ public class main {
             			int tmpDespedido = sc.nextInt();
             			if(seleccion == 1){
             				for(ProfesorAsignatura p : admin.profesoresAsignatura){
+                                            if(p != null){
             					if(p.getId() == tmpDespedido){
             						admin.despedirProfesorAsignatura(p);
             						System.out.println("El profesor ha sido despedido, ¡Adios!");
             					}
+                                            }
             				}
             			}
             			else if(seleccion == 1)
@@ -450,7 +452,8 @@ public class main {
     						if(p.getId() == idProfesorUsuario){
     							System.out.println("¿Qué deseas hacer?");
     							System.out.println("1. Consultar información de mi grupo" + "\n" +
-            						               "2. Asignar calificación a un alumno");
+            						               "2. Asignar calificación a un alumno" + "\n" + 
+                                                                        "0. Para salir");
     							seleccion = sc.nextInt();
     							switch(seleccion){
     								case 1:
@@ -470,6 +473,8 @@ public class main {
     										}
     									}
     									break;
+                                                                case 0:
+                                                                    continue;
     							}
 
     						}
@@ -520,7 +525,9 @@ public class main {
     					System.out.println("¿Que deseas hacer?");
     					System.out.println("1. Consultar mis calificaciones" + "\n" +
     						               "2. Consultar mi promedio" + "\n" +
-    						               "3. Inscribirme a una opciín técnica");
+    						               "3. Inscribirme a una opciín técnica" + "\n" +
+                                                               "4. Ver certificado" + "\n" +
+                                                               "0. Para salir");
     					seleccion = sc.nextInt();
     					switch(seleccion){
     						case 1:
@@ -560,6 +567,9 @@ public class main {
     							else
     								System.out.println("Adiós...");
     							break;
+                                                
+                                                case 4:
+                                                    System.out.println(a.certificadoAlumno());
     					}
     				}
     			}
