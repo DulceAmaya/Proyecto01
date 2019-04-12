@@ -18,8 +18,8 @@ public class ProfesorAsignatura extends Profesor {
     public Materia materia;
     public Grupo grupo;
     public Alumno alumno;
-    public AsignarCalificacionProfesorAsignatura pCalificacion;
-    public ConsultarInfoGrupoProfesorAsignatura pInformacion;
+    public AsignarCalificacionProfesorAsignatura pCalificacion = new AsignarCalificacionProfesorAsignatura();
+    public ConsultarInfoGrupoProfesorAsignatura pInformacion = new ConsultarInfoGrupoProfesorAsignatura();
 
     /**
      * Constructor que recibe el nombrem, materia y grupo de un profesor de asignatura
@@ -98,6 +98,15 @@ public class ProfesorAsignatura extends Profesor {
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
     }
+
+    /**
+    * Método que regresa un proesor como una cadena
+    * @return profesor
+    */
+    public String toString(){
+        String profesorCadena = this.nombre + " " + this.id + " " + this.materia.getNombre() + " " + "Grupo: " + this.grupo.getNombre();
+        return profesorCadena;
+    }
         
     @Override
     public String consultaInformacionGrupo(){
@@ -105,8 +114,8 @@ public class ProfesorAsignatura extends Profesor {
     }
     
     @Override
-    public void asignarCalificacion(Alumno alumno, int calificacion){
-        pCalificacion.asignarCalificacion(alumno, calificacion);
+    public void asignarCalificacion(Object profesor, Alumno alumno, int calificacion){
+        pCalificacion.asignarCalificacion(this, alumno, calificacion);
     }
 
     @Override

@@ -23,7 +23,7 @@ public abstract class Profesor implements IObservador{
      * @param alumno
      * @param calificacion 
      */
-    public abstract void asignarCalificacion(Alumno alumno, int calificacion);
+    public abstract void asignarCalificacion(Object profesor, Alumno alumno, int calificacion);
     
     
 }

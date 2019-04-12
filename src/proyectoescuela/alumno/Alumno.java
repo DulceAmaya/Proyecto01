@@ -26,7 +26,7 @@ public class Alumno implements IObservador{
     public final int numeroDeCuenta;
     String correo;
     final Grupo grupo;
-    Hashtable<Materia, Integer> materias;
+    Hashtable<Materia, Integer> materias = new Hashtable();
     OpcionTecnica opcionTecnica = null;
     private Materia[] materiasArray;
     private String certificado = null;
@@ -48,9 +48,8 @@ public class Alumno implements IObservador{
     	this.correo = correo;
     	this.grupo = grupo;
     	this.materiasArray = materias;
-    	this.materias.put(materias[0], 0);
-    	this.materias.put(materias[1], 0);
-        this.materiasArray = materias;
+    	this.materias.put(materiasArray[0], 0);
+    	this.materias.put(materiasArray[1], 0);
         this.estado = (EstadoAlumno) new EstadoAlumnoNoGraduado();
     }
 
@@ -181,13 +180,7 @@ public class Alumno implements IObservador{
      * @param opcion
      * @throws ExcepcionOpcionTecnicaInvalida 
      */
-    public void inscribirOpcionTecnica(int opcion)throws ExcepcionOpcionTecnicaInvalida{
-        System.out.println("Selecciona la opcion deseada"
-                + "\n 1: Agente de viajes y hoteleria"
-                + "\n 2: Fotografo, laboratorista y prensa"
-                + "\n 3: Nutriologia"
-                + "\n 4: Laboratorista Quimico"
-                + "\n 5: salir");
+    public void inscribirOpcionTecnica(int opcion){
         
         if(opcionTecnica != null)
             System.out.println("Ya estas inscrito en la opción técnica: " + opcionTecnica.getNombre());
@@ -208,11 +201,8 @@ public class Alumno implements IObservador{
                 case 4: 
                     opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("Laboratorista");
                     opcionTecnica.inscribirAlumno(this);
-                case 5:
-                    System.out.println("...");
                 default:
                     System.out.println("Escoge una opción válida"); 
-                    throw new ExcepcionOpcionTecnicaInvalida();
                 }
             }
     }
@@ -337,6 +327,15 @@ public class Alumno implements IObservador{
             }
         }
         return null;
+    }
+
+    /**
+    * Método que devuelve un alumno como una cadena
+    * @return alumno
+    */
+    public String toString(){
+        String alumnoCadena = this.nombre + " " + this.numeroDeCuenta + " " + this.fechaDeNacimiento + " " + "Grupo: " + this.grupo.getNombre();
+        return alumnoCadena;
     }
        
 }

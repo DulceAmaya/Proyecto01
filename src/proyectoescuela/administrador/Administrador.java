@@ -23,15 +23,15 @@ import proyectoescuela.profesor.*;
  */
 public class Administrador implements IObservado{
     
-    Hashtable<Integer, Alumno> alumnos;
+    Hashtable<Integer, Alumno> alumnos = new Hashtable();
     ArrayList<Alumno> alumnosArrayList;
     ArrayList<Alumno> alumnosPorArea;
     ArrayList<Alumno> alumnosPorOpcionTecnica;
     ArrayList<Profesor> profesores;
     Profesor[] auxiliar; 
     Area area;
-    ProfesorAsignatura[] profesoresAsignatura = new ProfesorAsignatura [100];
-    ProfesorOpcionTecnica[] profesoresOpcionTecnica = new ProfesorOpcionTecnica [100];
+    public ProfesorAsignatura[] profesoresAsignatura = new ProfesorAsignatura [100];
+    public ProfesorOpcionTecnica[] profesoresOpcionTecnica = new ProfesorOpcionTecnica [100];
     ArrayList<IObservador> observadores;
     boolean hayEspacio;
     EstadoAlumno estado;
@@ -70,10 +70,15 @@ public class Administrador implements IObservado{
     }
     
     @Override
-    public ArrayList<Profesor> ProfesoresContratados() {
-        this.concatenate(profesoresAsignatura, profesoresOpcionTecnica);
-        profesores = new ArrayList<Profesor>(Arrays.asList(auxiliar));
-        return profesores;
+    public ArrayList<String> ProfesoresContratados() {
+        ArrayList<String> profesoresComoString = new ArrayList();
+        for(ProfesorAsignatura p : profesoresAsignatura){
+            profesoresComoString.add(p.toString());
+        }
+        for(ProfesorOpcionTecnica p : profesoresOpcionTecnica){
+            profesoresComoString.add(p.toString());
+        }
+        return profesoresComoString;
     }
     
     /**
@@ -108,6 +113,16 @@ public class Administrador implements IObservado{
         this.notificaNuevoAlumno();
         
     }
+
+    /**
+     * Inscribe un alumno ya creado en el main
+     * @param alumno 
+     */
+    public void inscribirAlumnoExistente(Alumno alumno){
+        alumnos.put(alumno.getNumeroDeCuenta(), alumno);
+        alumno.getGrupo().inscribirAlumno(alumno);
+    }
+
 
     @Override
     public void bajaAlumno(Alumno alumno) {
@@ -155,6 +170,16 @@ public class Administrador implements IObservado{
         this.notificaNuevoProfesor();
     }
 
+    /**
+     * Metodo que agrega un profesor existente
+     * @param nuevoProfesor 
+     */
+    public void contrataProfesorAsignaturaExistente(ProfesorAsignatura nuevoProfesor){
+        profesoresAsignatura[countProfesoresAsignatura] = nuevoProfesor;
+        countProfesoresAsignatura ++;
+        nuevoProfesor.getGrupo().agregarProfesor(nuevoProfesor);  
+    }
+
     @Override
     public void despedirProfesorAsignatura(ProfesorAsignatura profesorA) {
         // Buscamos el profesor en el arreglo de profesores de Asignatura
@@ -185,6 +210,16 @@ public class Administrador implements IObservado{
         nuevoProfesor.getOpcionTecnica().setInstructor(nuevoProfesor);
         //Llamamos a notifica del patron observer para que notifique a todos 
         this.notificaNuevoProfesor();
+    }
+
+    /**
+     * Agrega un profesor existente
+     * @param nuevoProfesor 
+     */
+    public void contrataProfesorOpcionTecnicaExistente(ProfesorOpcionTecnica nuevoProfesor){
+        profesoresOpcionTecnica[countProfesoresOpTec] = nuevoProfesor;
+        countProfesoresOpTec ++;
+        nuevoProfesor.getOpcionTecnica().setInstructor(nuevoProfesor);
     }
 
     @Override

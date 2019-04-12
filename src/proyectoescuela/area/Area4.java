@@ -14,12 +14,10 @@ public class Area4 extends Area{
     
     /**
      * Constructor de Area 4 que recibe su nombre y dos grupos
-     * @param a
-     * @param b 
      * @param m1
      * @param m2
      */
-    public Area4(Grupo a, Grupo b, Materia m1, Materia m2){
+    public Area4(Materia m1, Materia m2){
         super(m1, m2);
     }
     
