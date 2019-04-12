@@ -539,11 +539,23 @@ public class main {
                									   "4: Laboratorista Quimico" + "\n" +
                									   "0: salir");
     							seleccion = sc.nextInt();
-    							if(seleccion > 0 && seleccion < 5 ){
-    								a.inscribirOpcionTecnica(seleccion);
+    							if(seleccion == 1){
+    								a.inscribirOpcionTecnica(agente);
                                                                 System.out.println("Carrera inscrita!");
                                                         }
-                                                        else if(seleccion != 0)
+                                                        else if (seleccion == 2){
+                                                            a.inscribirOpcionTecnica(fotografo);
+                                                            System.out.println("Carrera inscrita!");
+                                                        }
+                                                        else if(seleccion == 3){
+                                                            a.inscribirOpcionTecnica(nutriologia);
+                                                            System.out.println("Carrera inscrita!");
+                                                        }
+                                                        else if (seleccion == 4){
+                                                            a.inscribirOpcionTecnica(laboratorista);
+                                                            System.out.println("Carrera inscrita!");
+                                                        }
+                                                        else if(seleccion > 4)
     								System.out.println("Selecciona una opción válida");
     							else
     								System.out.println("Adiós...");

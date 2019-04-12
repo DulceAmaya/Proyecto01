@@ -59,15 +59,8 @@ public class Administrador implements IObservado{
 
     @Override
     public ArrayList<Alumno> AlumnosOpcionesTecnicas(OpcionTecnica opcionTecnica) {
-        //Convertimos el Hash en arrayList y lo recorremos buscando coincidencias de opcion tecnica
-        /*alumnosArrayList = new ArrayList<Alumno>(alumnos.values());
-        for(Alumno alumno : alumnosArrayList){
-            if(alumno.getOpcionTecnica() == opcionTecnica){
-                alumnosPorOpcionTecnica.add(alumno);
-            }
-        }*/
-        opcionTecnica.alumnosInscritos();
-        return alumnosPorOpcionTecnica;
+        return opcionTecnica.alumnosInscritos();
+
     }
     
     @Override

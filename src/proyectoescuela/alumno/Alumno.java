@@ -180,31 +180,9 @@ public class Alumno implements IObservador{
      * @param opcion
      * @throws ExcepcionOpcionTecnicaInvalida 
      */
-    public void inscribirOpcionTecnica(int opcion){
+    public void inscribirOpcionTecnica(OpcionTecnica opcion){
         
-        if(opcionTecnica != null)
-            System.out.println("Ya estas inscrito en la opción técnica: " + opcionTecnica.getNombre());
-        else{
-            switch (opcion){
-                case 1: 
-                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("AgenteViajes");
-                    opcionTecnica.inscribirAlumno(this);
-                    break;
-                case 2:
-                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("Fotografia");
-                    opcionTecnica.inscribirAlumno(this);
-                    break;
-                case 3:
-                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("Nutriologia");
-                    opcionTecnica.inscribirAlumno(this);
-                    break;
-                case 4: 
-                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("Laboratorista");
-                    opcionTecnica.inscribirAlumno(this);
-                default:
-                    System.out.println("Escoge una opción válida"); 
-                }
-            }
+        opcion.inscribirAlumno(this);
     }
 
     /**
