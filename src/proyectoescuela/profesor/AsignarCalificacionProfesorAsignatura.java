@@ -5,7 +5,7 @@ package proyectoescuela.profesor;
 
 import proyectoescuela.alumno.Alumno;
 import proyectoescuela.materia.ExcepcionMateriaNoInscrita;
-import proyectoescuela.materia.Materia;
+import proyectoescuela.profesor.ProfesorAsignatura;
 
 /**
  * Clase que se encarga de implementar AsignarCalificacionProfesorAsignatura
@@ -13,14 +13,12 @@ import proyectoescuela.materia.Materia;
  */
 public class AsignarCalificacionProfesorAsignatura implements IAsignaCalificacion  {
     
-    Alumno alumno;
-    ProfesorAsignatura profesor;
-    Materia materia = profesor.getMateria();
 
     @Override
-    public void asignarCalificacion(Alumno alumno, int calificacion) {
+    public void asignarCalificacion(Object profesor, Alumno alumno, int calificacion) {
+        ProfesorAsignatura profesorA = (ProfesorAsignatura)profesor;
         try{
-        alumno.setCalificaciones(materia, calificacion);
+        alumno.setCalificaciones(profesorA.getMateria(), calificacion);
         }catch (ExcepcionMateriaNoInscrita e){
             System.out.println("El alumno no tiene esa materia inscrita");
         }

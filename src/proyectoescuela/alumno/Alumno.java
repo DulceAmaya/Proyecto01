@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import proyectoescuela.materia.ExcepcionMateriaNoInscrita;
 import proyectoescuela.administrador.IObservador;
 import proyectoescuela.Grupo;
+import proyectoescuela.opciontecnica.ExcepcionOpcionTecnicaInvalida;
 import proyectoescuela.opciontecnica.FabricaOpcionTecnica;
 import proyectoescuela.opciontecnica.OpcionTecnica;
 import proyectoescuela.materia.Materia;
@@ -47,9 +48,8 @@ public class Alumno implements IObservador{
     	this.correo = correo;
     	this.grupo = grupo;
     	this.materiasArray = materias;
-    	this.materias.put(materias[0], 0);
-    	this.materias.put(materias[1], 0);
-        this.materiasArray = materias;
+    	this.materias.put(materiasArray[0], 0);
+    	this.materias.put(materiasArray[1], 0);
         this.estado = (EstadoAlumno) new EstadoAlumnoNoGraduado();
     }
 
@@ -124,7 +124,7 @@ public class Alumno implements IObservador{
     public String getCalificaciones(){
     	int c1 = materias.get(materiasArray[0]);
     	int c2 = materias.get(materiasArray[1]);
-    	return materiasArray[0].getNombre() + c1 + "\n" + materiasArray[1].getNombre() + c2;
+    	return materiasArray[0].getNombre() + " " + c1 + "\n" + materiasArray[1].getNombre() + " " +c2;
     }
 
     /**
@@ -180,39 +180,9 @@ public class Alumno implements IObservador{
      * @param opcion
      * @throws ExcepcionOpcionTecnicaInvalida 
      */
-    public void inscribirOpcionTecnica(int opcion){
-        System.out.println("Selecciona la opcion deseada"
-                + "\n 1: Agente de viajes y hoteleria"
-                + "\n 2: Fotografo, laboratorista y prensa"
-                + "\n 3: Nutriologia"
-                + "\n 4: Laboratorista Quimico"
-                + "\n 5: salir");
+    public void inscribirOpcionTecnica(OpcionTecnica opcion){
         
-        if(opcionTecnica != null)
-            System.out.println("Ya estas inscrito en la opción técnica: " + opcionTecnica.getNombre());
-        else{
-            switch (opcion){
-                case 1: 
-                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("AgenteViajes");
-                    opcionTecnica.inscribirAlumno(this);
-                    break;
-                case 2:
-                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("Fotografia");
-                    opcionTecnica.inscribirAlumno(this);
-                    break;
-                case 3:
-                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("Nutriologia");
-                    opcionTecnica.inscribirAlumno(this);
-                    break;
-                case 4: 
-                    opcionTecnica = FabricaOpcionTecnica.generaOpcionTecnica("Laboratorista");
-                    opcionTecnica.inscribirAlumno(this);
-                case 5:
-                    System.out.println("...");
-                default:
-                    System.out.println("Escoge una opción válida"); 
-                }
-            }
+        opcion.inscribirAlumno(this);
     }
 
     /**
@@ -279,6 +249,8 @@ public class Alumno implements IObservador{
         System.out.println("F");
     }
     
+    ///////////////////////////////PATRON STATE///////////////////////////
+    
     /**
      * Hace el set de un nuevo estado a un alumno
      * @param estado 
@@ -333,6 +305,15 @@ public class Alumno implements IObservador{
             }
         }
         return null;
+    }
+
+    /**
+    * Método que devuelve un alumno como una cadena
+    * @return alumno
+    */
+    public String toString(){
+        String alumnoCadena = this.nombre + " " + this.numeroDeCuenta + " " + this.fechaDeNacimiento + " " + "Grupo: " + this.grupo.getNombre();
+        return alumnoCadena;
     }
        
 }

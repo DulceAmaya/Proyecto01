@@ -43,7 +43,7 @@ public interface IObservado {
      * Metodo que regresa una lista de profesores contratados
      * @return profesores
      */
-    public ArrayList<Profesor> ProfesoresContratados();
+    public ArrayList<String> ProfesoresContratados();
     
     /**
      * Metodo del patron observer que sirve para agregar Alumnos a la lista 

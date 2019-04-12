@@ -14,8 +14,9 @@ public interface IAsignaCalificacion {
     /**
      * Metodo que asigna una calificacion a un alumno
      * @param alumno
-     * @param calificacion 
+     * @param materia 
+     * @param calificacion
      */
-    public void asignarCalificacion(Alumno alumno, int calificacion);
+    public void asignarCalificacion(Object profesor, Alumno alumno, int calificacion);
     
 }

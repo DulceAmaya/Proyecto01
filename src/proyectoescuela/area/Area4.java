@@ -14,8 +14,6 @@ public class Area4 extends Area{
     
     /**
      * Constructor de Area 4 que recibe su nombre y dos grupos
-     * @param a
-     * @param b 
      * @param m1
      * @param m2
      */

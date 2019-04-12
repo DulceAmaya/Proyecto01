@@ -25,13 +25,13 @@ public class Administrador implements IObservado{
     
     Hashtable<Integer, Alumno> alumnos = new Hashtable();
     ArrayList<Alumno> alumnosArrayList;
-    ArrayList<Alumno> alumnosPorArea;
-    ArrayList<Alumno> alumnosPorOpcionTecnica;
+    ArrayList<Alumno> alumnosPorArea = new ArrayList();
+    ArrayList<Alumno> alumnosPorOpcionTecnica = new ArrayList();
     ArrayList<Profesor> profesores;
     Profesor[] auxiliar; 
     Area area;
-    ProfesorAsignatura[] profesoresAsignatura = new ProfesorAsignatura [100];
-    ProfesorOpcionTecnica[] profesoresOpcionTecnica = new ProfesorOpcionTecnica [100];
+    public ProfesorAsignatura[] profesoresAsignatura = new ProfesorAsignatura [100];
+    public ProfesorOpcionTecnica[] profesoresOpcionTecnica = new ProfesorOpcionTecnica [100];
     ArrayList<IObservador> observadores;
     boolean hayEspacio;
     EstadoAlumno estado;
@@ -59,21 +59,22 @@ public class Administrador implements IObservado{
 
     @Override
     public ArrayList<Alumno> AlumnosOpcionesTecnicas(OpcionTecnica opcionTecnica) {
-        //Convertimos el Hash en arrayList y lo recorremos buscando coincidencias de opcion tecnica
-        alumnosArrayList = new ArrayList<Alumno>(alumnos.values());
-        for(Alumno alumno : alumnosArrayList){
-            if(alumno.getOpcionTecnica() == opcionTecnica){
-                alumnosPorOpcionTecnica.add(alumno);
-            }
-        }
-        return alumnosPorOpcionTecnica;
+        return opcionTecnica.alumnosInscritos();
+
     }
     
     @Override
-    public ArrayList<Profesor> ProfesoresContratados() {
-        this.concatenate(profesoresAsignatura, profesoresOpcionTecnica);
-        profesores = new ArrayList<Profesor>(Arrays.asList(auxiliar));
-        return profesores;
+    public ArrayList<String> ProfesoresContratados() {
+        ArrayList<String> profesoresComoString = new ArrayList();
+        for(ProfesorAsignatura p : profesoresAsignatura){
+            if(p != null)
+                profesoresComoString.add(p.toString());
+        }
+        for(ProfesorOpcionTecnica p : profesoresOpcionTecnica){
+            if(p != null)
+                profesoresComoString.add(p.toString());
+        }
+        return profesoresComoString;
     }
     
     /**
@@ -108,7 +109,7 @@ public class Administrador implements IObservado{
         this.notificaNuevoAlumno();
         
     }
-    
+
     /**
      * Inscribe un alumno ya creado en el main
      * @param alumno 
@@ -117,6 +118,7 @@ public class Administrador implements IObservado{
         alumnos.put(alumno.getNumeroDeCuenta(), alumno);
         alumno.getGrupo().inscribirAlumno(alumno);
     }
+
 
     @Override
     public void bajaAlumno(Alumno alumno) {
@@ -163,7 +165,7 @@ public class Administrador implements IObservado{
         //Llamamos a notifica del patron observer para que notifique a todos 
         this.notificaNuevoProfesor();
     }
-    
+
     /**
      * Metodo que agrega un profesor existente
      * @param nuevoProfesor 
@@ -205,7 +207,7 @@ public class Administrador implements IObservado{
         //Llamamos a notifica del patron observer para que notifique a todos 
         this.notificaNuevoProfesor();
     }
-    
+
     /**
      * Agrega un profesor existente
      * @param nuevoProfesor 
@@ -245,22 +247,6 @@ public class Administrador implements IObservado{
         }
         return profesoresAsignatura.length+1;
     }
-    
-    public ProfesorAsignatura buscaProfesorAsignaturaPorID(int id){
-        for(int i=0; i<profesoresAsignatura.length; i++){
-            if(profesoresAsignatura[i].getId() == id)
-                return profesoresAsignatura[i];
-        }
-        return null;
-    }
-    
-    public ProfesorOpcionTecnica buscaProfesorOpcionTecnicaPorID(int id){
-        for(int i=0; i<profesoresOpcionTecnica.length; i++){
-            if(profesoresOpcionTecnica[i].getId() == id)
-                return profesoresOpcionTecnica[i];
-        }
-        return null;
-    }
 
     /**
     * Método que busca a un profesor en un arreglo
@@ -281,10 +267,12 @@ public class Administrador implements IObservado{
         alumnos.forEach((Integer, Alumno) -> {Alumno.actualizaNuevoAlumno();});
         //Aqui hacemos lo mismo con ambos profesores recorriendo el Array
         for(ProfesorAsignatura profesor : profesoresAsignatura){
-            profesor.actualizaNuevoAlumno();
+            if(profesor != null)
+                profesor.actualizaNuevoAlumno();
         }
         for(ProfesorOpcionTecnica profesor : profesoresOpcionTecnica){
-            profesor.actualizaNuevoAlumno();
+            if(profesor != null)
+                profesor.actualizaNuevoAlumno();
         }
         
     }
@@ -295,10 +283,12 @@ public class Administrador implements IObservado{
         alumnos.forEach((Integer, Alumno) -> {Alumno.actualizaBajaAlumno();});
         //Aqui hacemos lo mismo con ambos profesores recorriendo el Array
         for(ProfesorAsignatura profesor : profesoresAsignatura){
-            profesor.actualizaBajaAlumno();
+            if(profesor != null)
+                profesor.actualizaBajaAlumno();
         }
         for(ProfesorOpcionTecnica profesor : profesoresOpcionTecnica){
-            profesor.actualizaBajaAlumno();
+            if(profesor != null)
+                profesor.actualizaBajaAlumno();
         }
     }
 
@@ -308,10 +298,12 @@ public class Administrador implements IObservado{
         alumnos.forEach((Integer, Alumno) -> {Alumno.actualizaGraduacion();});
         //Aqui hacemos lo mismo con ambos profesores recorriendo el Array
         for(ProfesorAsignatura profesor : profesoresAsignatura){
-            profesor.actualizaGraduacion();
+            if(profesor != null)
+                profesor.actualizaGraduacion();
         }
         for(ProfesorOpcionTecnica profesor : profesoresOpcionTecnica){
-            profesor.actualizaGraduacion();
+            if(profesor != null)
+                profesor.actualizaGraduacion();
         }
     }
 
@@ -321,10 +313,12 @@ public class Administrador implements IObservado{
         alumnos.forEach((Integer, Alumno) -> {Alumno.actualizaNuevoProfesor();});
         //Aqui hacemos lo mismo con ambos profesores recorriendo el Array
         for(ProfesorAsignatura profesor : profesoresAsignatura){
-            profesor.actualizaNuevoProfesor();
+            if(profesor != null)
+                profesor.actualizaNuevoProfesor();
         }
         for(ProfesorOpcionTecnica profesor : profesoresOpcionTecnica){
-            profesor.actualizaNuevoProfesor();
+            if(profesor != null)
+                profesor.actualizaNuevoProfesor();
         }
     }
 
@@ -334,10 +328,12 @@ public class Administrador implements IObservado{
         alumnos.forEach((Integer, Alumno) -> {Alumno.actualizaBajaProfesor();});
         //Aqui hacemos lo mismo con ambos profesores recorriendo el Array
         for(ProfesorAsignatura profesor : profesoresAsignatura){
-            profesor.actualizaBajaProfesor();
+            if(profesor != null)
+                profesor.actualizaBajaProfesor();
         }
         for(ProfesorOpcionTecnica profesor : profesoresOpcionTecnica){
-            profesor.actualizaBajaProfesor();
+            if(profesor != null)
+                profesor.actualizaBajaProfesor();
         }
     }
 }

@@ -1,4 +1,5 @@
 /*
+ 
  *Modelado y Programacion | Proyecto 1 | 2019-2
  */
 package proyectoescuela.area;
@@ -14,8 +15,6 @@ public class Area2 extends Area {
     
     /**
      * Constructor de Area 2 que recibe su nombre y dos grupos
-     * @param a
-     * @param b 
      * @param m1
      * @param m2
      */

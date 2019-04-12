@@ -17,7 +17,7 @@ public class ProfesorOpcionTecnica extends Profesor{
     public int id = 0;
     public OpcionTecnica opcionTecnica;
     public AsignarCalificacionProfesorOpcionTecnica pCalificacion;
-    public ConsultarInfoGrupoProfesorOpcionTecnica pInformacion = new ConsultarInfoGrupoProfesorOpcionTecnica();
+    public ConsultarInfoGrupoProfesorOpcionTecnica pInformacion;
 
     /**
      * Constructor que recibe nombre y opcion tecnica del instructor y 
@@ -84,14 +84,23 @@ public class ProfesorOpcionTecnica extends Profesor{
         this.id = id;
     }
     
+    /**
+    * Método que regresa un proesor como una cadena
+    * @return profesor
+    */
+    public String toString(){
+        String profesorCadena = this.nombre + " " + this.id + " " + this.opcionTecnica.getNombre();
+        return profesorCadena;
+    }
+
     @Override
     public String consultaInformacionGrupo(){
         return pInformacion.consultaInformacionGrupo(opcionTecnica.alumnosInscritos(), opcionTecnica);
     }
     
     @Override
-    public void asignarCalificacion(Alumno alumno, int calificacion){
-        pCalificacion.asignarCalificacion(alumno, calificacion);
+    public void asignarCalificacion(Object profesor, Alumno alumno, int calificacion){
+        pCalificacion.asignarCalificacion(this, alumno, calificacion);
     }
     
     @Override

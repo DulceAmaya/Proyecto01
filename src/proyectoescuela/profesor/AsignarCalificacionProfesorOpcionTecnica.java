@@ -4,6 +4,7 @@
 package proyectoescuela.profesor;
 
 import proyectoescuela.alumno.Alumno;
+import proyectoescuela.profesor.ProfesorOpcionTecnica;
 
 /**
  * clase que se encarga de AsignarCalificacionProfesorOpcionTecnica
@@ -15,8 +16,9 @@ public class AsignarCalificacionProfesorOpcionTecnica implements IAsignaCalifica
     ProfesorOpcionTecnica profesor;
             
     @Override
-    public void asignarCalificacion(Alumno alumno, int calificacion) {
-        alumno.setCalificacionOpcionTecnica(profesor.getOpcionTecnica(), calificacion);
+    public void asignarCalificacion(Object profesor, Alumno alumno, int calificacion) {
+        ProfesorOpcionTecnica profesorOT = (ProfesorOpcionTecnica)profesor;
+        alumno.setCalificacionOpcionTecnica(profesorOT.getOpcionTecnica(), calificacion);
     }
     
 }

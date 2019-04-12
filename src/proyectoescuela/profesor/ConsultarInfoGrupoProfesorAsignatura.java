@@ -19,10 +19,9 @@ public class ConsultarInfoGrupoProfesorAsignatura implements IConsultarInfoGrupo
 
     String info;
     
-    public String consultaInformacionGrupo(ArrayList<Alumno> alumnos, Grupo grupo, Materia materia) {
-        Materia temp = materia;
-        info = "Informacion del grupo: nombre: " +  grupo.getNombre() + " " + temp.getNombre().toString() + " " + alumnos.toString();
-
+    public String consultaInformacionGrupo(ArrayList<Alumno> alumnos, Grupo grupo, Object materia) {
+        Materia temp = (Materia)materia;
+        info = "Informacion del grupo: " + grupo.getNombre() + " " + temp.getNombre() + " " + alumnos.toString();
         return info;
     }
 

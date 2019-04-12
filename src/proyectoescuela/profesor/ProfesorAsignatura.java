@@ -5,7 +5,6 @@ package proyectoescuela.profesor;
 
 import proyectoescuela.alumno.Alumno;
 import proyectoescuela.Grupo;
-import proyectoescuela.materia.ExcepcionMateriaNoInscrita;
 import proyectoescuela.materia.Materia;
 
 /**
@@ -27,9 +26,8 @@ public class ProfesorAsignatura extends Profesor {
      * @param nombre
      * @param materia
      * @param grupo 
-     * @throws proyectoescuela.materia.ExcepcionMateriaNoInscrita 
      */
-    public ProfesorAsignatura(String nombre, Materia materia, Grupo grupo){
+    public ProfesorAsignatura(String nombre, Materia materia, Grupo grupo) {
         this.nombre = nombre;
         this.materia = materia;
         this.grupo = grupo;
@@ -100,15 +98,24 @@ public class ProfesorAsignatura extends Profesor {
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
     }
+
+    /**
+    * Método que regresa un proesor como una cadena
+    * @return profesor
+    */
+    public String toString(){
+        String profesorCadena = this.nombre + " " + this.id + " " + this.materia.getNombre() + " " + "Grupo: " + this.grupo.getNombre();
+        return profesorCadena;
+    }
         
     @Override
     public String consultaInformacionGrupo(){
-        return pInformacion.consultaInformacionGrupo(this.grupo.getAlumnos(), grupo, materia);
+        return pInformacion.consultaInformacionGrupo(grupo.getAlumnos(), grupo, materia);
     }
     
     @Override
-    public void asignarCalificacion(Alumno alumno, int calificacion){
-        pCalificacion.asignarCalificacion(alumno, calificacion);
+    public void asignarCalificacion(Object profesor, Alumno alumno, int calificacion){
+        pCalificacion.asignarCalificacion(this, alumno, calificacion);
     }
 
     @Override
