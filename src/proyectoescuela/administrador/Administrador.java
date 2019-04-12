@@ -25,8 +25,8 @@ public class Administrador implements IObservado{
     
     Hashtable<Integer, Alumno> alumnos = new Hashtable();
     ArrayList<Alumno> alumnosArrayList;
-    ArrayList<Alumno> alumnosPorArea;
-    ArrayList<Alumno> alumnosPorOpcionTecnica;
+    ArrayList<Alumno> alumnosPorArea = new ArrayList();
+    ArrayList<Alumno> alumnosPorOpcionTecnica = new ArrayList();
     ArrayList<Profesor> profesores;
     Profesor[] auxiliar; 
     Area area;
@@ -60,12 +60,13 @@ public class Administrador implements IObservado{
     @Override
     public ArrayList<Alumno> AlumnosOpcionesTecnicas(OpcionTecnica opcionTecnica) {
         //Convertimos el Hash en arrayList y lo recorremos buscando coincidencias de opcion tecnica
-        alumnosArrayList = new ArrayList<Alumno>(alumnos.values());
+        /*alumnosArrayList = new ArrayList<Alumno>(alumnos.values());
         for(Alumno alumno : alumnosArrayList){
             if(alumno.getOpcionTecnica() == opcionTecnica){
                 alumnosPorOpcionTecnica.add(alumno);
             }
-        }
+        }*/
+        opcionTecnica.alumnosInscritos();
         return alumnosPorOpcionTecnica;
     }
     
@@ -73,10 +74,12 @@ public class Administrador implements IObservado{
     public ArrayList<String> ProfesoresContratados() {
         ArrayList<String> profesoresComoString = new ArrayList();
         for(ProfesorAsignatura p : profesoresAsignatura){
-            profesoresComoString.add(p.toString());
+            if(p != null)
+                profesoresComoString.add(p.toString());
         }
         for(ProfesorOpcionTecnica p : profesoresOpcionTecnica){
-            profesoresComoString.add(p.toString());
+            if(p != null)
+                profesoresComoString.add(p.toString());
         }
         return profesoresComoString;
     }

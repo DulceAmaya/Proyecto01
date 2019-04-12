@@ -14,7 +14,7 @@ import proyectoescuela.profesor.ProfesorOpcionTecnica;
  */
 public class Fotografia extends OpcionTecnica {
     
-    private ArrayList<Alumno> alumnos;
+    private ArrayList<Alumno> alumnos = new ArrayList();
 
     protected Fotografia(){}
     
@@ -35,7 +35,7 @@ public class Fotografia extends OpcionTecnica {
     
     @Override
     public void inscribirAlumno(Alumno alumno){
-        super.inscribirAlumno(alumno);
+        alumnos.add(alumno);
     }
     
     @Override

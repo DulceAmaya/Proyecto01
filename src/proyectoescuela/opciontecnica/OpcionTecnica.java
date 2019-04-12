@@ -16,7 +16,7 @@ import proyectoescuela.profesor.ProfesorOpcionTecnica;
 public abstract class OpcionTecnica {
 
     public ProfesorOpcionTecnica instructor;
-    private ArrayList<Alumno> alumnos;
+    private ArrayList<Alumno> alumnos = new ArrayList();
     
     /**
      * Constructor vacio
@@ -49,9 +49,9 @@ public abstract class OpcionTecnica {
      * Metodo que agrega a los alumnos al ArrayList de alumnos
      * @param alumno 
      */
-    public void inscribirAlumno(Alumno alumno){
-        alumnos.add(alumno);
-    }
+    public abstract void inscribirAlumno(Alumno alumno);//{
+        //alumnos.add(alumno);
+    //}
     
     /**
      * Metodo que elimina a los alumnos del arrayList de alumnos

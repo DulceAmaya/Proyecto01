@@ -124,7 +124,7 @@ public class Alumno implements IObservador{
     public String getCalificaciones(){
     	int c1 = materias.get(materiasArray[0]);
     	int c2 = materias.get(materiasArray[1]);
-    	return materiasArray[0].getNombre() + c1 + "\n" + materiasArray[1].getNombre() + c2;
+    	return materiasArray[0].getNombre() + " " + c1 + "\n" + materiasArray[1].getNombre() + " " +c2;
     }
 
     /**

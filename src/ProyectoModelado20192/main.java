@@ -355,6 +355,7 @@ public class main {
             			switch(seleccion){
             				case 1:
             					System.out.println("Ingresa el nombre: ");
+                                                sc.next();
             					String nombreProfesorNuevo = sc.nextLine();
             					System.out.println("¿Que materia impartira?");
             					System.out.println("1. Física" + "\n" +
@@ -439,7 +440,7 @@ public class main {
     			break;
     		case 2:
     			System.out.println("Selecciona una opción: ");
-    			System.out.println("1. Profesor de Asignatura" + "\n" + "2. Profesor de opcion Técnica");
+    			System.out.println("1. Profesor de Asignatura" + "\n" + "2. Profesor de opcion Técnica" + "\n" + "0. Para salir");
     			seleccion = sc.nextInt();
     			switch(seleccion){
     				case 1:
@@ -508,6 +509,7 @@ public class main {
     					}
     					break;
     			}
+                        break;
 
     		case 3:
     			System.out.println("Por favor, ingresa tu número de cuenta: ");
@@ -522,11 +524,11 @@ public class main {
     					seleccion = sc.nextInt();
     					switch(seleccion){
     						case 1:
-    							a.getCalificaciones();
+    							System.out.println(a.getCalificaciones());
     							break;
 
     						case 2:
-    							a.getPromedio();
+    							System.out.println(a.getPromedio());
     							break;
 
     						case 3:
@@ -537,9 +539,11 @@ public class main {
                									   "4: Laboratorista Quimico" + "\n" +
                									   "0: salir");
     							seleccion = sc.nextInt();
-    							if(seleccion > 0 && seleccion < 5 )
+    							if(seleccion > 0 && seleccion < 5 ){
     								a.inscribirOpcionTecnica(seleccion);
-    							if(seleccion != 0)
+                                                                System.out.println("Carrera inscrita!");
+                                                        }
+                                                        else if(seleccion != 0)
     								System.out.println("Selecciona una opción válida");
     							else
     								System.out.println("Adiós...");

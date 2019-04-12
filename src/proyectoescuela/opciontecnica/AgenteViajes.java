@@ -13,7 +13,7 @@ import proyectoescuela.profesor.ProfesorOpcionTecnica;
  */
 public class AgenteViajes extends OpcionTecnica {
     
-    private ArrayList<Alumno> alumnos;
+    private ArrayList<Alumno> alumnos = new ArrayList();
     
     protected AgenteViajes(){}
     
@@ -34,7 +34,7 @@ public class AgenteViajes extends OpcionTecnica {
     
     @Override
     public void inscribirAlumno(Alumno alumno){
-        super.inscribirAlumno(alumno);
+        alumnos.add(alumno);
     }
     
     @Override
