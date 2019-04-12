@@ -182,15 +182,13 @@ public class main {
         }
 
         //--------------------- Inicio del menú-----------------------------
-
+        int seleccionInicial;
+        do{
         System.out.println("Bienvenido la Proyecto 1 de Modelado y Programación | Alumnos: Amaya Dulce , Lechuga Eduardo");
     	System.out.println("Para ingresar, selecciona una opción: ");
     	System.out.println("1. Administrador" + "\n" + "2. Profesor" + "\n" + "3. Estudiante " + "\n" + "0. Para salir");
-    	seleccion = sc.nextInt();
-    	switch(seleccion){
-    		case 0:
-    			System.out.println("¡Hasta Luego!");
-    			break;
+    	seleccionInicial = sc.nextInt();
+    	switch(seleccionInicial){
     		case 1:
     			System.out.println("¿Que deseas hacer?");
     			System.out.println("1. Consultar lista de alumnos inscritos." + "\n" +
@@ -555,7 +553,12 @@ public class main {
     			System.out.println("Selecciona una opción válida");
             	break;
         }
+    }
+    while(seleccionInicial > 0);
+
+    System.out.println("¡Adios!");
         
+
     }
     
 }
