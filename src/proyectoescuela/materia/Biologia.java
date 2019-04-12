@@ -30,5 +30,10 @@ public class Biologia extends MateriaArea2 {
     public ArrayList<ProfesorAsignatura> getProfesores(){
         return profesores;
     }
+
+    @Override
+    public String toString() {
+        return this.getNombre();
+    }
     
 }

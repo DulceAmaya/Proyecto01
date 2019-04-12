@@ -247,7 +247,7 @@ public class Alumno implements IObservador{
 
     @Override
     public void actualizaBajaProfesor() {
-        System.out.println("F");
+        System.out.println("Hasta pronto!");
     }
     
     ///////////////////////////////PATRON STATE///////////////////////////
@@ -281,7 +281,7 @@ public class Alumno implements IObservador{
         if(this.getEstadoGraduacion().estaGradudado()){
             certificado = "El alumno: " + "\n" + this.nombre + "\n" +
                           "Que curso las materias con los profesores: " + "\n" +
-                          auxiliarProfesores.toString() + auxiliarMaterias.toString() +
+                          auxiliarProfesores.toString() + auxiliarMaterias.toString() + "\n" +
                           "Con promedio: " + this.getPromedio() + "\n";
             if(hasOpcionTecnica())
                 certificado = certificado + "\n" + "Que curso la opción técnica de: " + getOpcionTecnicaAsString();
