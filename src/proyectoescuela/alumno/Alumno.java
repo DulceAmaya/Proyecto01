@@ -281,8 +281,6 @@ public class Alumno implements IObservador{
         System.out.println("F");
     }
     
-    ///////////////////////////////PATRON STATE///////////////////////////
-    
     /**
      * Hace el set de un nuevo estado a un alumno
      * @param estado 
