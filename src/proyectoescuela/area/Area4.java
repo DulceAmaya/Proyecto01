@@ -19,7 +19,7 @@ public class Area4 extends Area{
      * @param m1
      * @param m2
      */
-    public Area4(Grupo a, Grupo b, Materia m1, Materia m2){
+    public Area4(Materia m1, Materia m2){
         super(m1, m2);
     }
     
