@@ -6,6 +6,7 @@ package ProyectoModelado20192;
 import java.util.Scanner;
 import proyectoescuela.*;
 import proyectoescuela.Grupo;
+import proyectoescuela.administrador.Administrador;
 import proyectoescuela.alumno.Alumno;
 import proyectoescuela.area.Area1;
 import proyectoescuela.area.Area2;
@@ -47,6 +48,7 @@ public class main {
         String f2 = "Nutriologia";
         String f3 = "Laboratorista";
         String f4 = "Fotografia";
+        Administrador admin = new Administrador();
         
         //Opciones Tecnicas
         try{
@@ -61,6 +63,12 @@ public class main {
             ProfesorOpcionTecnica op2 = new ProfesorOpcionTecnica("Neil", nutriologia);
             ProfesorOpcionTecnica op3 = new ProfesorOpcionTecnica("Toby", laboratorista);
             ProfesorOpcionTecnica op4 = new ProfesorOpcionTecnica("Cage", fotografo);
+            
+            //los agregamos al sistema
+            admin.contrataProfesorOpcionTecnicaExistente(op1);
+            admin.contrataProfesorOpcionTecnicaExistente(op2);
+            admin.contrataProfesorOpcionTecnicaExistente(op3);
+            admin.contrataProfesorOpcionTecnicaExistente(op4);
             
             
         }catch(ExcepcionOpcionTecnicaInvalida e){
@@ -142,6 +150,13 @@ public class main {
         Alumno a31 = new Alumno("Asriel", "28-08-1998", 41789158, "Asriel@Gmail.com", g8, amA4);
         Alumno a32 = new Alumno("Asgore", "22-08-1998", 58148187, "Asgore@Gmail.com", g8, amA4);
         
+        Alumno[] alumnos = {a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29,a30,a31,a32};
+        
+        for(Alumno alumno: alumnos){
+            admin.inscribirAlumnoExistente(alumno);
+        }
+        
+        
         //Profesores Asignatura
         ProfesorAsignatura pAsig01 = new ProfesorAsignatura("Naruto", m1, g1);
         ProfesorAsignatura pAsig02 = new ProfesorAsignatura("Sasuke", m2, g1);
@@ -163,6 +178,11 @@ public class main {
         ProfesorAsignatura pAsig015 = new ProfesorAsignatura("Tsunade", m7, g8);
         ProfesorAsignatura pAsig016 = new ProfesorAsignatura("Kabuto", m8, g8);
         
+        ProfesorAsignatura[] profesores = {pAsig01,pAsig02,pAsig03,pAsig04,pAsig05,pAsig06,pAsig07,pAsig08,pAsig09,pAsig010,pAsig011,pAsig012,pAsig013,pAsig014,pAsig015,pAsig016};
+        
+        for(ProfesorAsignatura profesor : profesores){
+            admin.contrataProfesorAsignaturaExistente(profesor);
+        }
         
         
         

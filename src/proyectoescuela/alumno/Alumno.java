@@ -26,7 +26,7 @@ public class Alumno implements IObservador{
     public final int numeroDeCuenta;
     String correo;
     final Grupo grupo;
-    Hashtable<Materia, Integer> materias;
+    Hashtable<Materia, Integer> materias = new Hashtable();
     OpcionTecnica opcionTecnica = null;
     private Materia[] materiasArray;
     private String certificado = null;

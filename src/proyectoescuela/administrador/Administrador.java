@@ -23,7 +23,7 @@ import proyectoescuela.profesor.*;
  */
 public class Administrador implements IObservado{
     
-    Hashtable<Integer, Alumno> alumnos;
+    Hashtable<Integer, Alumno> alumnos = new Hashtable();
     ArrayList<Alumno> alumnosArrayList;
     ArrayList<Alumno> alumnosPorArea;
     ArrayList<Alumno> alumnosPorOpcionTecnica;
@@ -108,6 +108,15 @@ public class Administrador implements IObservado{
         this.notificaNuevoAlumno();
         
     }
+    
+    /**
+     * Inscribe un alumno ya creado en el main
+     * @param alumno 
+     */
+    public void inscribirAlumnoExistente(Alumno alumno){
+        alumnos.put(alumno.getNumeroDeCuenta(), alumno);
+        alumno.getGrupo().inscribirAlumno(alumno);
+    }
 
     @Override
     public void bajaAlumno(Alumno alumno) {
@@ -154,6 +163,16 @@ public class Administrador implements IObservado{
         //Llamamos a notifica del patron observer para que notifique a todos 
         this.notificaNuevoProfesor();
     }
+    
+    /**
+     * Metodo que agrega un profesor existente
+     * @param nuevoProfesor 
+     */
+    public void contrataProfesorAsignaturaExistente(ProfesorAsignatura nuevoProfesor){
+        profesoresAsignatura[countProfesoresAsignatura] = nuevoProfesor;
+        countProfesoresAsignatura ++;
+        nuevoProfesor.getGrupo().agregarProfesor(nuevoProfesor);  
+    }
 
     @Override
     public void despedirProfesorAsignatura(ProfesorAsignatura profesorA) {
@@ -185,6 +204,16 @@ public class Administrador implements IObservado{
         nuevoProfesor.getOpcionTecnica().setInstructor(nuevoProfesor);
         //Llamamos a notifica del patron observer para que notifique a todos 
         this.notificaNuevoProfesor();
+    }
+    
+    /**
+     * Agrega un profesor existente
+     * @param nuevoProfesor 
+     */
+    public void contrataProfesorOpcionTecnicaExistente(ProfesorOpcionTecnica nuevoProfesor){
+        profesoresOpcionTecnica[countProfesoresOpTec] = nuevoProfesor;
+        countProfesoresOpTec ++;
+        nuevoProfesor.getOpcionTecnica().setInstructor(nuevoProfesor);
     }
 
     @Override
