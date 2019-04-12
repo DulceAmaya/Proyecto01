@@ -520,7 +520,8 @@ public class main {
     					System.out.println("¿Que deseas hacer?");
     					System.out.println("1. Consultar mis calificaciones" + "\n" +
     						               "2. Consultar mi promedio" + "\n" +
-    						               "3. Inscribirme a una opciín técnica");
+    						               "3. Inscribirme a una opciín técnica"
+                                                           + "\n4. Ver certificado");
     					seleccion = sc.nextInt();
     					switch(seleccion){
     						case 1:
@@ -560,6 +561,9 @@ public class main {
     							else
     								System.out.println("Adiós...");
     							break;
+                                                
+                                                case 4:
+                                                    System.out.println(a.certificadoAlumno());
     					}
     				}
     			}

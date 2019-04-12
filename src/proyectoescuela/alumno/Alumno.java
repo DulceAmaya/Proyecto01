@@ -5,6 +5,7 @@ package proyectoescuela.alumno;
 
 import java.util.Hashtable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import proyectoescuela.materia.ExcepcionMateriaNoInscrita;
 import proyectoescuela.administrador.IObservador;
 import proyectoescuela.Grupo;
@@ -275,11 +276,12 @@ public class Alumno implements IObservador{
         if(this.certificado != null)
             return certificado;
         
+        ArrayList<ProfesorAsignatura> auxiliarProfesores = this.getGrupo().getProfesores();
+        ArrayList<Materia> auxiliarMaterias = new ArrayList<Materia>(Arrays.asList(this.getMaterias()));
         if(this.getEstadoGraduacion().estaGradudado()){
             certificado = "El alumno: " + "\n" + this.nombre + "\n" +
-                          "Que curso las materias: " + "\n" +
-                          this.materiasArray[0] + " " + materias.get(materiasArray[0]) + "Profesor: " + buscaProfesor(materiasArray[0]) + "\n" +
-                          this.materiasArray[1] + " " + materias.get(materiasArray[1]) + "Profesor: " + buscaProfesor(materiasArray[1]) + "\n" +
+                          "Que curso las materias con los profesores: " + "\n" +
+                          auxiliarProfesores.toString() + auxiliarMaterias.toString() +
                           "Con promedio: " + this.getPromedio() + "\n";
             if(hasOpcionTecnica())
                 certificado = certificado + "\n" + "Que curso la opción técnica de: " + getOpcionTecnicaAsString();
@@ -290,22 +292,6 @@ public class Alumno implements IObservador{
         return "Debes n materias, amigo";
     }
     
-    /**
-    * Método auxiliar para buscar al profesor de una materia
-    * @param materia
-    * @return profesor
-    */
-    public String buscaProfesor(Materia materia){
-        ArrayList<ProfesorAsignatura> tmp1 = this.grupo.getProfesores();
-        ArrayList<ProfesorAsignatura> tmp2 = materia.getProfesores();
-        for(int i = 0; i < tmp1.size(); i++){
-            for(int j = 0; j < tmp2.size(); j++){
-                if(tmp2.get(j).getId() == tmp1.get(i).getId())
-                    return tmp2.get(j).getNombre();
-            }
-        }
-        return null;
-    }
 
     /**
     * Método que devuelve un alumno como una cadena
