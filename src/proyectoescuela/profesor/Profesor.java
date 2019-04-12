@@ -6,6 +6,7 @@ package proyectoescuela.profesor;
 import proyectoescuela.alumno.Alumno;
 import proyectoescuela.administrador.IObservador;
 
+
 /**
  * Define los tipos de profesores en la escuela (patron Strategy)
  * @author Lechuga
@@ -24,6 +25,7 @@ public abstract class Profesor implements IObservador{
      * @param calificacion 
      */
     public abstract void asignarCalificacion(Alumno alumno, int calificacion);
+
     
     
 }

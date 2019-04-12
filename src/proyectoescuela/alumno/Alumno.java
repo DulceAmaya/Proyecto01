@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import proyectoescuela.materia.ExcepcionMateriaNoInscrita;
 import proyectoescuela.administrador.IObservador;
 import proyectoescuela.Grupo;
-import proyectoescuela.opciontecnica.ExcepcionOpcionTecnicaInvalida;
 import proyectoescuela.opciontecnica.FabricaOpcionTecnica;
 import proyectoescuela.opciontecnica.OpcionTecnica;
 import proyectoescuela.materia.Materia;
@@ -181,7 +180,7 @@ public class Alumno implements IObservador{
      * @param opcion
      * @throws ExcepcionOpcionTecnicaInvalida 
      */
-    public void inscribirOpcionTecnica(int opcion)throws ExcepcionOpcionTecnicaInvalida{
+    public void inscribirOpcionTecnica(int opcion){
         System.out.println("Selecciona la opcion deseada"
                 + "\n 1: Agente de viajes y hoteleria"
                 + "\n 2: Fotografo, laboratorista y prensa"
@@ -212,7 +211,6 @@ public class Alumno implements IObservador{
                     System.out.println("...");
                 default:
                     System.out.println("Escoge una opción válida"); 
-                    throw new ExcepcionOpcionTecnicaInvalida();
                 }
             }
     }

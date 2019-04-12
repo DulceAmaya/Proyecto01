@@ -245,6 +245,22 @@ public class Administrador implements IObservado{
         }
         return profesoresAsignatura.length+1;
     }
+    
+    public ProfesorAsignatura buscaProfesorAsignaturaPorID(int id){
+        for(int i=0; i<profesoresAsignatura.length; i++){
+            if(profesoresAsignatura[i].getId() == id)
+                return profesoresAsignatura[i];
+        }
+        return null;
+    }
+    
+    public ProfesorOpcionTecnica buscaProfesorOpcionTecnicaPorID(int id){
+        for(int i=0; i<profesoresOpcionTecnica.length; i++){
+            if(profesoresOpcionTecnica[i].getId() == id)
+                return profesoresOpcionTecnica[i];
+        }
+        return null;
+    }
 
     /**
     * Método que busca a un profesor en un arreglo

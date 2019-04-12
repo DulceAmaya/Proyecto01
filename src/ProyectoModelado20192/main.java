@@ -3,6 +3,7 @@
  */
 package ProyectoModelado20192;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import proyectoescuela.*;
 import proyectoescuela.Grupo;
@@ -26,7 +27,6 @@ import proyectoescuela.materia.MateriaArea3;
 import proyectoescuela.materia.MateriaArea4;
 import proyectoescuela.materia.Quimica;
 import proyectoescuela.opciontecnica.AgenteViajes;
-import proyectoescuela.opciontecnica.ExcepcionOpcionTecnicaInvalida;
 import proyectoescuela.opciontecnica.FabricaOpcionTecnica;
 import proyectoescuela.opciontecnica.OpcionTecnica;
 import proyectoescuela.profesor.ProfesorAsignatura;
@@ -51,29 +51,22 @@ public class main {
         Administrador admin = new Administrador();
         
         //Opciones Tecnicas
-        try{
-            //Opciones
-            OpcionTecnica agente = FabricaOpcionTecnica.generaOpcionTecnica(f1);
-            OpcionTecnica nutriologia = FabricaOpcionTecnica.generaOpcionTecnica(f2);
-            OpcionTecnica laboratorista = FabricaOpcionTecnica.generaOpcionTecnica(f3);
-            OpcionTecnica fotografo = FabricaOpcionTecnica.generaOpcionTecnica(f4);
+        OpcionTecnica agente = FabricaOpcionTecnica.generaOpcionTecnica(f1);
+        OpcionTecnica nutriologia = FabricaOpcionTecnica.generaOpcionTecnica(f2);
+        OpcionTecnica laboratorista = FabricaOpcionTecnica.generaOpcionTecnica(f3);
+        OpcionTecnica fotografo = FabricaOpcionTecnica.generaOpcionTecnica(f4);
             
-            //Profesores Opcion Tecnica
-            ProfesorOpcionTecnica op1 = new ProfesorOpcionTecnica("Kojima", agente);
-            ProfesorOpcionTecnica op2 = new ProfesorOpcionTecnica("Neil", nutriologia);
-            ProfesorOpcionTecnica op3 = new ProfesorOpcionTecnica("Toby", laboratorista);
-            ProfesorOpcionTecnica op4 = new ProfesorOpcionTecnica("Cage", fotografo);
-            
-            //los agregamos al sistema
-            admin.contrataProfesorOpcionTecnicaExistente(op1);
-            admin.contrataProfesorOpcionTecnicaExistente(op2);
-            admin.contrataProfesorOpcionTecnicaExistente(op3);
-            admin.contrataProfesorOpcionTecnicaExistente(op4);
-            
-            
-        }catch(ExcepcionOpcionTecnicaInvalida e){
-            
-        }
+        //Profesores Opcion Tecnica
+        ProfesorOpcionTecnica op1 = new ProfesorOpcionTecnica("Kojima", agente);
+        ProfesorOpcionTecnica op2 = new ProfesorOpcionTecnica("Neil", nutriologia);
+        ProfesorOpcionTecnica op3 = new ProfesorOpcionTecnica("Toby", laboratorista);
+        ProfesorOpcionTecnica op4 = new ProfesorOpcionTecnica("Cage", fotografo);
+          
+        //los agregamos al sistema
+        admin.contrataProfesorOpcionTecnicaExistente(op1);
+        admin.contrataProfesorOpcionTecnicaExistente(op2);
+        admin.contrataProfesorOpcionTecnicaExistente(op3);
+        admin.contrataProfesorOpcionTecnicaExistente(op4);    
         
         //Materias
         Fisica m1 = new Fisica();
@@ -198,12 +191,81 @@ public class main {
             case 1:
                 
             case 2:
+                int id;
+                Alumno alumnoSeleccionado;
                 
+                System.out.println("Seleccione su tipo"
+                        + "\n1 Asignatura"
+                        + "\n2 Opcion tecnica");
+                
+                seleccion = sc.nextInt();
+                
+                switch(seleccion){
+                    case 1:
+                        System.out.println("Cual es tu id?");
+                        id = sc.nextInt();
+                        ProfesorAsignatura profesorA = admin.buscaProfesorAsignaturaPorID(id);
+                
+                        System.out.println("Bienvenido profesor " + profesorA.getNombre() + ""
+                            + "\nSeleccione la opcion deseada"
+                            + "\n1 Consultar informacion de mi grupo"
+                            + "\n2 Asignar calificacion a un alumno");
+                        seleccion = sc.nextInt();
+                        switch(seleccion){
+                            case 1: 
+                                System.out.println(profesorA.consultaInformacionGrupo());
+                                break;
+                            case 2:
+                                System.out.println("Introduce el numero de cuenta");
+                                id = sc.nextInt();
+                                ArrayList<Alumno> alumnosTemp = profesorA.getGrupo().getAlumnos();
+                        
+                                for(Alumno alumno : alumnosTemp){
+                                    if(alumno.getNumeroDeCuenta() == id){
+                                        alumnoSeleccionado = alumno;
+                                        System.out.println("Que calificacion desa asignar al alumno " + alumnoSeleccionado.getNombre());
+                                        seleccion = sc.nextInt();
+                                        profesorA.asignarCalificacion(alumnoSeleccionado, seleccion);
+                                        System.out.println("Calificacion asignada");
+                                    }else return;          
+                                }
+                        }
+                        break;
+                    
+                    case 2:    
+                        System.out.println("Cual es tu id?");
+                        id = sc.nextInt();
+                        ProfesorOpcionTecnica profesorO = admin.buscaProfesorOpcionTecnicaPorID(id);
+                        System.out.println("Bienvenido profesor " + profesorO.getNombre() + ""
+                            + "\nSeleccione la opcion deseada"
+                            + "\n1 Consultar informacion de mi grupo"
+                            + "\n2 Asignar calificacion a un alumno");
+                        seleccion = sc.nextInt();
+                        switch(seleccion){
+                            case 1:
+                                System.out.println(profesorO.consultaInformacionGrupo());
+                                break;
+                            case 2:
+                                System.out.println("Introduce el numero de cuenta");
+                                id = sc.nextInt();
+                                ArrayList<Alumno> alumnosTemp = profesorO.getOpcionTecnica().alumnosInscritos();
+                                for(Alumno alumno : alumnosTemp){
+                                    if(alumno.getNumeroDeCuenta() == id){
+                                        alumnoSeleccionado = alumno;
+                                        System.out.println("Que calificacion desa asignar al alumno " + alumnoSeleccionado.getNombre());
+                                        seleccion = sc.nextInt();
+                                        profesorO.asignarCalificacion(alumnoSeleccionado, seleccion);
+                                        System.out.println("Calificacion asignada");
+                                    }else return;          
+                                }
+                        }
+                }
+
             case 3:
                 
             default:
                 System.out.println("Hasta luego!");
-        }
+        }       
+        
     }
-    
 }

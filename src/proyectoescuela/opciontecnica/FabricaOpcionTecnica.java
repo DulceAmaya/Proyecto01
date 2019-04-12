@@ -15,7 +15,7 @@ public class FabricaOpcionTecnica {
      * @return
      * @throws ExcepcionOpcionTecnicaInvalida 
      */
-    public static OpcionTecnica generaOpcionTecnica(String tipo) throws ExcepcionOpcionTecnicaInvalida{
+    public static OpcionTecnica generaOpcionTecnica(String tipo){
         switch(tipo){
             case "AgenteViajes":
                 return new AgenteViajes();
@@ -25,8 +25,7 @@ public class FabricaOpcionTecnica {
                 return new Laboratorista();
             case "Fotografia":
                 return new Laboratorista();
-            default:
-                throw new ExcepcionOpcionTecnicaInvalida("Se ha producido un error"); 
         }
+        return null;
     }
 }
