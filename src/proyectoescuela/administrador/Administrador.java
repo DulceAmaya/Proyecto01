@@ -35,6 +35,9 @@ public class Administrador implements IObservado{
     ArrayList<IObservador> observadores;
     boolean hayEspacio;
     EstadoAlumno estado;
+    private int countProfesoresAsignatura = 0;
+    private int countProfesoresOpTec = 0;
+
 
     @Override
     public ArrayList<Alumno> AlumnosInscritos() {
@@ -140,10 +143,12 @@ public class Administrador implements IObservado{
 
     @Override
     public void contrataProfesorAsignatura(String nombre, Materia materia, Grupo grupo) {
-        //Suponemos que todo esto va encerrado en un IF que sabe si hay espacio para profesores nuevos
+        //Si no hay espacio, debemos cachar la excepcion ArrayIndexOutOfBound
         ProfesorAsignatura nuevoProfesor = new ProfesorAsignatura(nombre,materia,grupo);
-        //Esto se tiene que generalizar para que se busque un espacio en el array (lo dejo como 0 por que la neta quien sabe)
-        nuevoProfesor = profesoresAsignatura[0];
+        //Agregamos al array de profesores al nuevo profesor en la primer posicion libre.
+        profesoresAsignatura[countProfesoresAsignatura] = nuevoProfesor;
+        //Incrementamos el contador
+        countProfesoresAsignatura ++;
         //Agregamos al nuevo profesor al gurpo
         nuevoProfesor.getGrupo().agregarProfesor(nuevoProfesor);
         //Llamamos a notifica del patron observer para que notifique a todos 
@@ -152,21 +157,30 @@ public class Administrador implements IObservado{
 
     @Override
     public void despedirProfesorAsignatura(ProfesorAsignatura profesorA) {
-        //Suponemos que sabemos donde esta el profesor (falta el algoritmo de busqueda en el arreglo)
-        profesoresAsignatura[0] = null;
-        //Borramos a profesor de grupo
-        profesorA.getGrupo().eliminarProfesor(profesorA);
-        //Llamamos a notifica del patron observer para que notifique a todos 
-        this.notificaBajaProfesor();
+        // Buscamos el profesor en el arreglo de profesores de Asignatura
+        int tmp = buscarProfesorAsignatura(profesorA);
+        if(tmp < profesoresAsignatura.length){
+            //Decrementamos el contador de profesores
+            countProfesoresAsignatura --;
+            // Bestialidad para evitar null's a la mitad del arreglo
+            profesoresAsignatura[tmp] = profesoresAsignatura[countProfesoresAsignatura];
+            profesoresAsignatura[countProfesoresAsignatura] = null;
+            //Borramos al profesor de su grupo
+            profesorA.getGrupo().eliminarProfesor(profesorA);
+            //Llamamos a notifica del patron observer para que notifique a todos 
+            this.notificaBajaProfesor();
+        }        
         
     }
 
     @Override
     public void contrataProfesorOpcionTecnica(String nombre, OpcionTecnica opcionTecnica) {
-        //Suponemos que todo esto va encerrado en un IF que sabe si hay espacio para profesores nuevos
+        //Si no hay espacio, debemos cachar la excepcion ArrayIndexOutOfBound
         ProfesorOpcionTecnica nuevoProfesor = new ProfesorOpcionTecnica(nombre, opcionTecnica);
-        //Esto se tiene que generalizar para que se busque un espacio en el array (lo dejo como 0 por que la neta quien sabe)
-        nuevoProfesor = profesoresOpcionTecnica[0];
+        //Agregamos al nuevo profesor al array de profesores
+        profesoresOpcionTecnica[countProfesoresOpTec] = nuevoProfesor;
+        //Incrementamos el contador
+        countProfesoresOpTec ++;
         //Agregamos al nuevo profesor a la opcion tecnica
         nuevoProfesor.getOpcionTecnica().setInstructor(nuevoProfesor);
         //Llamamos a notifica del patron observer para que notifique a todos 
@@ -175,10 +189,45 @@ public class Administrador implements IObservado{
 
     @Override
     public void despedirProfesorOpcionTecnica(ProfesorOpcionTecnica profesorOT) {
-        //Suponemos que sabemos donde esta el profesor (falta el algoritmo de busqueda en el arreglo)
-        profesoresOpcionTecnica[0] = null;
-        //Llamamos a notifica del patron observer para que notifique a todos 
-        this.notificaBajaProfesor();
+        // Buscamos el profesor en el arreglo de profesores de Opcion Tecnica
+        int tmp = buscarProfesorOpTec(profesorOT);
+        if(tmp < profesoresOpcionTecnica.length){
+            //Decrementamos el contador de profesores
+            countProfesoresOpTec --;
+            //Bestialidad para hacer eliminar al instructor de la Opcion Tecnica.
+            profesorOT.getOpcionTecnica().instructor = null;
+            // Bestialidad para evitar null's intercalados del arreglo
+            profesoresOpcionTecnica[tmp] = profesoresOpcionTecnica[countProfesoresOpTec];
+            profesoresOpcionTecnica[countProfesoresOpTec] = null;
+            //Llamamos a notifica del patron observer para que notifique a todos 
+            this.notificaBajaProfesor();
+        }  
+    }
+    
+    /**
+    * Método que busca a un profesor en un arreglo
+    * @param profesor
+    * @return indice
+    */
+    public int buscarProfesorAsignatura(ProfesorAsignatura profesor){
+        for(int i = 0; i<profesoresAsignatura.length; i++){
+            if(profesoresAsignatura[i].getId() == profesor.getId())
+                return i;
+        }
+        return profesoresAsignatura.length+1;
+    }
+
+    /**
+    * Método que busca a un profesor en un arreglo
+    * @param profesor
+    * @return indice
+    */
+    public int buscarProfesorOpTec(ProfesorOpcionTecnica profesor){
+        for(int i = 0; i<profesoresOpcionTecnica.length; i++){
+            if(profesoresAsignatura[i].getId() == profesor.getId())
+                return i;
+        }
+        return profesoresAsignatura.length+1;
     }
 
     @Override

@@ -4,7 +4,7 @@
 package proyectoescuela.materia;
 
 import java.util.ArrayList;
-import proyectoescuela.profesor.Profesor;
+import proyectoescuela.profesor.*;
 
 
 /**
@@ -13,7 +13,7 @@ import proyectoescuela.profesor.Profesor;
  */
 public abstract class Materia {
     
-    private ArrayList<Profesor> profesores = new ArrayList();
+    private ArrayList<ProfesorAsignatura> profesores = new ArrayList();
     
     /**
      * Constructor vacio
@@ -36,13 +36,13 @@ public abstract class Materia {
      * Metodo que regresa la lista de profesores que tiene una materia
      * @return lista de profesores
      */
-    public abstract ArrayList<Profesor> getProfesores();
+    public abstract ArrayList<ProfesorAsignatura> getProfesores();
     
     /**
      * Metodo que agrega a un profesor a la lista de materias 
      * @param profesor 
      */
-    public void agregarProfesor(Profesor profesor){
+    public void agregarProfesor(ProfesorAsignatura profesor){
         profesores.add(profesor);
     }
     
@@ -50,7 +50,7 @@ public abstract class Materia {
      * Metodo que elimina a un profesor de la lista de materias
      * @param profesor 
      */
-    public void eliminarProfesor(Profesor profesor){
+    public void eliminarProfesor(ProfesorAsignatura profesor){
         profesores.remove(profesor);
     }
     

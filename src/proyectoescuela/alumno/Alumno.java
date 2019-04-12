@@ -3,14 +3,16 @@
  */
 package proyectoescuela.alumno;
 
+import java.util.Hashtable;
+import java.util.ArrayList;
 import proyectoescuela.materia.ExcepcionMateriaNoInscrita;
 import proyectoescuela.administrador.IObservador;
-import java.util.Hashtable;
 import proyectoescuela.Grupo;
 import proyectoescuela.opciontecnica.ExcepcionOpcionTecnicaInvalida;
 import proyectoescuela.opciontecnica.FabricaOpcionTecnica;
 import proyectoescuela.opciontecnica.OpcionTecnica;
 import proyectoescuela.materia.Materia;
+import proyectoescuela.profesor.*;
 
 /**
  * Clase que maneja al tipo Alumno
@@ -27,6 +29,7 @@ public class Alumno implements IObservador{
     Hashtable<Materia, Integer> materias;
     OpcionTecnica opcionTecnica = null;
     private Materia[] materiasArray;
+    private String certificado = null;
     public EstadoAlumno estado;
 
     /**
@@ -301,16 +304,39 @@ public class Alumno implements IObservador{
      * @return certificado
      */
     public String certificadoAlumno(){
-        
-        String certificado = "Vas atrasado por N semestre amigo";
+        if(this.certificado != null)
+            return certificado;
         
         if(this.getEstadoGraduacion().estaGradudado()){
-            //Aqui va lo que se va a imprimir de certificado
-            //Agregar en el menu para que el alumno pueda ver su certificado cuantas veces quiera
+            certificado = "El alumno: " + "\n" + this.nombre + "\n" +
+                          "Que curso las materias: " + "\n" +
+                          this.materiasArray[0] + " " + materias.get(materiasArray[0]) + "Profesor: " + buscaProfesor(materiasArray[0]) + "\n" +
+                          this.materiasArray[1] + " " + materias.get(materiasArray[1]) + "Profesor: " + buscaProfesor(materiasArray[1]) + "\n" +
+                          "Con promedio: " + this.getPromedio() + "\n";
+            if(hasOpcionTecnica())
+                certificado = certificado + "\n" + "Que curso la opción técnica de: " + getOpcionTecnicaAsString();
+            certificado = certificado + "\n" + "Ha finalizado sus estudios satisfactoriamente en la ESCUELA NACIONAL PREPARATORIA No. 5" + "\n" + "¡FELICIDADES!";
             return certificado;
         }
         
-        return certificado;
+        return "Debes n materias, amigo";
+    }
+    
+    /**
+    * Método auxiliar para buscar al profesor de una materia
+    * @param materia
+    * @return profesor
+    */
+    public String buscaProfesor(Materia materia){
+        ArrayList<ProfesorAsignatura> tmp1 = this.grupo.getProfesores();
+        ArrayList<ProfesorAsignatura> tmp2 = materia.getProfesores();
+        for(int i = 0; i < tmp1.size(); i++){
+            for(int j = 0; j < tmp2.size(); j++){
+                if(tmp2.get(j).getId() == tmp1.get(i).getId())
+                    return tmp2.get(j).getNombre();
+            }
+        }
+        return null;
     }
        
 }

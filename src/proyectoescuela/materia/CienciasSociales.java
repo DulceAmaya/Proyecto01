@@ -4,7 +4,7 @@
 package proyectoescuela.materia;
 
 import java.util.ArrayList;
-import proyectoescuela.profesor.Profesor;
+import proyectoescuela.profesor.*;
 
 /**
  * Clase para una materia especifica
@@ -12,7 +12,7 @@ import proyectoescuela.profesor.Profesor;
  */
 public class CienciasSociales extends MateriaArea3 {
     
-    ArrayList<Profesor> profesores;
+    ArrayList<ProfesorAsignatura> profesores;
     
     /**
      * Constructor vacio
@@ -27,7 +27,7 @@ public class CienciasSociales extends MateriaArea3 {
     }
 
     @Override
-    public ArrayList<Profesor> getProfesores(){
+    public ArrayList<ProfesorAsignatura> getProfesores(){
         return profesores;
     }
     

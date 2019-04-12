@@ -7,7 +7,7 @@ import proyectoescuela.alumno.Alumno;
 import java.util.ArrayList;
 import proyectoescuela.area.Area;
 import proyectoescuela.materia.Materia;
-import proyectoescuela.profesor.Profesor;
+import proyectoescuela.profesor.*;
 
 /**
  * Clase que se encargara de grupo
@@ -17,7 +17,7 @@ public class Grupo {
 
     String nombre;
     ArrayList<Alumno> alumnos = new ArrayList();
-    ArrayList<Profesor> profesores = new ArrayList();
+    ArrayList<ProfesorAsignatura> profesores = new ArrayList();
     ArrayList<Materia> materias = new ArrayList();
     Area area;
         
@@ -111,7 +111,7 @@ public class Grupo {
      * Metodo que regresa la lista de profesores
      * @return profesores
      */
-    public ArrayList<Profesor> getProfesores(){
+    public ArrayList<ProfesorAsignatura> getProfesores(){
 	return profesores;
     }
         
@@ -119,7 +119,7 @@ public class Grupo {
      * Metodo que agrega un profesor al grupo
      * @param profesor 
      */
-    public void agregarProfesor(Profesor profesor){
+    public void agregarProfesor(ProfesorAsignatura profesor){
         profesores.add(profesor);
     }
         
@@ -127,7 +127,7 @@ public class Grupo {
      * Metodo que elimina un profesor del grupo
      * @param profesor 
      */
-    public void eliminarProfesor(Profesor profesor){
+    public void eliminarProfesor(ProfesorAsignatura profesor){
         profesores.remove(profesor);
     }
 
