@@ -5,6 +5,7 @@ package proyectoescuela.profesor;
 
 import proyectoescuela.alumno.Alumno;
 import proyectoescuela.administrador.IObservador;
+import proyectoescuela.materia.ExcepcionMateriaNoInscrita;
 
 
 /**

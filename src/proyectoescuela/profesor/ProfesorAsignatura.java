@@ -5,6 +5,7 @@ package proyectoescuela.profesor;
 
 import proyectoescuela.alumno.Alumno;
 import proyectoescuela.Grupo;
+import proyectoescuela.materia.ExcepcionMateriaNoInscrita;
 import proyectoescuela.materia.Materia;
 
 /**
@@ -18,16 +19,17 @@ public class ProfesorAsignatura extends Profesor {
     public Materia materia;
     public Grupo grupo;
     public Alumno alumno;
-    public AsignarCalificacionProfesorAsignatura pCalificacion;
-    public ConsultarInfoGrupoProfesorAsignatura pInformacion;
+    public AsignarCalificacionProfesorAsignatura pCalificacion = new AsignarCalificacionProfesorAsignatura();
+    public ConsultarInfoGrupoProfesorAsignatura pInformacion = new ConsultarInfoGrupoProfesorAsignatura();
 
     /**
      * Constructor que recibe el nombrem, materia y grupo de un profesor de asignatura
      * @param nombre
      * @param materia
      * @param grupo 
+     * @throws proyectoescuela.materia.ExcepcionMateriaNoInscrita 
      */
-    public ProfesorAsignatura(String nombre, Materia materia, Grupo grupo) {
+    public ProfesorAsignatura(String nombre, Materia materia, Grupo grupo){
         this.nombre = nombre;
         this.materia = materia;
         this.grupo = grupo;
@@ -101,7 +103,7 @@ public class ProfesorAsignatura extends Profesor {
         
     @Override
     public String consultaInformacionGrupo(){
-        return pInformacion.consultaInformacionGrupo(grupo.getAlumnos(), grupo, materia);
+        return pInformacion.consultaInformacionGrupo(this.grupo.getAlumnos(), grupo, materia);
     }
     
     @Override

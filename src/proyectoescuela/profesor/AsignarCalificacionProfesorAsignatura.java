@@ -20,7 +20,7 @@ public class AsignarCalificacionProfesorAsignatura implements IAsignaCalificacio
     @Override
     public void asignarCalificacion(Alumno alumno, int calificacion) {
         try{
-        alumno.setCalificaciones(this.materia, calificacion);
+        alumno.setCalificaciones(materia, calificacion);
         }catch (ExcepcionMateriaNoInscrita e){
             System.out.println("El alumno no tiene esa materia inscrita");
         }

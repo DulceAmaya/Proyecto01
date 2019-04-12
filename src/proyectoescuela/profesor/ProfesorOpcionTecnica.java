@@ -17,7 +17,7 @@ public class ProfesorOpcionTecnica extends Profesor{
     public int id = 0;
     public OpcionTecnica opcionTecnica;
     public AsignarCalificacionProfesorOpcionTecnica pCalificacion;
-    public ConsultarInfoGrupoProfesorOpcionTecnica pInformacion;
+    public ConsultarInfoGrupoProfesorOpcionTecnica pInformacion = new ConsultarInfoGrupoProfesorOpcionTecnica();
 
     /**
      * Constructor que recibe nombre y opcion tecnica del instructor y 

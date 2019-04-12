@@ -17,8 +17,8 @@ public class ConsultarInfoGrupoProfesorOpcionTecnica implements IConsultarInfoGr
 
     String info;
     
-    public String consultaInformacionGrupo(ArrayList<Alumno> alumnos, Object opcionTecnica) {
-        OpcionTecnica temp = (OpcionTecnica)opcionTecnica;
+    public String consultaInformacionGrupo(ArrayList<Alumno> alumnos, OpcionTecnica opcionTecnica) {
+        OpcionTecnica temp = opcionTecnica;
         info = "Informacion del grupo: " + temp.getNombre() + " " + alumnos.toString();
         return info;
     }

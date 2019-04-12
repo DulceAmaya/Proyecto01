@@ -193,6 +193,7 @@ public class main {
             case 2:
                 int id;
                 Alumno alumnoSeleccionado;
+                String resultado;
                 
                 System.out.println("Seleccione su tipo"
                         + "\n1 Asignatura"
@@ -213,7 +214,8 @@ public class main {
                         seleccion = sc.nextInt();
                         switch(seleccion){
                             case 1: 
-                                System.out.println(profesorA.consultaInformacionGrupo());
+                                resultado = profesorA.consultaInformacionGrupo();
+                                System.out.println(resultado);
                                 break;
                             case 2:
                                 System.out.println("Introduce el numero de cuenta");
