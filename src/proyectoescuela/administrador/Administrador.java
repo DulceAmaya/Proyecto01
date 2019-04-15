@@ -6,6 +6,7 @@ package proyectoescuela.administrador;
 import java.lang.reflect.Array;
 import java.util.Hashtable;
 import java.util.ArrayList;
+import java.io.*;
 import java.util.Arrays;
 import proyectoescuela.alumno.Alumno;
 import proyectoescuela.Grupo;
@@ -98,7 +99,10 @@ public class Administrador implements IObservado{
     }
     
     @Override
-    public void inscribirAlumno(String nombre, String fechaDeNacimiento, int numeroDeCuenta, String correo, Grupo grupo, Materia[] materias) {
+    public void inscribirAlumno(String nombre, String fechaDeNacimiento, int numeroDeCuenta, String correo, Grupo grupo, Materia[] materias)throws ExcepcionIDDuplicado {
+        //Primero verificamos si el número de cuenta no se encuentra en la lista
+        if(alumnos.containsKey(numeroDeCuenta))
+            throw new ExcepcionIDDuplicado ("El número de cuenta ya se encuentra en la lista.");
         //Creamos un alumno y le pasamos los valores 
         Alumno nuevoAlumno = new Alumno(nombre,fechaDeNacimiento,numeroDeCuenta,correo,grupo,materias);
         //Agregamos el alumno a la tabla Hash
@@ -121,7 +125,7 @@ public class Administrador implements IObservado{
 
 
     @Override
-    public void bajaAlumno(Alumno alumno) {
+    public void bajaAlumno(Alumno alumno){
         //Borramos al alumno del Hash
         alumnos.remove(alumno.numeroDeCuenta);
         //Borramos al alumno de la lista de su grupo

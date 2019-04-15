@@ -310,18 +310,25 @@ public class main {
             			System.out.println("Ingresa un correo: ");
                                 sc.nextLine();
             			String correo2 = sc.nextLine();
-            			System.out.println("Ingresa el area a la que pertenecerá: ");
+            			System.out.println("Selecciona el área a la que el alumno pertenecerá: \n" +
+                                           "1. Fisico-Matematica \n" +
+                                           "2. Ciencias Biologicas y de la Salud \n" +
+                                           "3. Ciencias Sociales \n" +
+                                           "4. Humanidades y Artes");
             			int ar = sc.nextInt();
-            			if(ar == 1)
-            				admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g1, amA1);
-            			else if (ar == 2)
-            				admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g3, amA2);
-            			else if (ar == 3)
-            				admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g5, amA3);
-            			else if (ar == 4)
-            				admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g7, amA4);
-            			else
-            				System.out.println("Selecciona una opción válida");
+                        try{
+                            if(ar == 1)
+                                admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g1, amA1);
+            			    else if (ar == 2)
+            				    admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g3, amA2);
+            			    else if (ar == 3)
+            				    admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g5, amA3);
+            			    else if (ar == 4)
+            				    admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g7, amA4);
+            			}
+                        catch (ExcepcionIDDuplicado e){
+            				System.out.println(e.getMessage());
+                        }
             			break;
 
             		case 6:
@@ -340,11 +347,11 @@ public class main {
             			System.out.println("Ingresa el numero de cuenta del alumno que va a ser dado de baja: ");
             			int tmpExpulsado = sc.nextInt();
             			ArrayList<Alumno> alumnosTemp = admin.AlumnosInscritos();
-            			for(Alumno a : alumnosTemp){
-            				if(a.getNumeroDeCuenta() == tmpExpulsado){
-            					admin.bajaAlumno(a);
-            					System.out.println("El alumno has sido dado de baja");
-            				}
+                        for(Alumno a : alumnosTemp){
+                            if(a.getNumeroDeCuenta() == tmpExpulsado){
+                                admin.bajaAlumno(a);
+                                System.out.println("El alumno has sido dado de baja");
+            			    }
             			}
             			break;
 
@@ -514,7 +521,7 @@ public class main {
     					}
     					break;
     			}
-                        break;
+                break;
 
     		case 3:
     			System.out.println("Por favor, ingresa tu número de cuenta: ");
@@ -574,10 +581,6 @@ public class main {
     				}
     			}
     			break;
-
-            default:
-    			System.out.println("Selecciona una opción válida");
-            	break;
         }
     }
     while(seleccionInicial > 0);
