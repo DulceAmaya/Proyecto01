@@ -6,6 +6,7 @@ package proyectoescuela.administrador;
 import java.lang.reflect.Array;
 import java.util.Hashtable;
 import java.util.ArrayList;
+import java.io.*;
 import java.util.Arrays;
 import proyectoescuela.alumno.Alumno;
 import proyectoescuela.Grupo;
@@ -98,7 +99,10 @@ public class Administrador implements IObservado{
     }
     
     @Override
-    public void inscribirAlumno(String nombre, String fechaDeNacimiento, int numeroDeCuenta, String correo, Grupo grupo, Materia[] materias) {
+    public void inscribirAlumno(String nombre, String fechaDeNacimiento, int numeroDeCuenta, String correo, Grupo grupo, Materia[] materias)throws ExcepcionIDDuplicado {
+        //Primero verificamos si el número de cuenta no se encuentra en la lista
+        if(alumnos.containsKey(numeroDeCuenta))
+            throw new ExcepcionIDDuplicado ("El número de cuenta ya se encuentra en la lista.");
         //Creamos un alumno y le pasamos los valores 
         Alumno nuevoAlumno = new Alumno(nombre,fechaDeNacimiento,numeroDeCuenta,correo,grupo,materias);
         //Agregamos el alumno a la tabla Hash
@@ -109,6 +113,73 @@ public class Administrador implements IObservado{
         this.notificaNuevoAlumno();
         
     }
+    
+    ///////////////////////Parche 1///////////////////////////////////////////
+    /**
+     * Metodo para saber si un alumno esta inscrito
+     * @param numeroDeCuenta
+     * @return boolean
+     */
+    public boolean existeAlumno(int numeroDeCuenta){
+        return (alumnos.containsKey(numeroDeCuenta));
+    }
+    
+    /**
+     * Metodo que sabe si existe un profesor en el sistema segun el id
+     * @param id
+     * @return 
+     */
+    public boolean existeProfesorAsignatura(int id){
+        for(ProfesorAsignatura profesor : profesoresAsignatura){
+            if(profesor.getId() == id)
+                return true;
+        }
+        System.out.println("No existe el profesor");
+        return false;
+    }
+    
+    /**
+     * Metodo que sabe si existe un profesor en el sistema segun el id
+     * @param id
+     * @return 
+     */
+    public boolean existeProfesorOpcionTecnica(int id){
+        for(ProfesorOpcionTecnica profesor : profesoresOpcionTecnica){
+            if(profesor.getId() == id)
+                return true;
+        }
+        System.out.println("No existe el profesor");
+        return false;
+    }
+    
+    /**
+     * Metodo para saber si un profesor Asignatura esta contratado
+     * @param id
+     * @return Profesor
+     */
+    public ProfesorAsignatura getProfesorAsignaturaPorID(int id){
+        for(ProfesorAsignatura profesor : profesoresAsignatura){
+            if(profesor.getId() == id)
+                return profesor;
+        }
+        System.out.println("El profesor no existe");
+        return null;
+    }
+    
+    /**
+     * Metodo para saber si un profesor de optec esta contratado
+     * @param id
+     * @return profesor
+     */
+    public ProfesorOpcionTecnica getProfesorOpcionTecnicaPorID(int id){
+        for(ProfesorOpcionTecnica profesor : profesoresOpcionTecnica){
+            if(profesor.getId() == id)
+                return profesor;
+        }
+        System.out.println("El profesor no existe");
+        return null;
+    }
+    ///////////////////////////////////////////////////////////////////////////
 
     /**
      * Inscribe un alumno ya creado en el main
@@ -121,7 +192,7 @@ public class Administrador implements IObservado{
 
 
     @Override
-    public void bajaAlumno(Alumno alumno) {
+    public void bajaAlumno(Alumno alumno){
         //Borramos al alumno del Hash
         alumnos.remove(alumno.numeroDeCuenta);
         //Borramos al alumno de la lista de su grupo

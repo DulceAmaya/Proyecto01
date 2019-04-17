@@ -54,7 +54,7 @@ public interface IObservado {
      * @param grupo
      * @param materias
      */
-    public void inscribirAlumno(String nombre, String fechaDeNacimiento, int numeroDeCuenta, String correo, Grupo grupo, Materia[] materias);
+    public void inscribirAlumno(String nombre, String fechaDeNacimiento, int numeroDeCuenta, String correo, Grupo grupo, Materia[] materias) throws ExcepcionIDDuplicado;
     
     /**
      * Metodo del patron observer que sirve para eliminar alumnos de la lista
