@@ -1,13 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Modelado y Programacion | Proyecto 1 | 2019-2
  */
 package ProyectoModelado20192;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import proyectoescuela.*;
 import proyectoescuela.Grupo;
 import proyectoescuela.alumno.Alumno;
 import proyectoescuela.area.Area1;
@@ -21,17 +18,13 @@ import proyectoescuela.materia.Filosofia;
 import proyectoescuela.materia.Fisica;
 import proyectoescuela.materia.Historia;
 import proyectoescuela.materia.Matematicas;
-import proyectoescuela.materia.Materia;
 import proyectoescuela.materia.MateriaArea1;
 import proyectoescuela.materia.MateriaArea2;
 import proyectoescuela.materia.MateriaArea3;
 import proyectoescuela.materia.MateriaArea4;
 import proyectoescuela.materia.Quimica;
-import proyectoescuela.opciontecnica.AgenteViajes;
-import proyectoescuela.opciontecnica.ExcepcionOpcionTecnicaInvalida;
 import proyectoescuela.opciontecnica.FabricaOpcionTecnica;
 import proyectoescuela.opciontecnica.OpcionTecnica;
-import proyectoescuela.profesor.*;
 import proyectoescuela.profesor.ProfesorAsignatura;
 import proyectoescuela.profesor.ProfesorOpcionTecnica;
 import proyectoescuela.administrador.*;
@@ -46,31 +39,32 @@ public class main {
         
         Scanner sc = new Scanner(System.in);
         int seleccion;
-        String texto;
         String f1 = "AgenteViajes";
         String f2 = "Nutriologia";
         String f3 = "Laboratorista";
         String f4 = "Fotografia";
         Administrador admin = new Administrador();
+        ProfesorAsignatura profesorAsignaturaTemporal;
+        ProfesorOpcionTecnica profesorOpcionTecnicaTemporal;
         
         //Opciones Tecnicas
-            //Opciones
-            OpcionTecnica agente = FabricaOpcionTecnica.generaOpcionTecnica(f1);
-            OpcionTecnica nutriologia = FabricaOpcionTecnica.generaOpcionTecnica(f2);
-            OpcionTecnica laboratorista = FabricaOpcionTecnica.generaOpcionTecnica(f3);
-            OpcionTecnica fotografo = FabricaOpcionTecnica.generaOpcionTecnica(f4);
+        //Opciones
+        OpcionTecnica agente = FabricaOpcionTecnica.generaOpcionTecnica(f1);
+        OpcionTecnica nutriologia = FabricaOpcionTecnica.generaOpcionTecnica(f2);
+        OpcionTecnica laboratorista = FabricaOpcionTecnica.generaOpcionTecnica(f3);
+        OpcionTecnica fotografo = FabricaOpcionTecnica.generaOpcionTecnica(f4);
             
-            //Profesores Opcion Tecnica
-            ProfesorOpcionTecnica op1 = new ProfesorOpcionTecnica("Kojima", agente);
-            ProfesorOpcionTecnica op2 = new ProfesorOpcionTecnica("Neil", nutriologia);
-            ProfesorOpcionTecnica op3 = new ProfesorOpcionTecnica("Toby", laboratorista);
-            ProfesorOpcionTecnica op4 = new ProfesorOpcionTecnica("Cage", fotografo);
+        //Profesores Opcion Tecnica
+        ProfesorOpcionTecnica op1 = new ProfesorOpcionTecnica("Kojima", agente);
+        ProfesorOpcionTecnica op2 = new ProfesorOpcionTecnica("Neil", nutriologia);
+        ProfesorOpcionTecnica op3 = new ProfesorOpcionTecnica("Toby", laboratorista);
+        ProfesorOpcionTecnica op4 = new ProfesorOpcionTecnica("Cage", fotografo);
             
-            //los agregamos al sistema
-            admin.contrataProfesorOpcionTecnicaExistente(op1);
-            admin.contrataProfesorOpcionTecnicaExistente(op2);
-            admin.contrataProfesorOpcionTecnicaExistente(op3);
-            admin.contrataProfesorOpcionTecnicaExistente(op4);
+        //los agregamos al sistema
+        admin.contrataProfesorOpcionTecnicaExistente(op1);
+        admin.contrataProfesorOpcionTecnicaExistente(op2);
+        admin.contrataProfesorOpcionTecnicaExistente(op3);
+        admin.contrataProfesorOpcionTecnicaExistente(op4);
         
         //Materias
         Fisica m1 = new Fisica();
@@ -88,13 +82,11 @@ public class main {
         MateriaArea3[] amA3 = {m5,m6};
         MateriaArea4[] amA4 = {m7,m8};
         
-        
         //Areas
         Area1 ar1 = new Area1(m1,m2);
         Area2 ar2 = new Area2(m3,m4);
         Area3 ar3 = new Area3(m5,m6);
         Area4 ar4 = new Area4(m7,m8);
-        
         
         //Grupos
         Grupo g1 = new Grupo("a", ar1);
@@ -147,13 +139,14 @@ public class main {
         Alumno a31 = new Alumno("Asriel", "28-08-1998", 41789158, "Asriel@Gmail.com", g8, amA4);
         Alumno a32 = new Alumno("Asgore", "22-08-1998", 58148187, "Asgore@Gmail.com", g8, amA4);
         
+        //Añadimos los alumnos al arreglo
         Alumno[] alumnos = {a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29,a30,a31,a32};
         
+        //Los inscribimos
         for(Alumno alumno: alumnos){
             admin.inscribirAlumnoExistente(alumno);
         }
-        
-        
+
         //Profesores Asignatura
         ProfesorAsignatura pAsig01 = new ProfesorAsignatura("Naruto", m1, g1);
         ProfesorAsignatura pAsig02 = new ProfesorAsignatura("Sasuke", m2, g1);
@@ -184,410 +177,407 @@ public class main {
         //--------------------- Inicio del menú-----------------------------
         int seleccionInicial;
         do{
-        System.out.println("Bienvenido la Proyecto 1 de Modelado y Programación | Alumnos: Amaya Dulce , Lechuga Eduardo");
-    	System.out.println("Para ingresar, selecciona una opción: ");
-    	System.out.println("1. Administrador" + "\n" + "2. Profesor" + "\n" + "3. Estudiante " + "\n" + "0. Para salir");
-    	seleccionInicial = sc.nextInt();
-    	switch(seleccionInicial){
-    		case 1:
-    			System.out.println("¿Que deseas hacer?");
-    			System.out.println("1. Consultar lista de alumnos inscritos." + "\n" +
-    					   		   "2. Consultar lista de alumnos de un área." + "\n" +
-    					           "3. Consultar lista de alumnos en una opcion técnica." + "\n" +
-    					           "4. Consultar lista de profesores." + "\n" +
-    				          	   "5. Inscribir a un alumno." + "\n" +
-    				         	   "6. Graduar a un alumno." + "\n" +
-    					           "7. Dar de baja a un alumno" + "\n" +
-    					           "8. Contratar a un profesor" + "\n" +
-    					           "9. Despedir a un profesor" + "\n" +
-    					           "0. Para salir");
-    	        seleccion = sc.nextInt();
-    	        switch(seleccion){
-    	        	case 0:
-    	        		System.out.println("Vuelve pronto");
-                        break;
-    		        
-    		        case 1:
-    			    	ArrayList<Alumno> tmp = admin.AlumnosInscritos();
-    			        for(Alumno a: tmp){
-    			        	System.out.println(a.toString());
-    			        }
-    			        break;
-                    
-                    case 2:
-            			ArrayList<Alumno> area = new ArrayList();
-            			System.out.println("Selecciona un area: ");
-            			System.out.println("1. Area Fisico-Matematica" + "\n" + 
-            		               		   "2. Area de Ciencias Biologicas y de la Salud" + "\n" + 
-            		               		   "3. Area de Ciencias Sociales" + "\n" + 
-            		                       "4. Area de Humanidades y Artes");
-            	        seleccion = sc.nextInt();
-            	        switch(seleccion){
-            	        	case 1:
-            		    		area = admin.AlumnosInscritosArea(ar1);
-            			    	for(Alumno a : area){
-            			    		System.out.println(a.toString());
-            					}
-            					break;
-            				case 2:
-            					area = admin.AlumnosInscritosArea(ar2);
-            					for(Alumno a : area){
-            			    		System.out.println(a.toString());
-            					}
-            					break;
-            				case 3:
-            					area = admin.AlumnosInscritosArea(ar3);
-            					for(Alumno a : area){
-            			    		System.out.println(a.toString());
-            					}
-            					break;
-            				case 4:
-            					area = admin.AlumnosInscritosArea(ar4);
-            					for(Alumno a : area){
-            			    		System.out.println(a.toString());
-            					}
-            					break;
-            				default:
-            					System.out.println("Selecciona una opcion válida");
-            					break;
+            System.out.println("-----------------------------------------------------------------------------------------------------");
+            System.out.println("Bienvenido la Proyecto 1 de Modelado y Programación | Alumnos: Amaya Dulce , Lechuga Eduardo");
+            System.out.println("Para ingresar, selecciona una opción: ");
+            System.out.println("1. Administrador" + "\n" + "2. Profesor" + "\n" + "3. Estudiante " + "\n" + "0. Para salir");
+            seleccionInicial = sc.nextInt();
+            switch(seleccionInicial){
+                case 1:
+                    System.out.println("¿Que deseas hacer?");
+                    System.out.println("1. Consultar lista de alumnos inscritos." + "\n" +
+                                       "2. Consultar lista de alumnos de un área." + "\n" +
+                                       "3. Consultar lista de alumnos en una opcion técnica." + "\n" +
+    		                       "4. Consultar lista de profesores." + "\n" +
+    			       	       "5. Inscribir a un alumno." + "\n" +
+    				       "6. Graduar a un alumno." + "\n" +
+    				       "7. Dar de baja a un alumno" + "\n" +
+    				       "8. Contratar a un profesor" + "\n" +
+    				       "9. Despedir a un profesor" + "\n" +
+    				       "0. Para salir");
+                    seleccion = sc.nextInt();
+                    switch(seleccion){
+                        case 0:
+    	        	    System.out.println("Vuelve pronto");
+                            break;
+                        case 1:
+    			    ArrayList<Alumno> tmp = admin.AlumnosInscritos();
+    			    for(Alumno a: tmp){
+    			       	System.out.println(a.toString());
+                            }
+    			    break;
+                        case 2:
+                            ArrayList<Alumno> area = new ArrayList();
+                            System.out.println("Selecciona un area: ");
+                            System.out.println("1. Area Fisico-Matematica" + "\n" + 
+                                               "2. Area de Ciencias Biologicas y de la Salud" + "\n" + 
+                                               "3. Area de Ciencias Sociales" + "\n" + 
+                                               "4. Area de Humanidades y Artes");
+                            seleccion = sc.nextInt();
+                            switch(seleccion){
+                                case 1:
+                                    area = admin.AlumnosInscritosArea(ar1);
+            			    for(Alumno a : area){
+                                        System.out.println(a.toString());
+                                    }
+                                    break;
+                                case 2:
+                                    area = admin.AlumnosInscritosArea(ar2);
+                                    for(Alumno a : area){
+                                        System.out.println(a.toString());
+                                    }
+                                    break;
+                                case 3:
+                                    area = admin.AlumnosInscritosArea(ar3);
+                                    for(Alumno a : area){
+                                        System.out.println(a.toString());
+                                    }
+                                    break;
+                                case 4:
+                                    area = admin.AlumnosInscritosArea(ar4);
+                                    for(Alumno a : area){
+                                        System.out.println(a.toString());
+                                    }
+                                    break;
+                                default:
+                                    System.out.println("Selecciona una opcion válida");
+                                    break;
             			}
-            			break;
-            		
+                            break;
             		case 3:
-            			ArrayList<Alumno> opTec = new ArrayList();
-            			System.out.println("Selecciona una opcion técnica: ");
-            			System.out.println("1. Agente de viajes y hotelería" + "\n" + 
-            		               		   "2. Fotógrafo, Laboratorista y Prensa" + "\n" + 
-            		               		   "3. Nutriólogo" + "\n" + 
+                            ArrayList<Alumno> opTec = new ArrayList();
+                            System.out.println("Selecciona una opcion técnica: ");
+                            System.out.println("1. Agente de viajes y hotelería" + "\n" + 
+                                               "2. Fotógrafo, Laboratorista y Prensa" + "\n" + 
+                                               "3. Nutriólogo" + "\n" + 
             		                       "4. Laboratorista Químico");
-            			seleccion = sc.nextInt();
-            			switch(seleccion){
-            				case 1:
-            		    		opTec = admin.AlumnosOpcionesTecnicas(agente);
-            			    	for(Alumno a : opTec){
-            			    		System.out.println(a.toString());
-            					}
-            					break;
-            				case 2:
-            					opTec = admin.AlumnosOpcionesTecnicas(fotografo);
-            					for(Alumno a : opTec){
-            			    		System.out.println(a.toString());
-            					}
-            					break;
-            				case 3:
-            					opTec = admin.AlumnosOpcionesTecnicas(nutriologia);
-            					for(Alumno a : opTec){
-            			    		System.out.println(a.toString());
-            					}
-            					break;
-            				case 4:
-            					opTec = admin.AlumnosOpcionesTecnicas(laboratorista);
-            					for(Alumno a : opTec){
-            			    		System.out.println(a.toString());
-            					}
-            					break;
-            				default:
-            					System.out.println("Selecciona una opcion válida");
-            					break;
+                            seleccion = sc.nextInt();
+                            switch(seleccion){
+                                case 1:
+                                    opTec = admin.AlumnosOpcionesTecnicas(agente);
+                                    for(Alumno a : opTec){
+                                        System.out.println(a.toString());
+                                    }
+                                    break;
+                                case 2:
+                                    opTec = admin.AlumnosOpcionesTecnicas(fotografo);
+                                    for(Alumno a : opTec){
+                                        System.out.println(a.toString());
+                                    }
+                                    break;
+                                case 3:
+                                    opTec = admin.AlumnosOpcionesTecnicas(nutriologia);
+                                    for(Alumno a : opTec){
+                                        System.out.println(a.toString());
+                                    }
+                                    break;
+                                case 4:
+                                    opTec = admin.AlumnosOpcionesTecnicas(laboratorista);
+                                    for(Alumno a : opTec){
+                                        System.out.println(a.toString());
+                                    }
+                                    break;
+                                default:
+                                    System.out.println("Selecciona una opcion válida");
+                                    break;
             			}
-            			break;
-            		
             		case 4:
-            			ArrayList<String> prof = admin.ProfesoresContratados();
-            			for(String p: prof){
-            				System.out.println(p);
-            			}
-            			break;
-
+                            ArrayList<String> prof = admin.ProfesoresContratados();
+                            for(String p: prof){
+            			System.out.println(p);
+                            }
+                            break;
             		case 5: 
-            			System.out.println("Ingresa el nombre: ");
-            			String nombreAlumnoNuevo = sc.next();
-            			System.out.println("Ingresa la fecha de Nacimiento: ");
-                                sc.nextLine();
-            			String fDN = sc.next();
-            			System.out.println("Ingresa el nuevo Numero de Cuenta: ");
-            			int nDC = sc.nextInt();
-            			System.out.println("Ingresa un correo: ");
-                                sc.nextLine();
-            			String correo2 = sc.nextLine();
-            			System.out.println("Selecciona el área a la que el alumno pertenecerá: \n" +
+                            System.out.println("Ingresa el nombre: ");
+                            String nombreAlumnoNuevo = sc.next();
+                            System.out.println("Ingresa la fecha de Nacimiento: ");
+                            sc.nextLine();
+                            String fDN = sc.next();
+                            System.out.println("Ingresa el nuevo Numero de Cuenta: ");
+                            int nDC = sc.nextInt();
+                            System.out.println("Ingresa un correo: ");
+                            sc.nextLine();
+                            String correo2 = sc.nextLine();
+                            System.out.println("Selecciona el área a la que el alumno pertenecerá: \n" +
                                            "1. Fisico-Matematica \n" +
                                            "2. Ciencias Biologicas y de la Salud \n" +
                                            "3. Ciencias Sociales \n" +
                                            "4. Humanidades y Artes");
-            			int ar = sc.nextInt();
-                        try{
-                            if(ar == 1)
-                                admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g1, amA1);
-            			    else if (ar == 2)
-            				    admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g3, amA2);
-            			    else if (ar == 3)
-            				    admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g5, amA3);
-            			    else if (ar == 4)
-            				    admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g7, amA4);
-            			}
-                        catch (ExcepcionIDDuplicado e){
-            				System.out.println(e.getMessage());
-                        }
-            			break;
-
+                            int ar = sc.nextInt();
+                            try{
+                                if(ar == 1)
+                                    admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g1, amA1);
+            			else if (ar == 2)
+            			    admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g3, amA2);
+            			else if (ar == 3)
+            			    admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g5, amA3);
+            			else if (ar == 4)
+            			    admin.inscribirAlumno(nombreAlumnoNuevo, fDN, nDC, correo2, g7, amA4);
+                            }catch (ExcepcionIDDuplicado e){
+            			System.out.println(e.getMessage());
+                            }
+                            break;
             		case 6:
-            			System.out.println("Ingresa el numero de cuenta del alumno que va a graduarse: ");
-            			int tmpGraduado = sc.nextInt();
-            			ArrayList<Alumno> alumnosTemp2 = admin.AlumnosInscritos();
-            			for(Alumno a : alumnosTemp2){
-            				if(a.getNumeroDeCuenta() == tmpGraduado){
-            					admin.graduarAlumno(a);
-            					System.out.println(a.certificadoAlumno());
-            				}
-            			}
-            			break;
-
+                            System.out.println("Ingresa el numero de cuenta del alumno que va a graduarse: ");
+                            int tmpGraduado = sc.nextInt();
+                            if(admin.existeAlumno(tmpGraduado)){
+                                ArrayList<Alumno> alumnosTemp2 = admin.AlumnosInscritos();
+                                for(Alumno a : alumnosTemp2){
+                                    if(a.getNumeroDeCuenta() == tmpGraduado){
+                                        admin.graduarAlumno(a);
+                                        System.out.println(a.certificadoAlumno());
+                                    }
+                                }
+                            }
+                            break;
             		case 7:
-            			System.out.println("Ingresa el numero de cuenta del alumno que va a ser dado de baja: ");
-            			int tmpExpulsado = sc.nextInt();
-            			ArrayList<Alumno> alumnosTemp = admin.AlumnosInscritos();
-                        for(Alumno a : alumnosTemp){
-                            if(a.getNumeroDeCuenta() == tmpExpulsado){
-                                admin.bajaAlumno(a);
-                                System.out.println("El alumno has sido dado de baja");
-            			    }
-            			}
-            			break;
-
+                            System.out.println("Ingresa el numero de cuenta del alumno que va a ser dado de baja: ");
+                            int tmpExpulsado = sc.nextInt();
+                            if(admin.existeAlumno(tmpExpulsado)){
+                                ArrayList<Alumno> alumnosTemp = admin.AlumnosInscritos();
+                                for(Alumno a : alumnosTemp){
+                                    if(a.getNumeroDeCuenta() == tmpExpulsado){
+                                        admin.bajaAlumno(a);
+                                        System.out.println("El alumno has sido dado de baja");
+                                    }
+                                }
+                            }else{ 
+                                System.out.println("El numero de cuenta no existe");
+                            }
+                            break;
             		case 8:
-            			System.out.println("Selecciona una opción");
-            			System.out.println("1. Contratar profesor de Asignatura" + "\n" + "2. Contratar profesor de Opcione técnica");
-            			seleccion = sc.nextInt();
-            			switch(seleccion){
-            				case 1:
-            					System.out.println("Ingresa el nombre: ");
-                                                sc.next();
-            					String nombreProfesorNuevo = sc.nextLine();
-            					System.out.println("¿Que materia impartira?");
-            					System.out.println("1. Física" + "\n" +
-            						               "2. Matemáticas" + "\n" +
-            						               "3. Biologia" + "\n" +
-            						               "4. Quimica" + "\n" +
-            						               "5. Historia" + "\n" +
-            						               "6. Ciencias Sociales" + "\n" +
-            						               "7. Filosofia" + "\n" + 
-            						               "8. Artes Plasticas");
-            					seleccion = sc.nextInt();
-            					if(seleccion == 1)
-            						admin.contrataProfesorAsignatura(nombreProfesorNuevo, m1, g1);
-            					else if(seleccion == 2)
-            						admin.contrataProfesorAsignatura(nombreProfesorNuevo, m2, g1);
-            					else if (seleccion == 3)
-            						admin.contrataProfesorAsignatura(nombreProfesorNuevo, m3, g3);
-            					else if (seleccion == 4)
-            						admin.contrataProfesorAsignatura(nombreProfesorNuevo, m4, g3);
-            					else if (seleccion == 5)
-            						admin.contrataProfesorAsignatura(nombreProfesorNuevo, m5, g5);
-            					else if (seleccion == 6)
-            						admin.contrataProfesorAsignatura(nombreProfesorNuevo, m6, g5);
-            					else if (seleccion == 7)
-            						admin.contrataProfesorAsignatura(nombreProfesorNuevo, m7, g7);
-            					else if (seleccion == 8)
-            						admin.contrataProfesorAsignatura(nombreProfesorNuevo, m8, g7);
-            					else
-            						System.out.println("Selecciona una opción válida");
-            					break;
+                            try{
+                                
+                                System.out.println("Selecciona una opción");
+                                System.out.println("1. Contratar profesor de Asignatura" + "\n" + "2. Contratar profesor de Opcione técnica");
+                                seleccion = sc.nextInt();
+                                switch(seleccion){
+                                    case 1:
+                                        System.out.println("Ingresa el nombre: ");
+                                        sc.next();
+                                        String nombreProfesorNuevo = sc.nextLine();
+                                        System.out.println("¿Que materia impartira?");
+                                        System.out.println("1. Física" + "\n" +
+                                                           "2. Matemáticas" + "\n" +
+                                                           "3. Biologia" + "\n" +
+                                                           "4. Quimica" + "\n" +
+                                                           "5. Historia" + "\n" +
+                                                           "6. Ciencias Sociales" + "\n" +
+                                                           "7. Filosofia" + "\n" + 
+                                                           "8. Artes Plasticas");
+                                        seleccion = sc.nextInt();
+                                        if(seleccion == 1)
+                                            admin.contrataProfesorAsignatura(nombreProfesorNuevo, m1, g1);
+                                        else if(seleccion == 2)
+                                            admin.contrataProfesorAsignatura(nombreProfesorNuevo, m2, g1);
+                                        else if (seleccion == 3)
+                                            admin.contrataProfesorAsignatura(nombreProfesorNuevo, m3, g3);
+                                        else if (seleccion == 4)
+                                            admin.contrataProfesorAsignatura(nombreProfesorNuevo, m4, g3);
+                                        else if (seleccion == 5)
+                                            admin.contrataProfesorAsignatura(nombreProfesorNuevo, m5, g5);
+                                        else if (seleccion == 6)
+                                            admin.contrataProfesorAsignatura(nombreProfesorNuevo, m6, g5);
+                                        else if (seleccion == 7)
+                                            admin.contrataProfesorAsignatura(nombreProfesorNuevo, m7, g7);
+                                        else if (seleccion == 8)
+                                            admin.contrataProfesorAsignatura(nombreProfesorNuevo, m8, g7);
+                                        else
+                                            System.out.println("Selecciona una opción válida");
+                                        break;
+                                        
 
-            				case 2:
-            					System.out.println("Ingresa el nombre: ");
-            					String nombreProfesorNuevo2 = sc.nextLine();
-            					System.out.println("¿Que opcion técnica impartira?");
-            					System.out.println("1. Agente de viajes y hotelería" + "\n" +
-            						               "2. Fotógrafo, Laboratorista y Prensa" + "\n" +
-            						               "3. Nutriologia" + "\n" +
-            						               "4. Laboratorista Químico");
-            					seleccion = sc.nextInt();
-            					if(seleccion == 1)
-            						admin.contrataProfesorOpcionTecnica(nombreProfesorNuevo2, agente);
-            					else if(seleccion == 2)
-            						admin.contrataProfesorOpcionTecnica(nombreProfesorNuevo2, fotografo);
-            					else if(seleccion == 3)
-            						admin.contrataProfesorOpcionTecnica(nombreProfesorNuevo2, nutriologia);
-            					else if(seleccion == 4)
-            						admin.contrataProfesorOpcionTecnica(nombreProfesorNuevo2, laboratorista);
-            					else
-            						System.out.println("Selecciona una opción válida");
-            					break;
-            			}
-            			break;
-
+                                    case 2:
+                                        System.out.println("Ingresa el nombre: ");
+                                        String nombreProfesorNuevo2 = sc.nextLine();
+                                        System.out.println("¿Que opcion técnica impartira?");
+                                        System.out.println("1. Agente de viajes y hotelería" + "\n" +
+                                                           "2. Fotógrafo, Laboratorista y Prensa" + "\n" +
+                                                           "3. Nutriologia" + "\n" +
+                                                           "4. Laboratorista Químico");
+                                        seleccion = sc.nextInt();
+                                        if(seleccion == 1)
+                                            admin.contrataProfesorOpcionTecnica(nombreProfesorNuevo2, agente);
+                                        else if(seleccion == 2)
+                                            admin.contrataProfesorOpcionTecnica(nombreProfesorNuevo2, fotografo);
+                                        else if(seleccion == 3)
+                                            admin.contrataProfesorOpcionTecnica(nombreProfesorNuevo2, nutriologia);
+                                        else if(seleccion == 4)
+                                            admin.contrataProfesorOpcionTecnica(nombreProfesorNuevo2, laboratorista);
+                                        else
+                                            System.out.println("Selecciona una opción válida");
+                                        break;
+                                }
+                                
+                            }catch(ArrayIndexOutOfBoundsException e){
+                                    System.out.println("Ya no puedes contratar mas profesores!");
+                            }
+                            break;
+                         
             		case 9:
-            			System.out.println("Selecciona una opcion: ");
-            			System.out.println("1. Profesor de Asignatura" + "\n" + "2. Profesor de opcion Técnica");
-            			seleccion = sc.nextInt();
-            			System.out.println("Ingresa el id del profesor que despediras: ");
-            			int tmpDespedido = sc.nextInt();
-            			if(seleccion == 1){
-            				for(ProfesorAsignatura p : admin.profesoresAsignatura){
-                                            if(p != null){
-            					if(p.getId() == tmpDespedido){
-            						admin.despedirProfesorAsignatura(p);
-            						System.out.println("El profesor ha sido despedido, ¡Adios!");
-            					}
-                                            }
-            				}
-            			}
-            			else if(seleccion == 1)
-            				for(ProfesorOpcionTecnica p : admin.profesoresOpcionTecnica){
-            					if(p.getId() == tmpDespedido){
-            						admin.despedirProfesorOpcionTecnica(p);
-            						System.out.println("El profesor ha sido despedido, ¡Adios!");
-            					}
-            				}
-            			break;
-
-            		default:
-            			System.out.println("Selecciona una opción válida");
-            			break;
-            	}
-    			break;
+                            //Aqui truena bien hermoso cuando le paso un id > 1
+                            int tmpDespedido;
+                            System.out.println("Selecciona una opcion: ");
+                            System.out.println("1. Profesor de Asignatura" + "\n" + "2. Profesor de opcion Técnica");
+                            seleccion = sc.nextInt();
+                            switch(seleccion){
+                                case 1:
+                                    System.out.println("Ingresa el id del profesor que despediras: ");
+                                    tmpDespedido = sc.nextInt();
+                                    profesorAsignaturaTemporal = admin.getProfesorAsignaturaPorID(tmpDespedido);
+                                    admin.despedirProfesorAsignatura(profesorAsignaturaTemporal);
+                                    System.out.println("El profesor ha sido despedido, ¡Adios!");
+                                    break;
+                                case 2:
+                                    System.out.println("Ingresa el id del profesor que despediras: ");
+                                    tmpDespedido = sc.nextInt();
+                                    profesorOpcionTecnicaTemporal = admin.getProfesorOpcionTecnicaPorID(tmpDespedido);
+                                    admin.despedirProfesorOpcionTecnica(profesorOpcionTecnicaTemporal);
+                                    System.out.println("El profesor ha sido despedido, ¡Adios!");
+                                
+                            }
+                            break;
+                    }
+                    break;
+                    
     		case 2:
-    			System.out.println("Selecciona una opción: ");
-    			System.out.println("1. Profesor de Asignatura" + "\n" + "2. Profesor de opcion Técnica" + "\n" + "0. Para salir");
-    			seleccion = sc.nextInt();
-    			switch(seleccion){
-    				case 1:
-    					System.out.println("Ingresa tu id: ");
-    					int idProfesorUsuario = sc.nextInt();
-    					for(ProfesorAsignatura p : admin.profesoresAsignatura){
-    						if(p.getId() == idProfesorUsuario){
-    							System.out.println("¿Qué deseas hacer?");
-    							System.out.println("1. Consultar información de mi grupo" + "\n" +
-            						               "2. Asignar calificación a un alumno" + "\n" + 
-                                                                        "0. Para salir");
-    							seleccion = sc.nextInt();
-    							switch(seleccion){
-    								case 1:
-    									System.out.println(p.consultaInformacionGrupo());
-    									break;
-
-    								case 2:
-    									System.out.println("Introduce el número de cuenta del alumno: ");
-    									int noCuentaAlumnoCalif = sc.nextInt();
-    									ArrayList<Alumno> alumnosGrupoProfesor = p.getGrupo().getAlumnos();
-    									for(Alumno a : alumnosGrupoProfesor){
-    										if(a.getNumeroDeCuenta() == noCuentaAlumnoCalif){
-    											System.out.println("Ingresa la calificación correspondiente en formato entero");
-    											int califAsignada = sc.nextInt();
-    											p.asignarCalificacion(p, a, califAsignada);
-    											System.out.println("Calificación Asignada :)");
-    										}
-    									}
-    									break;
-                                                                case 0:
-                                                                    continue;
-    							}
-
-    						}
-    					}
-    					break;
-
-    				case 2:
-    					System.out.println("Ingresa tu id: ");
-    					int idProfesorUsuarioOT = sc.nextInt();
-    					for(ProfesorOpcionTecnica p : admin.profesoresOpcionTecnica){
-    						if(p.getId() == idProfesorUsuarioOT){
-    							System.out.println("¿Qué deseas hacer?");
-    							System.out.println("1. Consultar información de mi grupo" + "\n" +
-            						               "2. Asignar calificación a un alumno");
-    							seleccion = sc.nextInt();
-    							switch(seleccion){
-    								case 1:
-    									System.out.println(p.consultaInformacionGrupo());
-    									break;
-
-    								case 2:
-    									System.out.println("Introduce el número de cuenta del alumno: ");
-    									int noCuentaAlumnoCalif = sc.nextInt();
-    									ArrayList<Alumno> alumnosOTProfesor = p.getOpcionTecnica().alumnosInscritos();
-    									for(Alumno a : alumnosOTProfesor){
-    										if(a.getNumeroDeCuenta() == noCuentaAlumnoCalif){
-    											System.out.println("Ingresa la calificación correspondiente en formato entero");
-    											int califAsignada = sc.nextInt();
-    											p.asignarCalificacion(p, a, califAsignada);
-    											System.out.println("Calificación Asignada :)");
-    										}
-    									}
-    									break;
-    							}
-
-    						}
-    					}
-    					break;
-    			}
-                break;
-
+                    System.out.println("Selecciona una opción: ");
+                    System.out.println("1. Profesor de Asignatura" + "\n" + "2. Profesor de opcion Técnica" + "\n" + "0. Para salir");
+                    seleccion = sc.nextInt();
+                    switch(seleccion){
+                        case 1:
+                            System.out.println("Ingresa tu id: ");
+                            int idProfesorUsuario = sc.nextInt();
+                            if(admin.existeProfesorAsignatura(idProfesorUsuario)){
+                                profesorAsignaturaTemporal = admin.getProfesorAsignaturaPorID(idProfesorUsuario);
+                                System.out.println("¿Qué deseas hacer?");
+                                System.out.println("1. Consultar información de mi grupo" + "\n" +
+            				       "2. Asignar calificación a un alumno" + "\n" + 
+                                               "0. Para salir");
+                            
+                            seleccion = sc.nextInt();
+                                    switch(seleccion){
+                                        case 1:
+                                            System.out.println(profesorAsignaturaTemporal.consultaInformacionGrupo());
+                                            break;
+					case 2:
+                                            System.out.println("Introduce el número de cuenta del alumno: ");
+                                            int noCuentaAlumnoCalif = sc.nextInt();
+                                            if(admin.existeAlumno(noCuentaAlumnoCalif)){
+                                                ArrayList<Alumno> alumnosGrupoProfesor = profesorAsignaturaTemporal.getGrupo().getAlumnos();
+                                                for(Alumno a : alumnosGrupoProfesor){
+                                                    if(a.getNumeroDeCuenta() == noCuentaAlumnoCalif){
+                                                        System.out.println("Ingresa la calificación correspondiente en formato entero");
+                                                        int califAsignada = sc.nextInt();
+                                                        profesorAsignaturaTemporal.asignarCalificacion(profesorAsignaturaTemporal, a, califAsignada);
+                                                        System.out.println("Calificación Asignada :)");
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                        default:
+                                            System.out.println("Hasta luego!");
+                                    }
+                            break;
+                            }else{
+                                System.out.println("El profesor no existe");
+                            }
+   			case 2:
+                            System.out.println("Ingresa tu id: ");
+                            int idProfesorUsuarioOT = sc.nextInt();
+                            profesorOpcionTecnicaTemporal = admin.getProfesorOpcionTecnicaPorID(idProfesorUsuarioOT);
+                                    System.out.println("¿Qué deseas hacer?");
+                                    System.out.println("1. Consultar información de mi grupo" + "\n" +
+            				               "2. Asignar calificación a un alumno");
+                                    seleccion = sc.nextInt();
+                                    switch(seleccion){
+                                        case 1:
+                                            System.out.println(profesorOpcionTecnicaTemporal.consultaInformacionGrupo());
+                                            break;
+					case 2:
+                                            System.out.println("Introduce el número de cuenta del alumno: ");
+                                            int noCuentaAlumnoCalif = sc.nextInt();
+                                            if(admin.existeAlumno(noCuentaAlumnoCalif)){
+                                                ArrayList<Alumno> alumnosOTProfesor = profesorOpcionTecnicaTemporal.getOpcionTecnica().alumnosInscritos();
+                                                for(Alumno a : alumnosOTProfesor){
+                                                    if(a.getNumeroDeCuenta() == noCuentaAlumnoCalif){
+                                                        System.out.println("Ingresa la calificación correspondiente en formato entero");
+                                                        int califAsignada = sc.nextInt();
+                                                        profesorOpcionTecnicaTemporal.asignarCalificacion(profesorOpcionTecnicaTemporal, a, califAsignada);
+                                                        System.out.println("Calificación Asignada :)");
+                                                    }
+                                                }
+                                            }else{
+                                                System.out.println("El alumno no existe");
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                            break;
+                    }
+                    break;
+                    
     		case 3:
-    			System.out.println("Por favor, ingresa tu número de cuenta: ");
-    			int numCuentaUsuario = sc.nextInt();
-    			ArrayList<Alumno> laMemoriaEsBarata = admin.AlumnosInscritos();
-    			for(Alumno a: laMemoriaEsBarata){
-    				if(a.getNumeroDeCuenta() == numCuentaUsuario){
-    					System.out.println("¿Que deseas hacer?");
-    					System.out.println("1. Consultar mis calificaciones" + "\n" +
-    						               "2. Consultar mi promedio" + "\n" +
-    						               "3. Inscribirme a una opciín técnica" + "\n" +
-                                                               "4. Ver certificado" + "\n" +
-                                                               "0. Para salir");
-    					seleccion = sc.nextInt();
-    					switch(seleccion){
-    						case 1:
-    							System.out.println(a.getCalificaciones());
-    							break;
-
-    						case 2:
-    							System.out.println(a.getPromedio());
-    							break;
-
-    						case 3:
-    							System.out.println("Selecciona la opcion deseada" + "\n" +
-               									   "1: Agente de viajes y hoteleria" + "\n" +
-               									   "2: Fotografo, laboratorista y prensa" + "\n" +
-               									   "3: Nutriologia" + "\n" +
-               									   "4: Laboratorista Quimico" + "\n" +
-               									   "0: salir");
-    							seleccion = sc.nextInt();
-    							if(seleccion == 1){
-    								a.inscribirOpcionTecnica(agente);
-                                                                System.out.println("Carrera inscrita!");
-                                                        }
-                                                        else if (seleccion == 2){
-                                                            a.inscribirOpcionTecnica(fotografo);
-                                                            System.out.println("Carrera inscrita!");
-                                                        }
-                                                        else if(seleccion == 3){
-                                                            a.inscribirOpcionTecnica(nutriologia);
-                                                            System.out.println("Carrera inscrita!");
-                                                        }
-                                                        else if (seleccion == 4){
-                                                            a.inscribirOpcionTecnica(laboratorista);
-                                                            System.out.println("Carrera inscrita!");
-                                                        }
-                                                        else if(seleccion > 4)
-    								System.out.println("Selecciona una opción válida");
-    							else
-    								System.out.println("Adiós...");
-    							break;
-                                                
-                                                case 4:
-                                                    System.out.println(a.certificadoAlumno());
-    					}
-    				}
-    			}
-    			break;
+                    System.out.println("Por favor, ingresa tu número de cuenta: ");
+                    int numCuentaUsuario = sc.nextInt();
+                    if(admin.existeAlumno(numCuentaUsuario)){
+                        ArrayList<Alumno> laMemoriaEsBarata = admin.AlumnosInscritos();
+                        for(Alumno a: laMemoriaEsBarata){
+                            if(a.getNumeroDeCuenta() == numCuentaUsuario){
+                                System.out.println("¿Que deseas hacer?");
+                                System.out.println("1. Consultar mis calificaciones" + "\n" +
+                                                   "2. Consultar mi promedio" + "\n" +
+                                                   "3. Inscribirme a una opciín técnica" + "\n" +
+                                                   "4. Ver certificado" + "\n" +
+                                                   "0. Para salir");
+                                seleccion = sc.nextInt();
+                                switch(seleccion){
+                                    case 1:
+                                        System.out.println(a.getCalificaciones());
+                                        break;
+                                    case 2:
+                                        System.out.println(a.getPromedio());
+                                        break;
+                                    case 3:
+                                        System.out.println("Selecciona la opcion deseada" + "\n" +
+                                                           "1: Agente de viajes y hoteleria" + "\n" +
+                                                           "2: Fotografo, laboratorista y prensa" + "\n" +
+                                                           "3: Nutriologia" + "\n" +
+                                                           "4: Laboratorista Quimico" + "\n" +
+                                                           "0: salir");
+                                        seleccion = sc.nextInt();
+                                        if(seleccion == 1){
+                                            a.inscribirOpcionTecnica(agente);
+                                            System.out.println("Carrera inscrita!");
+                                        }
+                                        else if (seleccion == 2){
+                                            a.inscribirOpcionTecnica(fotografo);
+                                            System.out.println("Carrera inscrita!");
+                                        }
+                                        else if(seleccion == 3){
+                                            a.inscribirOpcionTecnica(nutriologia);
+                                            System.out.println("Carrera inscrita!");
+                                        }
+                                        else if (seleccion == 4){
+                                            a.inscribirOpcionTecnica(laboratorista);
+                                            System.out.println("Carrera inscrita!");
+                                        }
+                                        else if(seleccion > 4)
+                                            System.out.println("Selecciona una opción válida");
+                                        else
+                                            System.out.println("Adiós...");
+                                        break;                                             
+                                    case 4:
+                                        System.out.println(a.certificadoAlumno());
+                                }
+                            }
+                        }
+                    }
+                    
+            }
         }
+        while(seleccionInicial > 0);
+        System.out.println("¡Adios!");
     }
-    while(seleccionInicial > 0);
-
-    System.out.println("¡Adios!");
-        
-
-    }
-    
 }

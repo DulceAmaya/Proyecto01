@@ -113,6 +113,73 @@ public class Administrador implements IObservado{
         this.notificaNuevoAlumno();
         
     }
+    
+    ///////////////////////Parche 1///////////////////////////////////////////
+    /**
+     * Metodo para saber si un alumno esta inscrito
+     * @param numeroDeCuenta
+     * @return boolean
+     */
+    public boolean existeAlumno(int numeroDeCuenta){
+        return (alumnos.containsKey(numeroDeCuenta));
+    }
+    
+    /**
+     * Metodo que sabe si existe un profesor en el sistema segun el id
+     * @param id
+     * @return 
+     */
+    public boolean existeProfesorAsignatura(int id){
+        boolean test = false;
+        for(int i=0; i<profesoresAsignatura.length; i++){
+            if(profesoresAsignatura[i].getId() == id)
+                test = true;
+        }
+        return test;
+    }
+    
+    /**
+     * Metodo que sabe si existe un profesor en el sistema segun el id
+     * @param id
+     * @return 
+     */
+    public boolean existeProfesorOpcionTecnica(int id){
+        for(ProfesorOpcionTecnica profesor : profesoresOpcionTecnica){
+            if(profesor.getId() == id)
+                return true;
+        }
+        System.out.println("No existe el profesor");
+        return false;
+    }
+    
+    /**
+     * Metodo para saber si un profesor Asignatura esta contratado
+     * @param id
+     * @return Profesor
+     */
+    public ProfesorAsignatura getProfesorAsignaturaPorID(int id){
+        for(ProfesorAsignatura profesor : profesoresAsignatura){
+            if(profesor.getId() == id)
+                return profesor;
+        }
+        System.out.println("El profesor no existe");
+        return null;
+    }
+    
+    /**
+     * Metodo para saber si un profesor de optec esta contratado
+     * @param id
+     * @return profesor
+     */
+    public ProfesorOpcionTecnica getProfesorOpcionTecnicaPorID(int id){
+        for(ProfesorOpcionTecnica profesor : profesoresOpcionTecnica){
+            if(profesor.getId() == id)
+                return profesor;
+        }
+        System.out.println("El profesor no existe");
+        return null;
+    }
+    ///////////////////////////////////////////////////////////////////////////
 
     /**
      * Inscribe un alumno ya creado en el main

@@ -3,6 +3,7 @@
  */
 package proyectoescuela.profesor;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import proyectoescuela.alumno.Alumno;
 import proyectoescuela.Grupo;
 import proyectoescuela.materia.Materia;
@@ -14,7 +15,8 @@ import proyectoescuela.materia.Materia;
 public class ProfesorAsignatura extends Profesor {
     
     public String nombre;
-    public int id = 0;
+    public int id;
+    private static final AtomicInteger count = new AtomicInteger(0); 
     public Materia materia;
     public Grupo grupo;
     public Alumno alumno;
@@ -31,7 +33,7 @@ public class ProfesorAsignatura extends Profesor {
         this.nombre = nombre;
         this.materia = materia;
         this.grupo = grupo;
-        id++;
+        id = count.incrementAndGet();
         setId(id);
     }
 
