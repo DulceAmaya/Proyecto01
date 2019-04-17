@@ -242,6 +242,7 @@ public class main {
                                     System.out.println("Selecciona una opcion válida");
                                     break;
             			}
+                            break;
             		case 3:
                             ArrayList<Alumno> opTec = new ArrayList();
                             System.out.println("Selecciona una opcion técnica: ");
@@ -436,6 +437,7 @@ public class main {
                             }
                             break;
                     }
+                    break;
                     
     		case 2:
                     System.out.println("Selecciona una opción: ");
