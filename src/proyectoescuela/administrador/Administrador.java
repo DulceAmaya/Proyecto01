@@ -130,12 +130,12 @@ public class Administrador implements IObservado{
      * @return 
      */
     public boolean existeProfesorAsignatura(int id){
-        for(ProfesorAsignatura profesor : profesoresAsignatura){
-            if(profesor.getId() == id)
-                return true;
+        boolean test = false;
+        for(int i=0; i<profesoresAsignatura.length; i++){
+            if(profesoresAsignatura[i].getId() == id)
+                test = true;
         }
-        System.out.println("No existe el profesor");
-        return false;
+        return test;
     }
     
     /**

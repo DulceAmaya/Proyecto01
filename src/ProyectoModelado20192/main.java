@@ -177,6 +177,7 @@ public class main {
         //--------------------- Inicio del menú-----------------------------
         int seleccionInicial;
         do{
+            System.out.println("-----------------------------------------------------------------------------------------------------");
             System.out.println("Bienvenido la Proyecto 1 de Modelado y Programación | Alumnos: Amaya Dulce , Lechuga Eduardo");
             System.out.println("Para ingresar, selecciona una opción: ");
             System.out.println("1. Administrador" + "\n" + "2. Profesor" + "\n" + "3. Estudiante " + "\n" + "0. Para salir");
@@ -447,11 +448,13 @@ public class main {
                         case 1:
                             System.out.println("Ingresa tu id: ");
                             int idProfesorUsuario = sc.nextInt();
-                            profesorAsignaturaTemporal = admin.getProfesorAsignaturaPorID(idProfesorUsuario);
-                            System.out.println("¿Qué deseas hacer?");
-                            System.out.println("1. Consultar información de mi grupo" + "\n" +
+                            if(admin.existeProfesorAsignatura(idProfesorUsuario)){
+                                profesorAsignaturaTemporal = admin.getProfesorAsignaturaPorID(idProfesorUsuario);
+                                System.out.println("¿Qué deseas hacer?");
+                                System.out.println("1. Consultar información de mi grupo" + "\n" +
             				       "2. Asignar calificación a un alumno" + "\n" + 
                                                "0. Para salir");
+                            
                             seleccion = sc.nextInt();
                                     switch(seleccion){
                                         case 1:
@@ -476,6 +479,9 @@ public class main {
                                             System.out.println("Hasta luego!");
                                     }
                             break;
+                            }else{
+                                System.out.println("El profesor no existe");
+                            }
    			case 2:
                             System.out.println("Ingresa tu id: ");
                             int idProfesorUsuarioOT = sc.nextInt();
