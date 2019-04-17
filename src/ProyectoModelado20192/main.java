@@ -574,7 +574,7 @@ public class main {
                             }
                         }
                     }
-                    System.out.println("Este numero de cuenta no existe, intentalo otra vez");
+                    
             }
         }
         while(seleccionInicial > 0);
