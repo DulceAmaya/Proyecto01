@@ -3,6 +3,7 @@
  */
 package proyectoescuela.profesor;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import proyectoescuela.alumno.Alumno;
 import proyectoescuela.opciontecnica.OpcionTecnica;
 
@@ -14,7 +15,8 @@ public class ProfesorOpcionTecnica extends Profesor{
     
     
     public String nombre;
-    public int id = 0;
+    public int id ;
+    private static final AtomicInteger count = new AtomicInteger(0); 
     public OpcionTecnica opcionTecnica;
     public AsignarCalificacionProfesorOpcionTecnica pCalificacion;
     public ConsultarInfoGrupoProfesorOpcionTecnica pInformacion = new ConsultarInfoGrupoProfesorOpcionTecnica();
@@ -28,7 +30,7 @@ public class ProfesorOpcionTecnica extends Profesor{
     public ProfesorOpcionTecnica(String nombre, OpcionTecnica opcionTecnica) {
         this.nombre = nombre;
         this.opcionTecnica = opcionTecnica;
-        id++;
+        id = count.incrementAndGet();
         this.setId(id);
     }
 
